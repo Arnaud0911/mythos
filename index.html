@@ -1,0 +1,2303 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#11172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mythos" />
+  <title>Mythos — Artworks intégrés</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <style>:root {
+  color-scheme: dark;
+  --bg: #090d18;
+  --surface: #12182a;
+  --surface-2: #1a2238;
+  --border: rgba(255,255,255,.1);
+  --text: #f8f3e5;
+  --muted: #aeb6c9;
+  --gold: #e8bd65;
+  --gold-2: #fff0b5;
+  --danger: #e06b76;
+  --shadow: 0 20px 60px rgba(0,0,0,.35);
+  --radius: 22px;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(75, 99, 169, .22), transparent 34rem),
+    radial-gradient(circle at 90% 30%, rgba(179, 116, 43, .12), transparent 30rem),
+    var(--bg);
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .48; }
+.hidden { display: none !important; }
+
+.app-shell { width: min(100%, 760px); margin: 0 auto; min-height: 100vh; padding-bottom: 92px; }
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(14px + env(safe-area-inset-top)) 18px 12px;
+  background: linear-gradient(to bottom, rgba(9,13,24,.98), rgba(9,13,24,.83), transparent);
+  backdrop-filter: blur(14px);
+}
+.topbar h1 { margin: 0; font-family: Georgia, serif; letter-spacing: .16em; font-size: 22px; }
+.brand-mark {
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px;
+  color: var(--gold); font-family: Georgia, serif; font-weight: 900; font-size: 24px;
+  background: #0f1c3b;
+  border: 1px solid rgba(232,189,101,.38);
+  box-shadow: none;
+}
+.icon-button { margin-left: auto; border: 1px solid var(--border); background: var(--surface); color: var(--text); width: 42px; height: 42px; border-radius: 14px; font-size: 22px; }
+.eyebrow { margin: 0 0 4px; color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: .18em; }
+.muted { color: var(--muted); }
+main { padding: 6px 16px 24px; }
+.view { display: none; animation: viewIn .28s ease; }
+.view.active { display: block; }
+@keyframes viewIn { from { opacity: 0; transform: translateY(6px); } }
+
+.hero-card {
+  position: relative; overflow: hidden; min-height: 430px; padding: 28px 22px 24px;
+  border: 1px solid rgba(232,189,101,.22); border-radius: 30px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.06), transparent 45%),
+    radial-gradient(circle at 50% 42%, rgba(232,189,101,.18), transparent 34%),
+    linear-gradient(160deg, #171c34, #0f1425 65%);
+  box-shadow: var(--shadow);
+}
+.hero-card::before, .hero-card::after { content: ""; position: absolute; width: 180px; height: 180px; border: 1px solid rgba(232,189,101,.12); transform: rotate(45deg); }
+.hero-card::before { top: -100px; right: -80px; }
+.hero-card::after { bottom: -125px; left: -80px; }
+.hero-copy { position: relative; z-index: 1; text-align: center; }
+.hero-copy h2 { margin: 6px 0 8px; font-family: Georgia, serif; font-size: clamp(28px, 8vw, 42px); }
+.hero-copy p:last-child { margin: 0; }
+.pack-art { height: 225px; display: flex; align-items: center; justify-content: center; position: relative; }
+.pack-core {
+  position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 145px; height: 200px; border-radius: 16px;
+  border: 2px solid var(--gold); background:
+    linear-gradient(135deg, rgba(255,255,255,.16), transparent 30%),
+    repeating-linear-gradient(45deg, transparent 0 12px, rgba(232,189,101,.045) 12px 14px),
+    linear-gradient(160deg, #20284a, #0c1020);
+  transform: rotate(-2deg); box-shadow: 0 18px 35px rgba(0,0,0,.45), 0 0 40px rgba(232,189,101,.18);
+}
+.pack-core::before { content: ""; position: absolute; inset: 9px; border: 1px solid rgba(232,189,101,.5); border-radius: 11px; }
+.pack-core span { font: 700 72px Georgia, serif; color: var(--gold-2); text-shadow: 0 0 26px rgba(232,189,101,.55); }
+.pack-core small { color: var(--gold); font-weight: 900; letter-spacing: .16em; }
+.pack-wing { color: rgba(232,189,101,.5); font-size: 64px; transform: scaleX(1.5) rotate(45deg); margin: 0 -5px; }
+.pack-wing.left { transform: scaleX(1.5) rotate(-45deg); }
+
+.primary-button, .secondary-button, .danger-button {
+  width: 100%; border-radius: 16px; padding: 15px 18px; font-weight: 850; border: 0;
+}
+.primary-button { color: #18131d; background: linear-gradient(135deg, var(--gold-2), var(--gold)); box-shadow: 0 10px 26px rgba(232,189,101,.18); }
+.secondary-button { color: var(--text); border: 1px solid var(--border); background: var(--surface-2); }
+.danger-button { color: #ffdce0; border: 1px solid rgba(224,107,118,.4); background: rgba(224,107,118,.12); }
+.countdown { min-height: 18px; margin: 12px 0 0; text-align: center; color: var(--muted); font-size: 13px; }
+
+.stats-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 12px; margin: 14px 0; }
+.stat-card, .panel { border: 1px solid var(--border); background: rgba(18,24,42,.88); box-shadow: 0 14px 36px rgba(0,0,0,.16); }
+.stat-card { border-radius: 20px; padding: 17px; }
+.stat-card span, .stat-card small { color: var(--muted); font-size: 12px; }
+.stat-card strong { display: block; margin: 5px 0; font-size: 25px; }
+.progress-track { height: 7px; margin-top: 12px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.08); }
+.progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ae7a2d, var(--gold-2)); transition: width .5s ease; }
+.panel { margin-top: 14px; border-radius: var(--radius); padding: 18px; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 14px; margin-bottom: 14px; }
+.section-heading h2, .section-heading h3 { margin: 0; font-family: Georgia, serif; }
+.section-heading h2 { font-size: 31px; }
+.section-heading h3 { font-size: 22px; }
+.text-button { border: 0; background: transparent; color: var(--gold); padding: 6px 0; font-weight: 750; }
+.recent-strip { display: grid; grid-auto-flow: column; grid-auto-columns: 108px; gap: 10px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.recent-strip::-webkit-scrollbar { display: none; }
+.empty-state { display: block; padding: 22px 0; color: var(--muted); text-align: center; }
+.mini-card { position: relative; overflow: hidden; aspect-ratio: .7; border-radius: 13px; border: 1px solid var(--border); background: var(--surface-2); }
+.mini-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mini-card span { position: absolute; inset: auto 6px 6px; padding: 5px 6px; border-radius: 7px; background: rgba(8,11,20,.78); backdrop-filter: blur(7px); font-size: 10px; font-weight: 800; text-align: center; }
+.rarity-list { display: grid; gap: 9px; }
+.rarity-row { display: grid; grid-template-columns: 12px 1fr auto; align-items: center; gap: 10px; }
+.rarity-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--rarity-color); box-shadow: 0 0 13px var(--rarity-color); }
+.rarity-row strong { font-size: 13px; }
+.rarity-row small { color: var(--muted); }
+
+.album-heading { padding: 10px 3px 0; }
+.album-heading > strong { color: var(--gold); font-size: 18px; }
+.filters { position: sticky; top: 76px; z-index: 10; padding: 13px; backdrop-filter: blur(16px); }
+.search-box { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.055); border: 1px solid var(--border); border-radius: 13px; padding: 0 12px; }
+.search-box input { width: 100%; min-width: 0; padding: 12px 0; border: 0; outline: 0; color: var(--text); background: transparent; }
+.search-box input::placeholder { color: #7f879b; }
+.filter-row { display: flex; gap: 7px; margin: 10px 0; overflow-x: auto; }
+.chip { white-space: nowrap; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 12px; font-weight: 750; }
+.chip.active { color: #17131b; border-color: var(--gold); background: var(--gold); }
+.filters select { width: 100%; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--border); background: #161d31; color: var(--text); }
+.album-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 14px 0 0; }
+.collection-card { position: relative; overflow: hidden; padding: 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); aspect-ratio: .69; color: var(--text); text-align: left; transition: transform .16s ease, border-color .16s ease; }
+.collection-card:active { transform: scale(.975); }
+.collection-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.collection-card.locked img { filter: grayscale(1) saturate(0) brightness(.72) contrast(1.05); opacity: 1; }
+.detail-art.locked img { filter: grayscale(1) saturate(0) brightness(.72) contrast(1.05); }
+.collection-card:not(.locked) img { filter: none !important; opacity: 1 !important; visibility: visible !important; }
+
+
+.rarity-framed {
+  position: relative;
+  isolation: isolate;
+  --frame-dark: #596273;
+  --frame-main: #aeb7c7;
+  --frame-light: #eef2f8;
+  --frame-glow: rgba(190, 198, 214, .2);
+  border-style: solid !important;
+  border-color: var(--frame-main) !important;
+}
+.rarity-framed > img { position: relative; z-index: 0; }
+.rarity-framed::before,
+.rarity-framed::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.rarity-framed::before {
+  z-index: 3;
+  inset: -1px;
+  padding: var(--frame-size, 2px);
+  background: var(--frame-gradient, linear-gradient(135deg, var(--frame-light), var(--frame-main), var(--frame-dark)));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.rarity-framed::after {
+  z-index: 4;
+  inset: var(--ornament-inset, 4px);
+  border-radius: calc(14px - 2px);
+  background-repeat: no-repeat;
+}
+.rarity-framed .card-copy,
+.rarity-framed .sequence-card-copy,
+.rarity-framed .card-number,
+.rarity-framed .copy-badge,
+.rarity-framed .lock-mark,
+.rarity-framed .new-ribbon,
+.rarity-framed .duplicate-ribbon,
+.rarity-framed .booster-card-counter { z-index: 8; }
+
+/* Commune : métal gris très simple, presque sans ornement. */
+.rarity-framed[data-rarity="common"] {
+  --frame-size: 2px;
+  --frame-dark: #515968;
+  --frame-main: #9ea7b5;
+  --frame-light: #d8dde5;
+  --frame-gradient: linear-gradient(135deg, #d7dce4 0%, #88919f 48%, #59616e 100%);
+  border-width: 2px !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.rarity-framed[data-rarity="common"]::after {
+  inset: 4px;
+  border: 1px solid rgba(223,228,237,.38);
+  background: none;
+}
+
+/* Peu commune : bronze végétal, quelques angles décorés. */
+.rarity-framed[data-rarity="uncommon"] {
+  --frame-size: 4px;
+  --frame-dark: #174e37;
+  --frame-main: #4ec287;
+  --frame-light: #c4f7d8;
+  --frame-gradient: linear-gradient(135deg, #d7ffe6 0%, #68d99c 22%, #1e7250 53%, #8ee9b5 78%, #174e37 100%);
+  border-width: 3px !important;
+  box-shadow: 0 9px 22px rgba(0,0,0,.3), 0 0 17px rgba(77,202,137,.28), inset 0 0 0 1px rgba(214,255,231,.24);
+}
+.rarity-framed[data-rarity="uncommon"]::after {
+  inset: 5px;
+  border: 1px solid rgba(183,255,215,.72);
+  background:
+    linear-gradient(135deg, #baffd6 0 3px, transparent 3px) top left / 27px 27px,
+    linear-gradient(-135deg, #baffd6 0 3px, transparent 3px) top right / 27px 27px,
+    linear-gradient(45deg, #baffd6 0 3px, transparent 3px) bottom left / 27px 27px,
+    linear-gradient(-45deg, #baffd6 0 3px, transparent 3px) bottom right / 27px 27px;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 4px rgba(13,64,42,.2);
+}
+
+/* Rare : argent et saphir, doubles lignes et gemmes visibles. */
+.rarity-framed[data-rarity="rare"] {
+  --frame-size: 5px;
+  --frame-dark: #183f78;
+  --frame-main: #4c9ff5;
+  --frame-light: #e3f4ff;
+  --frame-gradient: linear-gradient(135deg, #f1fbff 0%, #75bfff 18%, #245a9d 44%, #b8e2ff 66%, #337ac7 84%, #e7f7ff 100%);
+  border-width: 4px !important;
+  box-shadow: 0 11px 27px rgba(0,0,0,.35), 0 0 24px rgba(63,149,255,.34), inset 0 0 0 1px rgba(222,244,255,.3);
+}
+.rarity-framed[data-rarity="rare"]::after {
+  inset: 5px;
+  border: 2px solid rgba(202,233,255,.84);
+  background:
+    radial-gradient(circle at 11px 11px, #f1fbff 0 3px, #5caaff 3.5px 6px, transparent 6.5px),
+    radial-gradient(circle at calc(100% - 11px) 11px, #f1fbff 0 3px, #5caaff 3.5px 6px, transparent 6.5px),
+    radial-gradient(circle at 11px calc(100% - 11px), #f1fbff 0 3px, #5caaff 3.5px 6px, transparent 6.5px),
+    radial-gradient(circle at calc(100% - 11px) calc(100% - 11px), #f1fbff 0 3px, #5caaff 3.5px 6px, transparent 6.5px),
+    linear-gradient(90deg, transparent 13%, rgba(188,228,255,.65) 13% 87%, transparent 87%) top / 100% 2px,
+    linear-gradient(90deg, transparent 13%, rgba(188,228,255,.65) 13% 87%, transparent 87%) bottom / 100% 2px;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 5px rgba(10,37,74,.18), inset 0 0 22px rgba(79,160,255,.12);
+}
+
+/* Épique : améthyste, larges arabesques et aura magique. */
+.rarity-framed[data-rarity="epic"] {
+  --frame-size: 7px;
+  --frame-dark: #4b176f;
+  --frame-main: #b45cff;
+  --frame-light: #f2d9ff;
+  --frame-gradient: linear-gradient(135deg, #fbebff 0%, #d58bff 13%, #7429a7 36%, #efb9ff 55%, #8c37ca 74%, #e6b4ff 88%, #552079 100%);
+  border-width: 5px !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.4), 0 0 31px rgba(188,91,255,.42), 0 0 10px rgba(244,211,255,.24), inset 0 0 0 1px rgba(243,219,255,.35);
+}
+.rarity-framed[data-rarity="epic"]::after {
+  inset: 5px;
+  border: 2px solid rgba(237,200,255,.88);
+  background:
+    radial-gradient(ellipse at 13px 13px, #f7e6ff 0 3px, #c870ff 3.5px 7px, transparent 7.5px),
+    radial-gradient(ellipse at calc(100% - 13px) 13px, #f7e6ff 0 3px, #c870ff 3.5px 7px, transparent 7.5px),
+    radial-gradient(ellipse at 13px calc(100% - 13px), #f7e6ff 0 3px, #c870ff 3.5px 7px, transparent 7.5px),
+    radial-gradient(ellipse at calc(100% - 13px) calc(100% - 13px), #f7e6ff 0 3px, #c870ff 3.5px 7px, transparent 7.5px),
+    linear-gradient(135deg, transparent 0 12px, rgba(232,185,255,.95) 12px 15px, transparent 15px 29px, rgba(183,86,239,.75) 29px 32px, transparent 32px) top left / 48px 48px,
+    linear-gradient(-135deg, transparent 0 12px, rgba(232,185,255,.95) 12px 15px, transparent 15px 29px, rgba(183,86,239,.75) 29px 32px, transparent 32px) top right / 48px 48px,
+    linear-gradient(45deg, transparent 0 12px, rgba(232,185,255,.95) 12px 15px, transparent 15px 29px, rgba(183,86,239,.75) 29px 32px, transparent 32px) bottom left / 48px 48px,
+    linear-gradient(-45deg, transparent 0 12px, rgba(232,185,255,.95) 12px 15px, transparent 15px 29px, rgba(183,86,239,.75) 29px 32px, transparent 32px) bottom right / 48px 48px;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 6px rgba(53,14,78,.18), inset 0 0 34px rgba(188,91,255,.18);
+}
+
+/* Légendaire : or royal, triple cadre, joyaux et filigranes. */
+.rarity-framed[data-rarity="legendary"] {
+  --frame-size: 9px;
+  --frame-dark: #6a3b05;
+  --frame-main: #e8ad37;
+  --frame-light: #fff3b7;
+  --frame-gradient: linear-gradient(135deg, #fff8d6 0%, #f4c85b 10%, #8d4e08 27%, #ffe799 43%, #b66d10 58%, #fff1b7 72%, #d59725 87%, #704008 100%);
+  border-width: 6px !important;
+  box-shadow: 0 17px 38px rgba(0,0,0,.46), 0 0 38px rgba(243,183,59,.5), 0 0 14px rgba(255,237,166,.32), inset 0 0 0 1px rgba(255,244,196,.45);
+}
+.rarity-framed[data-rarity="legendary"]::after {
+  inset: 5px;
+  border: 3px double rgba(255,235,161,.95);
+  background:
+    radial-gradient(circle at 15px 15px, #fff9dc 0 3px, #e84242 3.5px 7px, #ffd871 7.5px 10px, transparent 10.5px),
+    radial-gradient(circle at calc(100% - 15px) 15px, #fff9dc 0 3px, #e84242 3.5px 7px, #ffd871 7.5px 10px, transparent 10.5px),
+    radial-gradient(circle at 15px calc(100% - 15px), #fff9dc 0 3px, #e84242 3.5px 7px, #ffd871 7.5px 10px, transparent 10.5px),
+    radial-gradient(circle at calc(100% - 15px) calc(100% - 15px), #fff9dc 0 3px, #e84242 3.5px 7px, #ffd871 7.5px 10px, transparent 10.5px),
+    linear-gradient(135deg, transparent 0 13px, #ffeaa1 13px 16px, transparent 16px 26px, #cc8b1e 26px 30px, transparent 30px) top left / 58px 58px,
+    linear-gradient(-135deg, transparent 0 13px, #ffeaa1 13px 16px, transparent 16px 26px, #cc8b1e 26px 30px, transparent 30px) top right / 58px 58px,
+    linear-gradient(45deg, transparent 0 13px, #ffeaa1 13px 16px, transparent 16px 26px, #cc8b1e 26px 30px, transparent 30px) bottom left / 58px 58px,
+    linear-gradient(-45deg, transparent 0 13px, #ffeaa1 13px 16px, transparent 16px 26px, #cc8b1e 26px 30px, transparent 30px) bottom right / 58px 58px,
+    radial-gradient(ellipse at 50% 0, rgba(255,244,190,.95) 0 4%, transparent 4.5%) top / 76% 25px,
+    radial-gradient(ellipse at 50% 100%, rgba(255,244,190,.95) 0 4%, transparent 4.5%) bottom / 76% 25px;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 7px rgba(88,45,2,.19), inset 0 0 42px rgba(255,199,73,.2);
+  animation: legendaryGlow 3.2s ease-in-out infinite;
+}
+
+/* Mythique : cadre céleste animé, irisé, rayonnant et unique. */
+.rarity-framed[data-rarity="mythic"] {
+  --frame-size: 11px;
+  --frame-dark: #5f3c05;
+  --frame-main: #fff2a8;
+  --frame-light: #ffffff;
+  --frame-gradient: linear-gradient(115deg, #fffdf0 0%, #ffe878 11%, #ffffff 21%, #e8b8ff 33%, #9fe8ff 44%, #fff6bc 56%, #ffffff 68%, #ffc9ea 80%, #ffe36d 91%, #fffdf0 100%);
+  border-width: 7px !important;
+  box-shadow: 0 20px 44px rgba(0,0,0,.5), 0 0 50px rgba(255,239,153,.62), 0 0 22px rgba(217,179,255,.45), 0 0 9px rgba(255,255,255,.75), inset 0 0 0 1px rgba(255,255,255,.7);
+  animation: mythicAura 2.6s ease-in-out infinite;
+}
+.rarity-framed[data-rarity="mythic"]::before {
+  background-size: 260% 260%;
+  animation: mythicShimmer 3.4s linear infinite;
+}
+.rarity-framed[data-rarity="mythic"]::after {
+  inset: 5px;
+  border: 3px double rgba(255,251,222,.98);
+  background:
+    radial-gradient(circle at 17px 17px, #ffffff 0 3px, #ffea75 3.5px 7px, #d49dff 7.5px 11px, transparent 11.5px),
+    radial-gradient(circle at calc(100% - 17px) 17px, #ffffff 0 3px, #ffea75 3.5px 7px, #94e8ff 7.5px 11px, transparent 11.5px),
+    radial-gradient(circle at 17px calc(100% - 17px), #ffffff 0 3px, #ffea75 3.5px 7px, #94e8ff 7.5px 11px, transparent 11.5px),
+    radial-gradient(circle at calc(100% - 17px) calc(100% - 17px), #ffffff 0 3px, #ffea75 3.5px 7px, #d49dff 7.5px 11px, transparent 11.5px),
+    conic-gradient(from 45deg at 16px 16px, transparent 0 14%, rgba(255,255,255,.98) 15% 21%, transparent 22% 100%) top left / 62px 62px,
+    conic-gradient(from 135deg at calc(100% - 16px) 16px, transparent 0 14%, rgba(255,255,255,.98) 15% 21%, transparent 22% 100%) top right / 62px 62px,
+    conic-gradient(from -45deg at 16px calc(100% - 16px), transparent 0 14%, rgba(255,255,255,.98) 15% 21%, transparent 22% 100%) bottom left / 62px 62px,
+    conic-gradient(from -135deg at calc(100% - 16px) calc(100% - 16px), transparent 0 14%, rgba(255,255,255,.98) 15% 21%, transparent 22% 100%) bottom right / 62px 62px,
+    radial-gradient(ellipse at 50% 0, rgba(255,255,255,.98) 0 3%, rgba(255,227,112,.85) 3.5% 6%, transparent 6.5%) top / 82% 34px,
+    radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.98) 0 3%, rgba(255,227,112,.85) 3.5% 6%, transparent 6.5%) bottom / 82% 34px,
+    radial-gradient(circle at 50% 12px, rgba(255,255,255,.98) 0 2px, transparent 3px),
+    radial-gradient(circle at 50% calc(100% - 12px), rgba(255,255,255,.98) 0 2px, transparent 3px);
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 8px rgba(87,54,4,.18), inset 0 0 50px rgba(255,237,139,.22), inset 0 0 18px rgba(210,173,255,.17);
+}
+
+@keyframes legendaryGlow {
+  0%,100% { filter: drop-shadow(0 0 0 rgba(255,210,100,0)); }
+  50% { filter: drop-shadow(0 0 5px rgba(255,210,100,.4)); }
+}
+@keyframes mythicAura {
+  0%,100% { filter: drop-shadow(0 0 3px rgba(255,245,188,.55)); }
+  50% { filter: drop-shadow(0 0 11px rgba(255,245,188,.95)) drop-shadow(0 0 7px rgba(205,167,255,.65)); }
+}
+@keyframes mythicShimmer {
+  0% { background-position: 0% 50%; filter: brightness(1); }
+  50% { background-position: 100% 50%; filter: brightness(1.25); }
+  100% { background-position: 0% 50%; filter: brightness(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rarity-framed[data-rarity="legendary"],
+  .rarity-framed[data-rarity="mythic"],
+  .rarity-framed[data-rarity="mythic"]::before { animation: none !important; }
+}
+
+.card-number { position: absolute; top: 7px; left: 7px; padding: 4px 6px; border-radius: 7px; background: rgba(7,10,18,.72); font-size: 9px; font-weight: 900; }
+.card-copy { position: absolute; inset: auto 0 0; padding: 26px 8px 8px; background: linear-gradient(transparent, rgba(5,8,15,.94)); }
+.card-copy strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 700 12px Georgia, serif; }
+.card-copy small { display: block; margin-top: 2px; color: var(--rarity-color); font-size: 9px; font-weight: 850; text-transform: uppercase; }
+.copy-badge { position: absolute; top: 7px; right: 7px; display: grid; place-items: center; min-width: 24px; height: 24px; padding: 0 5px; border-radius: 99px; background: rgba(232,189,101,.92); color: #17131b; font-size: 10px; font-weight: 900; }
+.lock-mark { position: absolute; top: 7px; right: 7px; display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(7,10,18,.72); font-size: 13px; color: rgba(255,255,255,.9); box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+
+.prose h3 { margin: 18px 0 6px; font-family: Georgia, serif; color: var(--gold-2); }
+.prose h3:first-child { margin-top: 0; }
+.prose p { margin: 0; color: var(--muted); line-height: 1.55; }
+.danger-zone p { color: var(--muted); }
+.button-stack { display: grid; gap: 10px; }
+
+.bottom-nav {
+  position: fixed; z-index: 30; left: 50%; bottom: 0; transform: translateX(-50%);
+  display: grid; grid-template-columns: repeat(3, 1fr); width: min(100%, 760px);
+  padding: 9px 18px calc(9px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border); background: rgba(9,13,24,.92); backdrop-filter: blur(18px);
+}
+.nav-button { border: 0; background: transparent; color: #7f879b; font-size: 11px; font-weight: 750; }
+.nav-button span { display: block; margin-bottom: 2px; font-size: 22px; }
+.nav-button.active { color: var(--gold); }
+
+.booster-dialog, .card-dialog { border: 1px solid var(--border); color: var(--text); background: #0d1221; box-shadow: var(--shadow); }
+.booster-dialog::backdrop, .card-dialog::backdrop { background: rgba(3,5,10,.86); backdrop-filter: blur(8px); }
+.booster-dialog { width: min(94vw, 720px); max-height: 94vh; overflow-y: auto; border-radius: 26px; padding: 0; }
+.dialog-inner { padding: 25px 17px 20px; text-align: center; }
+.dialog-inner h2 { margin: 3px 0; font-family: Georgia, serif; font-size: 30px; }
+.booster-cards { display: grid; grid-template-columns: repeat(5, minmax(92px, 1fr)); gap: 10px; margin: 22px 0; overflow-x: auto; padding: 10px 4px 16px; }
+.flip-card { position: relative; min-width: 92px; aspect-ratio: .69; border: 0; padding: 0; background: transparent; }
+.flip-inner { position: absolute; inset: 0; }
+.flip-face { position: absolute; inset: 0; overflow: hidden; border-radius: 14px; border: 1px solid rgba(232,189,101,.4); transition: opacity .32s ease, transform .32s ease; }
+.flip-back { z-index: 2; display: grid; place-items: center; opacity: 1; transform: scale(1); background:
+  radial-gradient(circle, rgba(232,189,101,.19), transparent 40%),
+  repeating-linear-gradient(45deg, transparent 0 8px, rgba(232,189,101,.05) 8px 10px), #171d34; }
+.flip-back::before { content: "Ω"; display: grid; place-items: center; width: 58%; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--gold); color: var(--gold); font: 700 36px Georgia, serif; }
+.flip-front { z-index: 1; opacity: 0; transform: scale(.92); background: var(--surface); pointer-events: none; }
+.flip-card.revealed .flip-back { opacity: 0; transform: scale(.92); pointer-events: none; }
+.flip-card.revealed .flip-front { z-index: 3; opacity: 1; transform: scale(1); pointer-events: auto; }
+.flip-front img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.flip-front .card-copy { z-index: 4; text-align: left; }
+.artwork-load-error { background: #2b1420; color: #fff; object-fit: contain !important; }
+.new-ribbon { position: absolute; z-index: 3; top: 7px; right: -18px; transform: rotate(36deg); padding: 3px 20px; background: var(--gold-2); color: #1a1420; font-size: 8px; font-weight: 1000; }
+.dialog-inner > .secondary-button { margin-bottom: 9px; }
+
+.card-dialog { width: min(92vw, 440px); border-radius: 24px; padding: 18px; }
+.dialog-close { position: absolute; z-index: 4; right: 12px; top: 10px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: rgba(8,11,20,.78); color: var(--text); font-size: 25px; }
+.detail-art { overflow: hidden; aspect-ratio: .78; border-radius: 18px; border: 1px solid var(--border); }
+.detail-art img { width: 100%; height: 100%; object-fit: cover; }
+.detail-copy { padding: 16px 4px 2px; }
+.detail-copy h2 { margin: 3px 0 5px; font-family: Georgia, serif; font-size: 30px; }
+.detail-rarity { color: var(--rarity-color); font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.detail-copy p { color: var(--muted); line-height: 1.55; }
+.detail-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; margin-top: 15px; }
+.detail-meta div { padding: 12px; border-radius: 13px; background: rgba(255,255,255,.05); }
+.detail-meta small { display: block; color: var(--muted); }
+.detail-meta strong { display: block; margin-top: 3px; }
+
+.toast { position: fixed; z-index: 100; left: 50%; bottom: 92px; transform: translate(-50%, 20px); max-width: calc(100vw - 32px); padding: 11px 16px; border: 1px solid var(--border); border-radius: 999px; background: #20283e; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: .25s ease; text-align: center; font-size: 13px; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+
+
+/* Album : plus d'espace pour que les ornements puissent entourer la carte sur tous les côtés. */
+.album-grid {
+  gap: 24px 20px;
+  padding: 20px 8px 14px;
+}
+.album-grid .collection-card {
+  overflow: visible;
+  margin: 8px 6px 14px;
+  z-index: 1;
+}
+.album-grid .collection-card img {
+  border-radius: 12px;
+}
+.album-grid .collection-card.rarity-framed::before {
+  inset: calc(-1 * var(--album-frame-outset, 6px));
+  border-radius: calc(14px + var(--album-frame-outset, 6px));
+}
+.album-grid .collection-card.rarity-framed::after {
+  inset: calc(-1 * var(--album-ornament-outset, 8px));
+  border-radius: calc(14px + var(--album-ornament-outset, 8px));
+}
+.album-grid .collection-card.rarity-framed[data-rarity="common"] { --album-frame-outset: 3px; --album-ornament-outset: 4px; }
+.album-grid .collection-card.rarity-framed[data-rarity="uncommon"] { --album-frame-outset: 4px; --album-ornament-outset: 6px; }
+.album-grid .collection-card.rarity-framed[data-rarity="rare"] { --album-frame-outset: 5px; --album-ornament-outset: 8px; }
+.album-grid .collection-card.rarity-framed[data-rarity="epic"] { --album-frame-outset: 6px; --album-ornament-outset: 10px; }
+.album-grid .collection-card.rarity-framed[data-rarity="legendary"] { --album-frame-outset: 7px; --album-ornament-outset: 12px; }
+.album-grid .collection-card.rarity-framed[data-rarity="mythic"] { --album-frame-outset: 8px; --album-ornament-outset: 14px; }
+
+@media (max-width: 520px) {
+  .booster-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); overflow-x: visible; }
+  .flip-card { min-width: 0; }
+}
+@media (min-width: 620px) {
+  main { padding-inline: 24px; }
+  .album-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+  .hero-card { min-height: 470px; }
+}
+@media (display-mode: standalone) {
+  .topbar { padding-top: calc(8px + env(safe-area-inset-top)); }
+}
+
+
+/* --- Ouverture séquentielle du booster --- */
+.booster-dialog {
+  width: min(96vw, 560px);
+  max-height: 96vh;
+  overflow: hidden;
+}
+.booster-dialog .dialog-inner {
+  min-height: min(760px, 92vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 22px 16px 18px;
+}
+.booster-sequence {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  place-items: center;
+  justify-items: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  min-height: 470px;
+  margin: 10px 0 14px;
+  padding: 8px;
+  overflow: visible !important;
+}
+.booster-pack-stage {
+  position: relative;
+  width: min(72vw, 330px);
+  aspect-ratio: .69;
+  border: 0;
+  padding: 0;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  animation: packFloat 2.2s ease-in-out infinite;
+}
+.booster-pack-wrapper {
+  position: absolute;
+  inset: 0 0 38px;
+  filter: drop-shadow(0 24px 30px rgba(0,0,0,.55));
+  perspective: 900px;
+}
+.pack-piece {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border: 2px solid rgba(255,220,130,.82);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,220,125,.28), transparent 28%),
+    repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,220,130,.045) 12px 15px),
+    linear-gradient(145deg, #34224e 0%, #141a35 48%, #321b39 100%);
+  box-shadow: inset 0 0 0 5px rgba(9,11,22,.42), inset 0 0 45px rgba(232,189,101,.16);
+  transition: transform .72s cubic-bezier(.2,.8,.2,1), opacity .62s ease, filter .62s ease;
+}
+.pack-piece-top {
+  top: 0;
+  height: 54%;
+  border-radius: 22px 22px 4px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 21px;
+}
+.pack-piece-bottom {
+  bottom: 0;
+  height: 47%;
+  border-radius: 4px 4px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 24px;
+}
+.pack-brand {
+  color: #f7d987;
+  font: 800 31px Georgia, serif;
+  letter-spacing: .14em;
+  text-shadow: 0 2px 18px rgba(255,215,110,.35);
+}
+.pack-omega {
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  margin-top: 16px;
+  border: 2px solid #f1c96d;
+  border-radius: 50%;
+  color: #f6d985;
+  font: 700 52px Georgia, serif;
+  box-shadow: 0 0 28px rgba(242,190,75,.28), inset 0 0 20px rgba(242,190,75,.12);
+}
+.pack-count { color: #f5dfaa; font-weight: 950; letter-spacing: .22em; }
+.pack-stars { margin-top: 18px; color: #f0c96f; letter-spacing: .5em; }
+.pack-tear-line {
+  position: absolute;
+  z-index: 5;
+  left: 4%;
+  right: 4%;
+  top: 53%;
+  height: 3px;
+  background: repeating-linear-gradient(90deg, #ffe09a 0 12px, transparent 12px 19px);
+  filter: drop-shadow(0 0 7px rgba(255,214,105,.75));
+  transition: opacity .25s ease, transform .55s ease;
+}
+.pack-burst {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 53%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff2b8;
+  opacity: 0;
+  transform: translate(-50%,-50%) scale(.2);
+  box-shadow: 0 0 20px 10px #ffd46c, 0 0 70px 30px rgba(240,183,61,.55);
+}
+.booster-tap-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #f3d892;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  animation: tapPulse 1.25s ease-in-out infinite;
+}
+.booster-pack-stage.opening {
+  animation: none;
+  pointer-events: none;
+}
+.booster-pack-stage.opening .pack-piece-top {
+  transform: translate3d(-24px,-130px,80px) rotate(-10deg) rotateY(-14deg);
+  opacity: 0;
+  filter: blur(2px);
+}
+.booster-pack-stage.opening .pack-piece-bottom {
+  transform: translate3d(25px,140px,60px) rotate(9deg) rotateY(12deg);
+  opacity: 0;
+  filter: blur(2px);
+}
+.booster-pack-stage.opening .pack-tear-line { opacity: 0; transform: scaleX(1.45); }
+.booster-pack-stage.opening .pack-burst { animation: burstOpen .72s ease-out forwards; }
+.booster-pack-stage.opening .booster-tap-hint { opacity: 0; }
+
+.booster-single-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: min(74vw, 350px);
+  max-height: 64vh;
+  aspect-ratio: .69;
+  border: 2px solid var(--rarity-color);
+  border-radius: 22px;
+  padding: 0;
+  color: white;
+  background: #111729;
+  box-shadow: 0 26px 55px rgba(0,0,0,.58), 0 0 30px color-mix(in srgb, var(--rarity-color) 42%, transparent);
+  cursor: pointer;
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  transition: transform .45s cubic-bezier(.3,.8,.25,1), opacity .38s ease, filter .38s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.booster-single-card.entering {
+  opacity: 0;
+  transform: translateX(-80px) scale(.88) rotate(-4deg);
+}
+.booster-single-card.swipe-right {
+  opacity: 0;
+  transform: translateX(125vw) rotate(17deg) scale(.9);
+  filter: blur(2px);
+}
+.booster-single-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.booster-card-counter {
+  position: absolute;
+  z-index: 5;
+  top: 12px;
+  left: 12px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 999px;
+  background: rgba(7,9,16,.76);
+  backdrop-filter: blur(8px);
+  font-size: 12px;
+  font-weight: 950;
+}
+.sequence-ribbon { top: 16px; right: -23px; font-size: 9px; }
+.duplicate-ribbon {
+  position: absolute;
+  z-index: 5;
+  top: 13px;
+  right: 13px;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: rgba(14,18,31,.8);
+  border: 1px solid rgba(255,255,255,.22);
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: .08em;
+}
+.sequence-card-copy {
+  position: absolute;
+  z-index: 4;
+  inset: auto 0 0;
+  padding: 58px 18px 17px;
+  text-align: left;
+  background: linear-gradient(transparent, rgba(4,6,13,.97) 73%);
+}
+.sequence-card-copy small {
+  display: block;
+  color: var(--rarity-color);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.sequence-card-copy strong {
+  display: block;
+  margin-top: 3px;
+  font: 800 clamp(24px, 7vw, 35px) Georgia, serif;
+  line-height: 1.05;
+}
+.sequence-card-copy span {
+  display: block;
+  margin-top: 9px;
+  color: rgba(255,255,255,.72);
+  font-size: 11px;
+  font-weight: 800;
+}
+.booster-complete {
+  display: grid;
+  place-items: center;
+  width: min(78vw, 350px);
+  min-height: 390px;
+  padding: 32px;
+  border: 1px solid rgba(232,189,101,.42);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(242,190,75,.2), transparent 33%),
+    linear-gradient(145deg, #171d34, #111522 65%, #21162b);
+  box-shadow: 0 25px 60px rgba(0,0,0,.48);
+  animation: completeIn .48s cubic-bezier(.2,.8,.2,1) both;
+}
+.complete-omega {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  color: var(--gold);
+  font: 700 68px Georgia, serif;
+  box-shadow: 0 0 40px rgba(242,190,75,.25);
+}
+.booster-complete strong { margin-top: 18px; font: 800 30px Georgia, serif; }
+.booster-complete p { margin: 7px 0 0; color: var(--muted); }
+
+@keyframes packFloat {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+@keyframes tapPulse {
+  0%,100% { opacity: .55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.035); }
+}
+@keyframes burstOpen {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+  36% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(8); }
+}
+@keyframes completeIn {
+  from { opacity: 0; transform: scale(.84) translateY(25px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@media (max-width: 520px) {
+  .booster-dialog .dialog-inner { min-height: 92vh; padding-top: 18px; }
+  .booster-sequence { min-height: 430px; }
+  .booster-pack-stage { width: min(78vw, 310px); }
+  .booster-single-card { width: min(78vw, 330px); max-height: 61vh; }
+  .album-grid { gap: 18px 14px; padding: 18px 4px 12px; }
+  .album-grid .collection-card { margin: 6px 4px 10px; }
+  .album-grid .collection-card.rarity-framed[data-rarity="common"] { --album-frame-outset: 2px; --album-ornament-outset: 3px; }
+  .album-grid .collection-card.rarity-framed[data-rarity="uncommon"] { --album-frame-outset: 3px; --album-ornament-outset: 4px; }
+  .album-grid .collection-card.rarity-framed[data-rarity="rare"] { --album-frame-outset: 4px; --album-ornament-outset: 6px; }
+  .album-grid .collection-card.rarity-framed[data-rarity="epic"] { --album-frame-outset: 5px; --album-ornament-outset: 7px; }
+  .album-grid .collection-card.rarity-framed[data-rarity="legendary"] { --album-frame-outset: 6px; --album-ornament-outset: 8px; }
+  .album-grid .collection-card.rarity-framed[data-rarity="mythic"] { --album-frame-outset: 7px; --album-ornament-outset: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .booster-pack-stage, .booster-tap-hint { animation: none; }
+  .booster-pack-stage.opening .pack-piece-top { transform: translateY(-70px); }
+  .booster-pack-stage.opening .pack-piece-bottom { transform: translateY(70px); }
+  .booster-single-card { transition-duration: .15s; }
+}
+
+
+
+/* Ornements de rareté — taille et richesse croissantes */
+.rarity-framed {
+  --ornament-top-width: 18%;
+  --ornament-top-height: 5px;
+  --ornament-side-width: 0px;
+  --ornament-side-height: 0px;
+  --ornament-gem-size: 0px;
+  --ornament-glow: transparent;
+  --ornament-metal: var(--frame-main, #aaa);
+  --ornament-highlight: var(--frame-light, #ddd);
+  --ornament-shadow: var(--frame-dark, #555);
+}
+.rarity-ornament {
+  position: absolute;
+  z-index: 6;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.52));
+}
+.rarity-ornament-top {
+  top: -1px;
+  left: 50%;
+  width: var(--ornament-top-width);
+  height: var(--ornament-top-height);
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--ornament-highlight), var(--ornament-metal) 38%, var(--ornament-shadow) 72%, var(--ornament-highlight));
+  clip-path: polygon(0 44%, 11% 44%, 20% 18%, 31% 42%, 41% 42%, 50% 0, 59% 42%, 69% 42%, 80% 18%, 89% 44%, 100% 44%, 94% 100%, 6% 100%);
+  box-shadow: 0 0 14px var(--ornament-glow);
+}
+.rarity-ornament-top::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: var(--ornament-gem-size);
+  height: var(--ornament-gem-size);
+  transform: translateX(-50%) rotate(45deg);
+  border: 1px solid rgba(255,255,255,.86);
+  background: radial-gradient(circle at 35% 28%, #fff 0 9%, var(--rarity-color) 25%, color-mix(in srgb, var(--rarity-color) 58%, #09101f) 100%);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--rarity-color) 80%, transparent);
+}
+.rarity-ornament-top::after {
+  content: '';
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: 1px;
+  height: max(1px, calc(var(--ornament-top-height) * .12));
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--ornament-highlight), transparent);
+  opacity: .9;
+}
+.rarity-ornament-side {
+  top: 4px;
+  width: var(--ornament-side-width);
+  height: var(--ornament-side-height);
+  background: linear-gradient(160deg, var(--ornament-highlight), var(--ornament-metal) 40%, var(--ornament-shadow) 78%);
+  clip-path: polygon(0 0, 100% 19%, 50% 50%, 100% 81%, 0 100%, 32% 50%);
+  box-shadow: 0 0 11px var(--ornament-glow);
+}
+.rarity-ornament-left { left: -1px; }
+.rarity-ornament-right { right: -1px; transform: scaleX(-1); }
+
+/* Commune : plaque métallique très discrète, sans gemme ni ailes. */
+.rarity-framed[data-rarity="common"] {
+  --ornament-top-width: 18%;
+  --ornament-top-height: 5px;
+  --ornament-side-width: 0px;
+  --ornament-side-height: 0px;
+  --ornament-gem-size: 0px;
+  --ornament-metal: #9099a7;
+  --ornament-highlight: #d7dde5;
+  --ornament-shadow: #525b69;
+}
+.rarity-framed[data-rarity="common"] .rarity-ornament-top {
+  clip-path: none;
+  border-radius: 0 0 7px 7px;
+  opacity: .72;
+}
+.rarity-framed[data-rarity="common"] .rarity-ornament-top::before,
+.rarity-framed[data-rarity="common"] .rarity-ornament-side { display: none; }
+
+/* Peu commune : petite couronne végétale, angles très légers. */
+.rarity-framed[data-rarity="uncommon"] {
+  --ornament-top-width: 32%;
+  --ornament-top-height: 14px;
+  --ornament-side-width: 7px;
+  --ornament-side-height: 21px;
+  --ornament-gem-size: 4px;
+  --ornament-glow: rgba(99,213,154,.24);
+  --ornament-metal: #4fc38a;
+  --ornament-highlight: #c7f8dc;
+  --ornament-shadow: #154d36;
+}
+
+/* Rare : couronne saphir visible et pointes latérales. */
+.rarity-framed[data-rarity="rare"] {
+  --ornament-top-width: 46%;
+  --ornament-top-height: 23px;
+  --ornament-side-width: 11px;
+  --ornament-side-height: 34px;
+  --ornament-gem-size: 7px;
+  --ornament-glow: rgba(97,169,255,.34);
+  --ornament-metal: #4c9ff5;
+  --ornament-highlight: #e3f4ff;
+  --ornament-shadow: #183f78;
+}
+.rarity-framed[data-rarity="rare"] .rarity-ornament-top {
+  clip-path: polygon(0 48%, 10% 48%, 19% 21%, 31% 43%, 40% 43%, 50% 3%, 60% 43%, 69% 43%, 81% 21%, 90% 48%, 100% 48%, 94% 100%, 6% 100%);
+}
+
+/* Épique : large diadème améthyste, arabesques et ailes. */
+.rarity-framed[data-rarity="epic"] {
+  --ornament-top-width: 59%;
+  --ornament-top-height: 32px;
+  --ornament-side-width: 15px;
+  --ornament-side-height: 48px;
+  --ornament-gem-size: 10px;
+  --ornament-glow: rgba(189,124,255,.46);
+  --ornament-metal: #a85ee8;
+  --ornament-highlight: #f0d8ff;
+  --ornament-shadow: #492065;
+}
+.rarity-framed[data-rarity="epic"] .rarity-ornament-top {
+  clip-path: polygon(0 51%, 7% 43%, 15% 46%, 22% 14%, 34% 40%, 42% 38%, 50% 0, 58% 38%, 66% 40%, 78% 14%, 85% 46%, 93% 43%, 100% 51%, 94% 100%, 6% 100%);
+}
+
+/* Légendaire : grand diadème royal en or avec joyau central. */
+.rarity-framed[data-rarity="legendary"] {
+  --ornament-top-width: 73%;
+  --ornament-top-height: 41px;
+  --ornament-side-width: 20px;
+  --ornament-side-height: 63px;
+  --ornament-gem-size: 13px;
+  --ornament-glow: rgba(242,184,75,.62);
+  --ornament-metal: #d99324;
+  --ornament-highlight: #fff0b1;
+  --ornament-shadow: #6f3b08;
+}
+.rarity-framed[data-rarity="legendary"] .rarity-ornament-top {
+  clip-path: polygon(0 56%, 6% 42%, 13% 45%, 20% 10%, 31% 35%, 39% 36%, 50% 0, 61% 36%, 69% 35%, 80% 10%, 87% 45%, 94% 42%, 100% 56%, 95% 100%, 5% 100%);
+}
+.rarity-framed[data-rarity="legendary"] .rarity-ornament-top::before {
+  border-width: 2px;
+  background: radial-gradient(circle at 34% 27%, #fff 0 8%, #ffdf72 18%, #e74c3c 45%, #741819 100%);
+  box-shadow: 0 0 13px rgba(255,95,63,.68), 0 0 22px rgba(242,184,75,.42);
+}
+
+/* Mythique : couronne céleste monumentale, longues ailes et gemme animée. */
+.rarity-framed[data-rarity="mythic"] {
+  --ornament-top-width: 88%;
+  --ornament-top-height: 53px;
+  --ornament-side-width: 27px;
+  --ornament-side-height: 82px;
+  --ornament-gem-size: 17px;
+  --ornament-glow: rgba(255,243,176,.82);
+  --ornament-metal: #e8b65a;
+  --ornament-highlight: #fffdf0;
+  --ornament-shadow: #6d3e08;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-top {
+  top: -2px;
+  background: linear-gradient(110deg, #fffdf4 0%, #ffe779 12%, #fff 24%, #9fe8ff 39%, #d7a9ff 51%, #fff6ba 65%, #fff 79%, #80d7ff 90%, #ffe878 100%);
+  clip-path: polygon(0 59%, 5% 39%, 12% 44%, 18% 8%, 29% 31%, 38% 34%, 44% 11%, 50% 0, 56% 11%, 62% 34%, 71% 31%, 82% 8%, 88% 44%, 95% 39%, 100% 59%, 95% 100%, 5% 100%);
+  animation: ornamentMythicGlow 2.2s ease-in-out infinite;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-top::before {
+  border-width: 2px;
+  background: radial-gradient(circle at 34% 25%, #fff 0 10%, #baf3ff 22%, #4dbaff 45%, #8e61ff 72%, #33216e 100%);
+  box-shadow: 0 0 15px #fff, 0 0 28px rgba(77,186,255,.8), 0 0 42px rgba(213,169,255,.6);
+  animation: ornamentGemPulse 1.8s ease-in-out infinite;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-side {
+  background: linear-gradient(160deg, #fffdf4, #ffe878 22%, #77d5ff 48%, #d5a8ff 68%, #70480a 100%);
+  animation: ornamentSideGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes ornamentMythicGlow {
+  0%,100% { filter: drop-shadow(0 2px 2px rgba(0,0,0,.58)) drop-shadow(0 0 9px rgba(255,242,163,.58)); }
+  50% { filter: drop-shadow(0 2px 2px rgba(0,0,0,.58)) drop-shadow(0 0 18px rgba(139,220,255,.88)); }
+}
+@keyframes ornamentGemPulse {
+  0%,100% { transform: translateX(-50%) rotate(45deg) scale(1); }
+  50% { transform: translateX(-50%) rotate(45deg) scale(1.18); }
+}
+@keyframes ornamentSideGlow {
+  0%,100% { filter: drop-shadow(0 0 5px rgba(255,239,151,.55)); }
+  50% { filter: drop-shadow(0 0 12px rgba(115,210,255,.86)); }
+}
+
+/* Ajustement automatique sur les petites cartes de l’album. */
+.mini-card .rarity-ornament-top,
+.collection-card .rarity-ornament-top { transform: translateX(-50%) scale(.82); transform-origin: top center; }
+.mini-card .rarity-ornament-side,
+.collection-card .rarity-ornament-side { transform: scale(.82); transform-origin: top left; }
+.mini-card .rarity-ornament-right,
+.collection-card .rarity-ornament-right { transform: scaleX(-1) scale(.82); transform-origin: top right; }
+.detail-art .rarity-ornament-top,
+.booster-single-card .rarity-ornament-top { transform: translateX(-50%) scale(1.05); transform-origin: top center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rarity-ornament { animation: none !important; }
+}
+
+
+/* === Cadres réellement extérieurs à l'artwork ===
+   L'image est maintenant contenue dans une fenêtre intérieure :
+   ni la bordure ni l'ornement ne la recouvrent. */
+.rarity-framed {
+  --frame-top: 3.5%;
+  --frame-side: 2.2%;
+  --frame-bottom: 2.2%;
+  --inner-stroke: 1px;
+  --ornament-width: 24%;
+  --ornament-ratio: 10 / 1;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 !important;
+  border: 0 !important;
+  background: var(--frame-gradient, linear-gradient(135deg, var(--frame-light), var(--frame-main), var(--frame-dark))) !important;
+}
+
+/* Fenêtre réservée à l'artwork. */
+.rarity-framed > img {
+  position: absolute !important;
+  z-index: 1 !important;
+  top: var(--frame-top) !important;
+  right: var(--frame-side) !important;
+  bottom: var(--frame-bottom) !important;
+  left: var(--frame-side) !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  border-radius: 9px;
+  object-fit: cover;
+  box-shadow: 0 0 0 var(--inner-stroke) var(--frame-light), 0 0 12px rgba(0,0,0,.34);
+}
+
+/* Trait intérieur : il suit le contour de l'artwork sans entrer dessus. */
+.rarity-framed::before {
+  content: '' !important;
+  position: absolute !important;
+  z-index: 4 !important;
+  top: var(--frame-top) !important;
+  right: var(--frame-side) !important;
+  bottom: var(--frame-bottom) !important;
+  left: var(--frame-side) !important;
+  padding: 0 !important;
+  border: var(--inner-stroke) solid color-mix(in srgb, var(--frame-light) 88%, white) !important;
+  border-radius: 9px !important;
+  background: transparent !important;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--frame-dark) 48%, transparent) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  pointer-events: none;
+}
+
+/* Ornement placé uniquement dans l'espace supérieur du cadre. */
+.rarity-framed::after {
+  content: '' !important;
+  position: absolute !important;
+  z-index: 7 !important;
+  top: .7% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: var(--ornament-width) !important;
+  height: auto !important;
+  aspect-ratio: var(--ornament-ratio) !important;
+  transform: translateX(-50%) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-repeat: no-repeat !important;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.64));
+}
+
+/* Les informations restent à l'intérieur de la fenêtre de l'artwork. */
+.rarity-framed .card-copy,
+.rarity-framed .sequence-card-copy {
+  left: var(--frame-side) !important;
+  right: var(--frame-side) !important;
+  bottom: var(--frame-bottom) !important;
+  border-radius: 0 0 8px 8px;
+}
+.rarity-framed .card-number,
+.rarity-framed .booster-card-counter {
+  top: calc(var(--frame-top) + 7px) !important;
+  left: calc(var(--frame-side) + 7px) !important;
+}
+.rarity-framed .copy-badge,
+.rarity-framed .lock-mark,
+.rarity-framed .duplicate-ribbon {
+  top: calc(var(--frame-top) + 7px) !important;
+  right: calc(var(--frame-side) + 7px) !important;
+}
+.rarity-framed .new-ribbon {
+  top: calc(var(--frame-top) + 6px) !important;
+  right: calc(var(--frame-side) - 18px) !important;
+}
+.mini-card.rarity-framed > span {
+  right: calc(var(--frame-side) + 5px) !important;
+  bottom: calc(var(--frame-bottom) + 5px) !important;
+  left: calc(var(--frame-side) + 5px) !important;
+}
+
+/* Commune : mince cadre, presque aucune décoration. */
+.rarity-framed[data-rarity="common"] {
+  --frame-top: 3.3%;
+  --frame-side: 2.1%;
+  --frame-bottom: 2.1%;
+  --inner-stroke: 1px;
+  --ornament-width: 22%;
+  --ornament-ratio: 11 / 1;
+}
+.rarity-framed[data-rarity="common"]::after {
+  clip-path: polygon(0 45%, 43% 45%, 48% 15%, 52% 15%, 57% 45%, 100% 45%, 100% 70%, 0 70%);
+  background: linear-gradient(90deg, #606876, #d7dce5 45%, #f1f4f8 50%, #9ba5b4 56%, #505865) !important;
+  box-shadow: none !important;
+}
+
+/* Peu commune : petite feuille / pointe centrale verte. */
+.rarity-framed[data-rarity="uncommon"] {
+  --frame-top: 5.8%;
+  --frame-side: 2.8%;
+  --frame-bottom: 2.8%;
+  --inner-stroke: 1px;
+  --ornament-width: 34%;
+  --ornament-ratio: 7 / 1;
+}
+.rarity-framed[data-rarity="uncommon"]::after {
+  clip-path: polygon(0 55%, 24% 55%, 34% 28%, 44% 47%, 50% 4%, 56% 47%, 66% 28%, 76% 55%, 100% 55%, 92% 82%, 8% 82%);
+  background:
+    radial-gradient(ellipse at 50% 45%, #d8ffe7 0 8%, #5fe09d 9% 18%, transparent 19%),
+    linear-gradient(90deg, #174e37, #75e9aa 24%, #d4ffe4 50%, #67d99e 76%, #174e37) !important;
+}
+
+/* Rare : diadème bleu avec gemme centrale. */
+.rarity-framed[data-rarity="rare"] {
+  --frame-top: 8.2%;
+  --frame-side: 3.4%;
+  --frame-bottom: 3.4%;
+  --inner-stroke: 2px;
+  --ornament-width: 47%;
+  --ornament-ratio: 6 / 1;
+}
+.rarity-framed[data-rarity="rare"]::after {
+  clip-path: polygon(0 63%, 13% 43%, 27% 57%, 37% 24%, 45% 47%, 50% 0, 55% 47%, 63% 24%, 73% 57%, 87% 43%, 100% 63%, 92% 90%, 8% 90%);
+  background:
+    radial-gradient(ellipse at 50% 46%, #effbff 0 10%, #73c3ff 11% 22%, #1d5ea7 23% 31%, transparent 32%),
+    linear-gradient(90deg, #174071, #6cb9f7 18%, #eefaff 38%, #3f8bd3 50%, #eefaff 62%, #6cb9f7 82%, #174071) !important;
+  filter: drop-shadow(0 2px 3px rgba(16,70,132,.72));
+}
+
+/* Épique : grande couronne améthyste. */
+.rarity-framed[data-rarity="epic"] {
+  --frame-top: 11.2%;
+  --frame-side: 4.1%;
+  --frame-bottom: 4.1%;
+  --inner-stroke: 2px;
+  --ornament-width: 60%;
+  --ornament-ratio: 5.3 / 1;
+}
+.rarity-framed[data-rarity="epic"]::after {
+  clip-path: polygon(0 68%, 10% 40%, 22% 58%, 31% 17%, 41% 48%, 50% 0, 59% 48%, 69% 17%, 78% 58%, 90% 40%, 100% 68%, 91% 94%, 9% 94%);
+  background:
+    radial-gradient(ellipse at 50% 43%, #fff2ff 0 9%, #d99aff 10% 21%, #742aaa 22% 32%, transparent 33%),
+    radial-gradient(circle at 31% 54%, #f3d8ff 0 5%, #9b46d2 6% 10%, transparent 11%),
+    radial-gradient(circle at 69% 54%, #f3d8ff 0 5%, #9b46d2 6% 10%, transparent 11%),
+    linear-gradient(90deg, #4a176f, #a653df 18%, #f0ceff 38%, #8c35bf 50%, #f0ceff 62%, #a653df 82%, #4a176f) !important;
+  filter: drop-shadow(0 3px 5px rgba(93,35,139,.82));
+}
+
+/* Légendaire : large couronne royale dorée. */
+.rarity-framed[data-rarity="legendary"] {
+  --frame-top: 14.3%;
+  --frame-side: 4.8%;
+  --frame-bottom: 4.8%;
+  --inner-stroke: 2px;
+  --ornament-width: 72%;
+  --ornament-ratio: 4.8 / 1;
+}
+.rarity-framed[data-rarity="legendary"]::after {
+  clip-path: polygon(0 70%, 8% 36%, 21% 57%, 29% 12%, 41% 47%, 50% 0, 59% 47%, 71% 12%, 79% 57%, 92% 36%, 100% 70%, 92% 97%, 8% 97%);
+  background:
+    radial-gradient(ellipse at 50% 42%, #fff6cf 0 8%, #ffcf57 9% 18%, #9d2a18 19% 28%, transparent 29%),
+    radial-gradient(circle at 29% 57%, #fff0ad 0 4%, #d54625 5% 9%, transparent 10%),
+    radial-gradient(circle at 71% 57%, #fff0ad 0 4%, #d54625 5% 9%, transparent 10%),
+    linear-gradient(90deg, #6c3909, #d88b1f 14%, #fff0a4 32%, #bf7417 50%, #fff0a4 68%, #d88b1f 86%, #6c3909) !important;
+  filter: drop-shadow(0 4px 6px rgba(104,55,4,.9));
+}
+
+/* Mythique : ornement céleste exceptionnel, mais toujours hors de l'image. */
+.rarity-framed[data-rarity="mythic"] {
+  --frame-top: 18%;
+  --frame-side: 5.6%;
+  --frame-bottom: 5.6%;
+  --inner-stroke: 3px;
+  --ornament-width: 84%;
+  --ornament-ratio: 4.4 / 1;
+}
+.rarity-framed[data-rarity="mythic"]::after {
+  clip-path: polygon(0 72%, 7% 30%, 19% 55%, 27% 8%, 39% 44%, 50% 0, 61% 44%, 73% 8%, 81% 55%, 93% 30%, 100% 72%, 92% 100%, 8% 100%);
+  background:
+    radial-gradient(ellipse at 50% 42%, #ffffff 0 8%, #8fe7ff 9% 17%, #4387ff 18% 27%, #f7d477 28% 34%, transparent 35%),
+    radial-gradient(circle at 27% 56%, #ffffff 0 4%, #69cbff 5% 9%, transparent 10%),
+    radial-gradient(circle at 73% 56%, #ffffff 0 4%, #69cbff 5% 9%, transparent 10%),
+    linear-gradient(90deg, #513308, #d7a43f 12%, #fff5bd 26%, #6bbcff 39%, #fffbe4 50%, #6bbcff 61%, #fff5bd 74%, #d7a43f 88%, #513308) !important;
+  filter: drop-shadow(0 0 5px rgba(126,211,255,.96)) drop-shadow(0 4px 7px rgba(92,60,7,.9));
+  animation: outerMythicOrnament 2.4s ease-in-out infinite;
+}
+@keyframes outerMythicOrnament {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(126,211,255,.74)) drop-shadow(0 4px 7px rgba(92,60,7,.9)); }
+  50% { filter: drop-shadow(0 0 11px rgba(160,232,255,1)) drop-shadow(0 4px 8px rgba(92,60,7,.9)); }
+}
+
+
+/* === Correction finale : cadre entièrement extérieur, artwork inchangé ===
+   Aucun padding ni recadrage n'est appliqué à l'image. */
+.rarity-framed {
+  --card-radius: 14px;
+  --frame-outset: 1px;
+  --frame-thickness: 1px;
+  --ornament-space: 4px;
+  position: relative !important;
+  isolation: isolate;
+  overflow: visible !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: var(--surface, #111729) !important;
+  box-sizing: border-box;
+}
+.collection-card.rarity-framed { --card-radius: 14px; }
+.mini-card.rarity-framed { --card-radius: 13px; }
+.booster-single-card.rarity-framed { --card-radius: 22px; }
+.detail-art.rarity-framed { --card-radius: 18px; }
+
+/* L'artwork conserve exactement la surface et le cadrage d'origine. */
+.rarity-framed > img {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  border: 0 !important;
+  border-radius: var(--card-radius) !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* La bague du cadre se dessine seulement hors du rectangle de la carte. */
+.rarity-framed::before {
+  content: '' !important;
+  position: absolute !important;
+  z-index: 5 !important;
+  inset: calc(-1 * var(--frame-outset)) !important;
+  padding: var(--frame-thickness) !important;
+  border: 0 !important;
+  border-radius: calc(var(--card-radius) + var(--frame-outset)) !important;
+  background: var(--frame-gradient, linear-gradient(135deg, var(--frame-light), var(--frame-main), var(--frame-dark))) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--frame-dark) 70%, transparent), 0 7px 18px rgba(0,0,0,.26), 0 0 14px var(--frame-glow) !important;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0) !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+}
+/* L'ancien ornement en pseudo-élément est désactivé : seuls les vrais ornements extérieurs restent. */
+.rarity-framed::after { display: none !important; }
+
+/* Les textes et badges restent exactement à leur position d'origine. */
+.rarity-framed .card-copy,
+.rarity-framed .sequence-card-copy {
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  border-radius: 0 0 var(--card-radius) var(--card-radius) !important;
+}
+.rarity-framed .card-number,
+.rarity-framed .booster-card-counter { top: 7px !important; left: 7px !important; }
+.rarity-framed .copy-badge,
+.rarity-framed .lock-mark,
+.rarity-framed .duplicate-ribbon { top: 7px !important; right: 7px !important; }
+.rarity-framed .new-ribbon { top: 7px !important; right: -18px !important; }
+.mini-card.rarity-framed > span:not(.rarity-ornament) {
+  left: 6px !important;
+  right: 6px !important;
+  bottom: 6px !important;
+}
+
+/* Ornement supérieur posé au-dessus de la carte, jamais sur l'artwork. */
+.rarity-framed .rarity-ornament-top {
+  z-index: 8 !important;
+  top: calc(-1 * var(--ornament-top-height) - var(--frame-outset) + 2px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  transform-origin: bottom center !important;
+}
+/* Les pièces latérales sont elles aussi intégralement à l'extérieur. */
+.rarity-framed .rarity-ornament-left {
+  z-index: 7 !important;
+  top: calc(-1 * var(--frame-outset) + 2px) !important;
+  left: calc(-1 * var(--frame-outset) - var(--ornament-side-width) + 2px) !important;
+  transform: none !important;
+}
+.rarity-framed .rarity-ornament-right {
+  z-index: 7 !important;
+  top: calc(-1 * var(--frame-outset) + 2px) !important;
+  right: calc(-1 * var(--frame-outset) - var(--ornament-side-width) + 2px) !important;
+  transform: scaleX(-1) !important;
+}
+
+/* Espace vertical réservé aux couronnes, sans réduire la largeur ni la hauteur de l'artwork. */
+.album-grid .collection-card.rarity-framed,
+.recent-strip .mini-card.rarity-framed,
+.detail-art.rarity-framed,
+.booster-single-card.rarity-framed {
+  margin-top: var(--ornament-space) !important;
+}
+
+/* Sur les petites cartes, la couronne reste visible mais les ailes latérales sont masquées
+   afin de ne jamais chevaucher les cartes voisines. */
+.collection-card.rarity-framed .rarity-ornament-side,
+.mini-card.rarity-framed .rarity-ornament-side { display: none !important; }
+.collection-card.rarity-framed .rarity-ornament-top,
+.mini-card.rarity-framed .rarity-ornament-top {
+  transform: translateX(-50%) scale(.82) !important;
+  transform-origin: bottom center !important;
+}
+
+.rarity-framed[data-rarity="common"] {
+  --frame-outset: 1px; --frame-thickness: 1px; --ornament-space: 4px;
+}
+.rarity-framed[data-rarity="uncommon"] {
+  --frame-outset: 2px; --frame-thickness: 2px; --ornament-space: 12px;
+}
+.rarity-framed[data-rarity="rare"] {
+  --frame-outset: 3px; --frame-thickness: 3px; --ornament-space: 20px;
+}
+.rarity-framed[data-rarity="epic"] {
+  --frame-outset: 4px; --frame-thickness: 4px; --ornament-space: 28px;
+}
+.rarity-framed[data-rarity="legendary"] {
+  --frame-outset: 5px; --frame-thickness: 5px; --ornament-space: 36px;
+}
+.rarity-framed[data-rarity="mythic"] {
+  --frame-outset: 5px; --frame-thickness: 5px; --ornament-space: 46px;
+}
+
+/* Un peu d'air au-dessus des listes pour le premier rang d'ornements. */
+.album-grid { padding-top: 24px !important; row-gap: 14px !important; }
+.recent-strip { padding-top: 18px !important; }
+
+
+/* === Ornements complets autour des cartes ===
+   Plus d'espace dans l'album, décorations au-dessus, sur les côtés et en dessous. */
+.album-grid {
+  gap: 48px 38px !important;
+  padding: 58px 24px 44px !important;
+}
+.album-grid .collection-card.rarity-framed {
+  overflow: visible !important;
+  margin: 0 !important;
+}
+
+.rarity-ornament-bottom {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: calc(-1 * var(--album-bottom-height, 4px) - var(--frame-outset, 1px) + 1px);
+  width: var(--album-bottom-width, 20%);
+  height: var(--album-bottom-height, 4px);
+  transform: translateX(-50%);
+  transform-origin: top center;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--ornament-shadow), var(--ornament-metal) 24%, var(--ornament-highlight) 50%, var(--ornament-metal) 76%, var(--ornament-shadow));
+  clip-path: polygon(0 0, 38% 0, 44% 32%, 50% 100%, 56% 32%, 62% 0, 100% 0, 90% 55%, 64% 58%, 58% 100%, 42% 100%, 36% 58%, 10% 55%);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.64)) drop-shadow(0 0 7px var(--ornament-glow));
+}
+.rarity-ornament-bottom::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: var(--album-bottom-gem, 0px);
+  height: var(--album-bottom-gem, 0px);
+  transform: translateX(-50%) rotate(45deg);
+  border: 1px solid rgba(255,255,255,.82);
+  background: radial-gradient(circle at 32% 26%, #fff 0 10%, var(--rarity-color) 28%, color-mix(in srgb, var(--rarity-color) 55%, #09101f) 100%);
+  box-shadow: 0 0 9px color-mix(in srgb, var(--rarity-color) 75%, transparent);
+}
+.rarity-ornament-bottom::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 2px;
+  height: 2px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, transparent, var(--ornament-highlight), transparent);
+}
+
+/* Longs ornements latéraux réellement placés hors de l'artwork. */
+.album-grid .collection-card.rarity-framed .rarity-ornament-side {
+  display: block !important;
+  z-index: 8 !important;
+  top: 50% !important;
+  width: var(--album-side-width, 0px) !important;
+  height: var(--album-side-height, 0%) !important;
+  margin: 0 !important;
+  background: linear-gradient(180deg, var(--ornament-highlight), var(--ornament-metal) 20%, var(--ornament-shadow) 48%, var(--ornament-metal) 78%, var(--ornament-highlight)) !important;
+  clip-path: polygon(52% 0, 100% 10%, 62% 25%, 94% 39%, 58% 50%, 94% 61%, 62% 75%, 100% 90%, 52% 100%, 22% 82%, 42% 64%, 0 50%, 42% 36%, 22% 18%);
+  box-shadow: 0 0 10px var(--ornament-glow) !important;
+}
+.album-grid .collection-card.rarity-framed .rarity-ornament-left {
+  left: calc(-1 * var(--album-side-width, 0px) - var(--frame-outset, 1px) + 1px) !important;
+  right: auto !important;
+  transform: translateY(-50%) !important;
+  transform-origin: center right !important;
+}
+.album-grid .collection-card.rarity-framed .rarity-ornament-right {
+  right: calc(-1 * var(--album-side-width, 0px) - var(--frame-outset, 1px) + 1px) !important;
+  left: auto !important;
+  transform: translateY(-50%) scaleX(-1) !important;
+  transform-origin: center left !important;
+}
+.album-grid .collection-card.rarity-framed .rarity-ornament-side::before {
+  content: '';
+  position: absolute;
+  top: 9%;
+  bottom: 9%;
+  left: 46%;
+  width: 2px;
+  border-radius: 99px;
+  background: linear-gradient(transparent, var(--ornament-highlight) 16%, var(--ornament-metal) 50%, var(--ornament-highlight) 84%, transparent);
+  opacity: .9;
+}
+.album-grid .collection-card.rarity-framed .rarity-ornament-side::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  width: var(--album-side-gem, 0px);
+  height: var(--album-side-gem, 0px);
+  transform: translate(-50%,-50%) rotate(45deg);
+  border: 1px solid rgba(255,255,255,.82);
+  background: radial-gradient(circle at 32% 26%, #fff 0 10%, var(--rarity-color) 28%, color-mix(in srgb, var(--rarity-color) 58%, #09101f) 100%);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--rarity-color) 72%, transparent);
+}
+
+/* Progression très marquée selon la rareté. */
+.album-grid .collection-card[data-rarity="common"] {
+  --album-side-width: 0px;
+  --album-side-height: 0%;
+  --album-side-gem: 0px;
+  --album-bottom-width: 22%;
+  --album-bottom-height: 3px;
+  --album-bottom-gem: 0px;
+}
+.album-grid .collection-card[data-rarity="common"] .rarity-ornament-bottom {
+  clip-path: none;
+  border-radius: 0 0 5px 5px;
+  opacity: .68;
+}
+.album-grid .collection-card[data-rarity="uncommon"] {
+  --album-side-width: 7px;
+  --album-side-height: 30%;
+  --album-side-gem: 3px;
+  --album-bottom-width: 34%;
+  --album-bottom-height: 9px;
+  --album-bottom-gem: 3px;
+}
+.album-grid .collection-card[data-rarity="rare"] {
+  --album-side-width: 11px;
+  --album-side-height: 44%;
+  --album-side-gem: 5px;
+  --album-bottom-width: 48%;
+  --album-bottom-height: 15px;
+  --album-bottom-gem: 5px;
+}
+.album-grid .collection-card[data-rarity="epic"] {
+  --album-side-width: 16px;
+  --album-side-height: 58%;
+  --album-side-gem: 7px;
+  --album-bottom-width: 62%;
+  --album-bottom-height: 22px;
+  --album-bottom-gem: 7px;
+}
+.album-grid .collection-card[data-rarity="legendary"] {
+  --album-side-width: 21px;
+  --album-side-height: 69%;
+  --album-side-gem: 9px;
+  --album-bottom-width: 76%;
+  --album-bottom-height: 30px;
+  --album-bottom-gem: 10px;
+}
+.album-grid .collection-card[data-rarity="legendary"] .rarity-ornament-bottom {
+  background:
+    radial-gradient(circle at 50% 34%, #fff7d0 0 7%, #e74730 8% 16%, transparent 17%),
+    linear-gradient(90deg, #6f3b08, #d99324 18%, #fff0b1 40%, #c47a17 50%, #fff0b1 60%, #d99324 82%, #6f3b08);
+}
+.album-grid .collection-card[data-rarity="mythic"] {
+  --album-side-width: 27px;
+  --album-side-height: 80%;
+  --album-side-gem: 12px;
+  --album-bottom-width: 90%;
+  --album-bottom-height: 39px;
+  --album-bottom-gem: 13px;
+}
+.album-grid .collection-card[data-rarity="mythic"] .rarity-ornament-side,
+.album-grid .collection-card[data-rarity="mythic"] .rarity-ornament-bottom {
+  background: linear-gradient(180deg, #fffdf4 0%, #ffe878 18%, #77d5ff 39%, #d5a8ff 55%, #fff7bd 72%, #ffe878 88%, #6d3e08 100%) !important;
+  animation: albumMythicOrnament 2.4s ease-in-out infinite;
+}
+@keyframes albumMythicOrnament {
+  0%,100% { filter: drop-shadow(0 2px 3px rgba(0,0,0,.66)) drop-shadow(0 0 7px rgba(255,239,151,.58)); }
+  50% { filter: drop-shadow(0 2px 3px rgba(0,0,0,.66)) drop-shadow(0 0 16px rgba(115,210,255,.92)); }
+}
+
+@media (max-width: 720px) {
+  .album-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 54px 34px !important;
+    padding: 60px 24px 46px !important;
+  }
+}
+@media (max-width: 390px) {
+  .album-grid {
+    gap: 48px 28px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .album-grid .collection-card[data-rarity="mythic"] { --album-side-width: 22px; --album-bottom-height: 33px; }
+  .album-grid .collection-card[data-rarity="legendary"] { --album-side-width: 18px; --album-bottom-height: 26px; }
+}
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">Ω</div>
+      <div>
+        <p class="eyebrow">ALBUM MYTHOLOGIQUE · VERSION ARTWORKS INTÉGRÉS</p>
+        <h1>MYTHOS</h1>
+      </div>
+      <button id="installButton" class="icon-button hidden" type="button" aria-label="Installer l'application">↓</button>
+    </header>
+
+    <main>
+      <section id="homeView" class="view active" aria-labelledby="homeTitle">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="eyebrow">BOOSTER QUOTIDIEN</p>
+            <h2 id="homeTitle">Cinq cartes t’attendent</h2>
+            <p id="boosterStatus" class="muted">Vérification du booster…</p>
+          </div>
+          <div class="pack-art" aria-hidden="true">
+            <span class="pack-wing left">◆</span>
+            <div class="pack-core"><span>Ω</span><small>5 CARTES</small></div>
+            <span class="pack-wing right">◆</span>
+          </div>
+          <button id="openBoosterButton" class="primary-button" type="button">Ouvrir le booster</button>
+          <p id="nextBoosterText" class="countdown"></p>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span>Collection</span>
+            <strong id="collectionProgress">0 / 100</strong>
+            <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+          </article>
+          <article class="stat-card">
+            <span>Exemplaires</span>
+            <strong id="totalCopies">0</strong>
+            <small>doublons compris</small>
+          </article>
+        </div>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">DERNIÈRES DÉCOUVERTES</p>
+              <h3>Cartes récentes</h3>
+            </div>
+            <button class="text-button" data-nav="album" type="button">Voir l’album</button>
+          </div>
+          <div id="recentCards" class="recent-strip empty-state">Aucune carte découverte pour le moment.</div>
+        </section>
+
+        <section class="panel rarity-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PROBABILITÉS</p>
+              <h3>Raretés</h3>
+            </div>
+          </div>
+          <div id="raritySummary" class="rarity-list"></div>
+        </section>
+      </section>
+
+      <section id="albumView" class="view" aria-labelledby="albumTitle">
+        <div class="section-heading album-heading">
+          <div>
+            <p class="eyebrow">LIVRE DE COLLECTION</p>
+            <h2 id="albumTitle">Mon album</h2>
+          </div>
+          <strong id="albumProgress">0 / 100</strong>
+        </div>
+
+        <div class="filters panel">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Rechercher une carte" autocomplete="off" />
+          </label>
+          <div class="filter-row" role="group" aria-label="Filtrer par possession">
+            <button class="chip active" type="button" data-owned-filter="all">Toutes</button>
+            <button class="chip" type="button" data-owned-filter="owned">Obtenues</button>
+            <button class="chip" type="button" data-owned-filter="missing">Manquantes</button>
+          </div>
+          <select id="rarityFilter" aria-label="Filtrer par rareté">
+            <option value="all">Toutes les raretés</option>
+            <option value="mythic">Mythique</option>
+            <option value="legendary">Légendaire</option>
+            <option value="epic">Épique</option>
+            <option value="rare">Rare</option>
+            <option value="uncommon">Peu commune</option>
+            <option value="common">Commune</option>
+          </select>
+        </div>
+
+        <div id="albumGrid" class="album-grid"><div class="panel empty-state" style="grid-column:1/-1">L’album se chargera à son ouverture.</div></div>
+      </section>
+
+      <section id="infoView" class="view" aria-labelledby="infoTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">À PROPOS</p>
+            <h2 id="infoTitle">Comment jouer</h2>
+          </div>
+        </div>
+        <div class="panel prose">
+          <h3>Un booster par jour</h3>
+          <p>Ouvre cinq cartes aléatoires chaque jour. Le booster se recharge à minuit, selon l’heure de Zurich.</p>
+          <h3>Complète les 100 cartes</h3>
+          <p>Chaque découverte rejoint ton album. Les doublons restent comptabilisés et pourront plus tard servir aux échanges ou à l’artisanat.</p>
+          <h3>Six niveaux de rareté</h3>
+          <p>La carte mythique est volontairement extrêmement difficile à obtenir. Les probabilités sont appliquées séparément à chacun des cinq tirages.</p>
+          <h3>Installation</h3>
+          <p>Sur iPhone : Safari → Partager → Ajouter à l’écran d’accueil. Sur Android : Chrome → Installer l’application.</p>
+        </div>
+        <div class="panel danger-zone">
+          <h3>Outils de test</h3>
+          <p>Ces boutons servent à tester le prototype avant de le partager.</p>
+          <div class="button-stack">
+            <button id="resetDailyButton" class="secondary-button" type="button">Rendre le booster disponible</button>
+            <button id="resetAllButton" class="danger-button" type="button">Effacer toute la collection</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <button class="nav-button active" data-nav="home" type="button"><span>⌂</span>Accueil</button>
+      <button class="nav-button" data-nav="album" type="button"><span>▦</span>Album</button>
+      <button class="nav-button" data-nav="info" type="button"><span>Ω</span>Règles</button>
+    </nav>
+  </div>
+
+  <dialog id="boosterDialog" class="booster-dialog">
+    <div class="dialog-inner">
+      <p class="eyebrow">BOOSTER DU JOUR</p>
+      <h2>Révèle tes cartes</h2>
+      <p id="boosterInstruction" class="muted">Touche le booster pour l’ouvrir.</p>
+      <div id="boosterCards" class="booster-cards"></div>
+      <button id="revealAllButton" class="secondary-button" type="button" hidden>Tout révéler</button>
+      <button id="closeBoosterButton" class="primary-button" type="button" hidden disabled>Voir les cartes dans l’album</button>
+    </div>
+  </dialog>
+
+  <dialog id="cardDialog" class="card-dialog">
+    <button id="closeCardDialog" class="dialog-close" type="button" aria-label="Fermer">×</button>
+    <div id="cardDialogContent"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>window.MYTHOS_CARDS = [{"id":1,"number":"001","name":"Chaos primordial","rarity":"mythic","rarityLabel":"Mythique","kind":"Entité","symbol":"✦","description":"Le vide originel d’où émergèrent les premières puissances du cosmos.","artwork":"artworks/001-chaos-primordial.jpg"},{"id":2,"number":"002","name":"Zeus","rarity":"legendary","rarityLabel":"Légendaire","kind":"Dieu","symbol":"⚡","description":"Souverain de l’Olympe, maître du ciel, de la foudre et de l’ordre divin.","artwork":"artworks/002-zeus.jpg"},{"id":3,"number":"003","name":"Hadès","rarity":"legendary","rarityLabel":"Légendaire","kind":"Dieu","symbol":"Ψ","description":"Souverain du monde souterrain et gardien du royaume des morts.","artwork":"artworks/003-hades.jpg"},{"id":4,"number":"004","name":"Poséidon","rarity":"legendary","rarityLabel":"Légendaire","kind":"Dieu","symbol":"≋","description":"Maître des mers, des tempêtes et des tremblements de terre.","artwork":"artworks/004-poseidon.jpg"},{"id":5,"number":"005","name":"Athéna","rarity":"legendary","rarityLabel":"Légendaire","kind":"Déesse","symbol":"♜","description":"Déesse de la sagesse, de la stratégie et des arts civilisateurs.","artwork":"artworks/005-athena.jpg"},{"id":6,"number":"006","name":"Apollon","rarity":"legendary","rarityLabel":"Légendaire","kind":"Dieu","symbol":"☀","description":"Dieu de la lumière, de la musique, des arts et de la prophétie.","artwork":"artworks/006-apollon.jpg"},{"id":7,"number":"007","name":"Héra","rarity":"epic","rarityLabel":"Épique","kind":"Déesse","symbol":"♛","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/007-hera.jpg"},{"id":8,"number":"008","name":"Artémis","rarity":"epic","rarityLabel":"Épique","kind":"Déesse","symbol":"☾","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/008-artemis.jpg"},{"id":9,"number":"009","name":"Arès","rarity":"epic","rarityLabel":"Épique","kind":"Dieu","symbol":"⚔","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/009-ares.jpg"},{"id":10,"number":"010","name":"Aphrodite","rarity":"epic","rarityLabel":"Épique","kind":"Déesse","symbol":"♡","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/010-aphrodite.jpg"},{"id":11,"number":"011","name":"Hermès","rarity":"epic","rarityLabel":"Épique","kind":"Dieu","symbol":"☤","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/011-hermes.jpg"},{"id":12,"number":"012","name":"Héphaïstos","rarity":"epic","rarityLabel":"Épique","kind":"Dieu","symbol":"⚒","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/012-hephaistos.jpg"},{"id":13,"number":"013","name":"Déméter","rarity":"epic","rarityLabel":"Épique","kind":"Déesse","symbol":"❧","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/013-demeter.jpg"},{"id":14,"number":"014","name":"Dionysos","rarity":"epic","rarityLabel":"Épique","kind":"Dieu","symbol":"♒","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/014-dionysos.jpg"},{"id":15,"number":"015","name":"Hestia","rarity":"epic","rarityLabel":"Épique","kind":"Déesse","symbol":"♨","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/015-hestia.jpg"},{"id":16,"number":"016","name":"Perséphone","rarity":"epic","rarityLabel":"Épique","kind":"Déesse","symbol":"❀","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/016-persephone.jpg"},{"id":17,"number":"017","name":"Achille","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"A","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/017-achille.jpg"},{"id":18,"number":"018","name":"Ulysse","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"U","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/018-ulysse.jpg"},{"id":19,"number":"019","name":"Héraclès","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"H","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/019-heracles.jpg"},{"id":20,"number":"020","name":"Thésée","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"T","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/020-thesee.jpg"},{"id":21,"number":"021","name":"Persée","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"P","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/021-persee.jpg"},{"id":22,"number":"022","name":"Jason","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"J","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/022-jason.jpg"},{"id":23,"number":"023","name":"Orphée","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"♫","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/023-orphee.jpg"},{"id":24,"number":"024","name":"Atalante","rarity":"rare","rarityLabel":"Rare","kind":"Héroïne","symbol":"➹","description":"Une héroïne des légendes grecques, reconnue pour son courage, son intelligence ou son destin.","artwork":"artworks/024-atalante.jpg"},{"id":25,"number":"025","name":"Bellérophon","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"B","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/025-bellerophon.jpg"},{"id":26,"number":"026","name":"Hector","rarity":"rare","rarityLabel":"Rare","kind":"Héros","symbol":"Η","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/026-hector.jpg"},{"id":27,"number":"027","name":"Méduse","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"ϟ","description":"Gorgone au regard pétrifiant, vaincue par Persée grâce à l’aide des dieux.","artwork":"artworks/027-meduse.jpg"},{"id":28,"number":"028","name":"Minotaure","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"♉","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/028-minotaure.jpg"},{"id":29,"number":"029","name":"Cerbère","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"⋮","description":"Chien à trois têtes qui garde les portes du royaume des morts.","artwork":"artworks/029-cerbere.jpg"},{"id":30,"number":"030","name":"Hydre de Lerne","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"≋","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/030-hydre-de-lerne.jpg"},{"id":31,"number":"031","name":"Chimère","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"✣","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/031-chimere.jpg"},{"id":32,"number":"032","name":"Pégase","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"♘","description":"Cheval ailé né du sang de Méduse, symbole d’élévation et d’inspiration.","artwork":"artworks/032-pegase.jpg"},{"id":33,"number":"033","name":"Cyclope","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"◉","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/033-cyclope.jpg"},{"id":34,"number":"034","name":"Sphinx","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"◇","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/034-sphinx.jpg"},{"id":35,"number":"035","name":"Scylla","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"∿","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/035-scylla.jpg"},{"id":36,"number":"036","name":"Charybde","rarity":"rare","rarityLabel":"Rare","kind":"Créature","symbol":"◎","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/036-charybde.jpg"},{"id":37,"number":"037","name":"Cronos","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Titan","symbol":"⌛","description":"Une puissance ancienne issue de la génération qui précéda les dieux de l’Olympe.","artwork":"artworks/037-cronos.jpg"},{"id":38,"number":"038","name":"Rhéa","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Titanide","symbol":"R","description":"Une divinité primordiale appartenant à l’ancienne génération des Titans.","artwork":"artworks/038-rhea.jpg"},{"id":39,"number":"039","name":"Gaïa","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Primordiale","symbol":"⊕","description":"Une puissance originelle incarnant l’un des fondements du cosmos grec.","artwork":"artworks/039-gaia.jpg"},{"id":40,"number":"040","name":"Ouranos","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Primordial","symbol":"☄","description":"Une puissance originelle incarnant l’un des fondements du cosmos grec.","artwork":"artworks/040-ouranos.jpg"},{"id":41,"number":"041","name":"Prométhée","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Titan","symbol":"🔥","description":"Une puissance ancienne issue de la génération qui précéda les dieux de l’Olympe.","artwork":"artworks/041-promethee.jpg"},{"id":42,"number":"042","name":"Atlas","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Titan","symbol":"◯","description":"Une puissance ancienne issue de la génération qui précéda les dieux de l’Olympe.","artwork":"artworks/042-atlas.jpg"},{"id":43,"number":"043","name":"Hélios","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"☼","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/043-helios.jpg"},{"id":44,"number":"044","name":"Séléné","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"☽","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/044-selene.jpg"},{"id":45,"number":"045","name":"Éos","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"☀","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/045-eos.jpg"},{"id":46,"number":"046","name":"Pan","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"♑","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/046-pan.jpg"},{"id":47,"number":"047","name":"Niké","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"V","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/047-nike.jpg"},{"id":48,"number":"048","name":"Némésis","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"⚖","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/048-nemesis.jpg"},{"id":49,"number":"049","name":"Hécate","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"✣","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/049-hecate.jpg"},{"id":50,"number":"050","name":"Hypnos","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"☁","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/050-hypnos.jpg"},{"id":51,"number":"051","name":"Thanatos","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"†","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/051-thanatos.jpg"},{"id":52,"number":"052","name":"Éris","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"◈","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/052-eris.jpg"},{"id":53,"number":"053","name":"Tyché","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"⊙","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/053-tyche.jpg"},{"id":54,"number":"054","name":"Iris","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Déesse","symbol":"⌁","description":"Une figure divine majeure de la mythologie grecque, vénérée pour son influence sur le monde et les humains.","artwork":"artworks/054-iris.jpg"},{"id":55,"number":"055","name":"Triton","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"♆","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/055-triton.jpg"},{"id":56,"number":"056","name":"Asclépios","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"⚕","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/056-asclepios.jpg"},{"id":57,"number":"057","name":"Éros","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Dieu","symbol":"♥","description":"Une figure divine majeure de la mythologie grecque, dotée d’un pouvoir qui façonne le destin des mortels.","artwork":"artworks/057-eros.jpg"},{"id":58,"number":"058","name":"Circé","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Magicienne","symbol":"C","description":"Une maîtresse des enchantements dont les pouvoirs transforment le cours des aventures héroïques.","artwork":"artworks/058-circe.jpg"},{"id":59,"number":"059","name":"Calypso","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Nymphe","symbol":"C","description":"Une figure liée à la nature et aux lieux sauvages dans les récits mythologiques.","artwork":"artworks/059-calypso.jpg"},{"id":60,"number":"060","name":"Ariane","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Héroïne","symbol":"∞","description":"Une héroïne des légendes grecques, reconnue pour son courage, son intelligence ou son destin.","artwork":"artworks/060-ariane.jpg"},{"id":61,"number":"061","name":"Midas","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Roi","symbol":"M","description":"Un souverain dont la légende mêle ambition, pouvoir et conséquences inattendues.","artwork":"artworks/061-midas.jpg"},{"id":62,"number":"062","name":"Dédale","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Inventeur","symbol":"D","description":"Un artisan de génie, célèbre pour ses créations aussi brillantes que dangereuses.","artwork":"artworks/062-dedale.jpg"},{"id":63,"number":"063","name":"Icare","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Héros","symbol":"I","description":"Un héros des légendes grecques, célèbre pour ses exploits, ses épreuves et son destin.","artwork":"artworks/063-icare.jpg"},{"id":64,"number":"064","name":"Centaure","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Créature","symbol":"♐","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/064-centaure.jpg"},{"id":65,"number":"065","name":"Satyre","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Créature","symbol":"S","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/065-satyre.jpg"},{"id":66,"number":"066","name":"Harpie","rarity":"uncommon","rarityLabel":"Peu commune","kind":"Créature","symbol":"H","description":"Une créature légendaire rencontrée dans les mythes, redoutée ou admirée par les héros.","artwork":"artworks/066-harpie.jpg"},{"id":67,"number":"067","name":"Épiméthée","rarity":"common","rarityLabel":"Commune","kind":"Titan","symbol":"◇","description":"Frère de Prométhée, il accepta Pandore malgré l’avertissement des dieux.","artwork":"artworks/067-epimethee.jpg"},{"id":68,"number":"068","name":"Pâris","rarity":"common","rarityLabel":"Commune","kind":"Prince troyen","symbol":"●","description":"Prince de Troie dont le jugement et l’amour pour Hélène déclenchèrent la guerre.","artwork":"artworks/068-paris.jpg"},{"id":69,"number":"069","name":"Toison d'or","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"♈","description":"Trésor convoité par Jason et les Argonautes au terme d’une quête périlleuse.","artwork":"artworks/069-toison-d-or.jpg"},{"id":70,"number":"070","name":"Pandore","rarity":"common","rarityLabel":"Commune","kind":"Héroïne","symbol":"□","description":"Première femme façonnée par les dieux, célèbre pour avoir ouvert la jarre interdite.","artwork":"artworks/070-pandore.jpg"},{"id":71,"number":"071","name":"Égide","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"◈","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/071-egide.jpg"},{"id":72,"number":"072","name":"Trident","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"Ψ","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/072-trident.jpg"},{"id":73,"number":"073","name":"Foudre de Zeus","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"ϟ","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/073-foudre-de-zeus.jpg"},{"id":74,"number":"074","name":"Sandales ailées","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"↟","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/074-sandales-ailees.jpg"},{"id":75,"number":"075","name":"Casque d'invisibilité","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"◐","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/075-casque-d-invisibilite.jpg"},{"id":76,"number":"076","name":"Arc d'Artémis","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"➹","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/076-arc-d-artemis.jpg"},{"id":77,"number":"077","name":"Lyre d'Apollon","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"♫","description":"Un artefact mythique associé aux dieux, aux héros ou à une quête légendaire.","artwork":"artworks/077-lyre-d-apollon.jpg"},{"id":78,"number":"078","name":"Labyrinthe","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"⌘","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/078-labyrinthe.jpg"},{"id":79,"number":"079","name":"Mont Olympe","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"△","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/079-mont-olympe.jpg"},{"id":80,"number":"080","name":"Royaume des morts","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"▽","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/080-royaume-des-morts.jpg"},{"id":81,"number":"081","name":"Delphes","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"◉","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/081-delphes.jpg"},{"id":82,"number":"082","name":"Ithaque","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"⌂","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/082-ithaque.jpg"},{"id":83,"number":"083","name":"Troie","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"♜","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/083-troie.jpg"},{"id":84,"number":"084","name":"Cnossos","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"▦","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/084-cnossos.jpg"},{"id":85,"number":"085","name":"Styx","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"≈","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/085-styx.jpg"},{"id":86,"number":"086","name":"Champs Élysées","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"❀","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/086-champs-elysees.jpg"},{"id":87,"number":"087","name":"Tartare","rarity":"common","rarityLabel":"Commune","kind":"Lieu","symbol":"▼","description":"Un lieu emblématique où se croisent dieux, héros, monstres et prophéties.","artwork":"artworks/087-tartare.jpg"},{"id":88,"number":"088","name":"Cassandre","rarity":"common","rarityLabel":"Commune","kind":"Prophétesse","symbol":"◉","description":"Princesse de Troie condamnée à prédire l’avenir sans jamais être crue.","artwork":"artworks/088-cassandre.jpg"},{"id":89,"number":"089","name":"Andromède","rarity":"common","rarityLabel":"Commune","kind":"Héroïne","symbol":"⛓","description":"Princesse enchaînée à un rocher et sauvée du monstre marin par Persée.","artwork":"artworks/089-andromede.jpg"},{"id":90,"number":"090","name":"Médée","rarity":"common","rarityLabel":"Commune","kind":"Magicienne","symbol":"✣","description":"Puissante magicienne de Colchide qui aida Jason à conquérir la Toison d’or.","artwork":"artworks/090-medee.jpg"},{"id":91,"number":"091","name":"Pénélope","rarity":"common","rarityLabel":"Commune","kind":"Reine","symbol":"⌁","description":"Épouse fidèle d’Ulysse, elle déjoua ses prétendants grâce à sa ruse du tissage.","artwork":"artworks/091-penelope.jpg"},{"id":92,"number":"092","name":"Typhon","rarity":"common","rarityLabel":"Commune","kind":"Monstre primordial","symbol":"ϟ","description":"Monstre colossal aux formes serpentines, adversaire redoutable de Zeus et de l’Olympe.","artwork":"artworks/092-typhon.jpg"},{"id":93,"number":"093","name":"Échidna","rarity":"common","rarityLabel":"Commune","kind":"Créature","symbol":"蛇","description":"Femme-serpent, mère de nombreux monstres célèbres de la mythologie grecque.","artwork":"artworks/093-echidna.jpg"},{"id":94,"number":"094","name":"Lion de Némée","rarity":"common","rarityLabel":"Commune","kind":"Créature","symbol":"♌","description":"Fauve invulnérable vaincu par Héraclès lors de son premier travail.","artwork":"artworks/094-lion-de-nemee.jpg"},{"id":95,"number":"095","name":"Sanglier d’Érymanthe","rarity":"common","rarityLabel":"Commune","kind":"Créature","symbol":"♨","description":"Sanglier gigantesque capturé vivant par Héraclès dans les montagnes enneigées.","artwork":"artworks/095-sanglier-derymanthe.jpg"},{"id":96,"number":"096","name":"Biche de Cérynie","rarity":"common","rarityLabel":"Commune","kind":"Créature","symbol":"♢","description":"Biche sacrée aux bois d’or qu’Héraclès dut capturer sans la blesser.","artwork":"artworks/096-biche-de-cerynie.jpg"},{"id":97,"number":"097","name":"Géryon","rarity":"common","rarityLabel":"Commune","kind":"Géant","symbol":"Ⅲ","description":"Géant à trois corps dont Héraclès déroba le fabuleux troupeau.","artwork":"artworks/097-geryon.jpg"},{"id":98,"number":"098","name":"Ladon","rarity":"common","rarityLabel":"Commune","kind":"Dragon","symbol":"∞","description":"Dragon gardien des pommes d’or dans le jardin des Hespérides.","artwork":"artworks/098-ladon.jpg"},{"id":99,"number":"099","name":"Sirènes","rarity":"common","rarityLabel":"Commune","kind":"Créatures","symbol":"♫","description":"Créatures au chant irrésistible qui attiraient les navigateurs vers leur perte.","artwork":"artworks/099-sirenes.jpg"},{"id":100,"number":"100","name":"Cheval de Troie","rarity":"common","rarityLabel":"Commune","kind":"Artefact","symbol":"♞","description":"Ruse monumentale utilisée par les Grecs pour pénétrer dans la cité de Troie.","artwork":"artworks/100-cheval-de-troie.jpg"}];
+</script>
+<script>(() => {
+  'use strict';
+
+  const CARDS = window.MYTHOS_CARDS || [];
+  const APP_VERSION = '5.0.0-inline';
+  const STORAGE = {
+    collection: 'mythos.collection.v2',
+    lastBoosterDate: 'mythos.lastBoosterDate.v2',
+    openingHistory: 'mythos.openingHistory.v2'
+  };
+
+  const RARITIES = {
+    mythic: { label: 'Mythique', chance: 0.02, count: 1, color: '#fff3b0' },
+    legendary: { label: 'Légendaire', chance: 0.50, count: 5, color: '#f2b84b' },
+    epic: { label: 'Épique', chance: 4.00, count: 10, color: '#bd7cff' },
+    rare: { label: 'Rare', chance: 15.00, count: 20, color: '#61a9ff' },
+    uncommon: { label: 'Peu commune', chance: 30.00, count: 30, color: '#63d59a' },
+    common: { label: 'Commune', chance: 50.48, count: 34, color: '#b9c0cf' }
+  };
+
+  let collection = loadJson(STORAGE.collection, {});
+  let currentOwnedFilter = 'all';
+  let pendingInstallPrompt = null;
+  let currentBooster = [];
+  let boosterRevealIndex = -1;
+  let boosterTransitionLocked = false;
+  let toastTimer = null;
+
+  const els = {
+    homeView: document.getElementById('homeView'),
+    albumView: document.getElementById('albumView'),
+    infoView: document.getElementById('infoView'),
+    boosterStatus: document.getElementById('boosterStatus'),
+    nextBoosterText: document.getElementById('nextBoosterText'),
+    openBoosterButton: document.getElementById('openBoosterButton'),
+    collectionProgress: document.getElementById('collectionProgress'),
+    albumProgress: document.getElementById('albumProgress'),
+    totalCopies: document.getElementById('totalCopies'),
+    progressBar: document.getElementById('progressBar'),
+    recentCards: document.getElementById('recentCards'),
+    raritySummary: document.getElementById('raritySummary'),
+    albumGrid: document.getElementById('albumGrid'),
+    searchInput: document.getElementById('searchInput'),
+    rarityFilter: document.getElementById('rarityFilter'),
+    boosterDialog: document.getElementById('boosterDialog'),
+    boosterCards: document.getElementById('boosterCards'),
+    boosterInstruction: document.getElementById('boosterInstruction'),
+    revealAllButton: document.getElementById('revealAllButton'),
+    closeBoosterButton: document.getElementById('closeBoosterButton'),
+    cardDialog: document.getElementById('cardDialog'),
+    cardDialogContent: document.getElementById('cardDialogContent'),
+    closeCardDialog: document.getElementById('closeCardDialog'),
+    resetDailyButton: document.getElementById('resetDailyButton'),
+    resetAllButton: document.getElementById('resetAllButton'),
+    installButton: document.getElementById('installButton'),
+    toast: document.getElementById('toast')
+  };
+
+  function loadJson(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (error) {
+      console.warn(`Impossible de lire ${key}`, error);
+      return fallback;
+    }
+  }
+
+  function saveJson(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function secureRandom() {
+    if (window.crypto?.getRandomValues) {
+      const array = new Uint32Array(1);
+      window.crypto.getRandomValues(array);
+      return array[0] / 4294967296;
+    }
+    return Math.random();
+  }
+
+  function getZurichParts(date = new Date()) {
+    const formatter = new Intl.DateTimeFormat('fr-CH', {
+      timeZone: 'Europe/Zurich',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hourCycle: 'h23'
+    });
+    const parts = Object.fromEntries(
+      formatter.formatToParts(date)
+        .filter(part => part.type !== 'literal')
+        .map(part => [part.type, part.value])
+    );
+    return {
+      year: Number(parts.year), month: Number(parts.month), day: Number(parts.day),
+      hour: Number(parts.hour), minute: Number(parts.minute), second: Number(parts.second)
+    };
+  }
+
+  function zurichDateKey(date = new Date()) {
+    const p = getZurichParts(date);
+    return `${p.year}-${String(p.month).padStart(2, '0')}-${String(p.day).padStart(2, '0')}`;
+  }
+
+  function secondsUntilZurichMidnight() {
+    const p = getZurichParts();
+    return Math.max(0, (24 * 3600) - (p.hour * 3600 + p.minute * 60 + p.second));
+  }
+
+  function formatCountdown(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+
+  function boosterAvailable() {
+    return localStorage.getItem(STORAGE.lastBoosterDate) !== zurichDateKey();
+  }
+
+  function rarityStyle(rarity) {
+    return `--rarity-color:${RARITIES[rarity].color}`;
+  }
+
+  function xmlEscape(value) {
+    return String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&apos;');
+  }
+
+  function paletteFor(card) {
+    const palettes = {
+      mythic: ['#fff8c9', '#8e5d1e', '#1b1326'],
+      legendary: ['#ffd67a', '#7a3a1a', '#17152b'],
+      epic: ['#d8a0ff', '#4a2374', '#14172b'],
+      rare: ['#83c6ff', '#214d86', '#11182d'],
+      uncommon: ['#7fe0ac', '#1c5c4d', '#101c29'],
+      common: ['#d2d7e1', '#4f5b70', '#141925']
+    };
+    return palettes[card.rarity];
+  }
+
+  function artworkUrl(card) {
+    if (card.artwork) return card.artwork;
+    const [light, mid, dark] = paletteFor(card);
+    const seed = card.id * 7919;
+    const sunX = 18 + (seed % 64);
+    const sunY = 15 + ((seed >> 3) % 34);
+    const ridge = 120 + (seed % 45);
+    const smallName = card.name.length > 18 ? card.name.slice(0, 18) + '…' : card.name;
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1000">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="${mid}"/>
+            <stop offset=".58" stop-color="${dark}"/>
+            <stop offset="1" stop-color="#060912"/>
+          </linearGradient>
+          <radialGradient id="halo">
+            <stop offset="0" stop-color="${light}" stop-opacity=".9"/>
+            <stop offset=".35" stop-color="${light}" stop-opacity=".22"/>
+            <stop offset="1" stop-color="${light}" stop-opacity="0"/>
+          </radialGradient>
+          <pattern id="key" width="54" height="54" patternUnits="userSpaceOnUse">
+            <path d="M0 9h36v27H18V18h18" fill="none" stroke="${light}" stroke-opacity=".11" stroke-width="5"/>
+          </pattern>
+          <filter id="glow"><feGaussianBlur stdDeviation="11" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="700" height="1000" fill="url(#bg)"/>
+        <rect width="700" height="1000" fill="url(#key)"/>
+        <circle cx="${sunX * 7}" cy="${sunY * 7}" r="250" fill="url(#halo)"/>
+        <g opacity=".22" fill="${light}">
+          <circle cx="90" cy="150" r="4"/><circle cx="160" cy="90" r="3"/><circle cx="580" cy="190" r="5"/>
+          <circle cx="625" cy="105" r="3"/><circle cx="500" cy="80" r="3"/><circle cx="330" cy="120" r="4"/>
+        </g>
+        <path d="M0 ${ridge+330} L120 ${ridge+180} L215 ${ridge+245} L330 ${ridge+100} L440 ${ridge+225} L555 ${ridge+145} L700 ${ridge+300} V1000 H0Z" fill="#080c16" opacity=".86"/>
+        <g transform="translate(350 420)" filter="url(#glow)">
+          <circle r="178" fill="none" stroke="${light}" stroke-opacity=".22" stroke-width="3"/>
+          <circle r="137" fill="none" stroke="${light}" stroke-opacity=".38" stroke-width="2" stroke-dasharray="8 12"/>
+          <text x="0" y="32" text-anchor="middle" font-family="Georgia,serif" font-size="190" font-weight="700" fill="${light}">${xmlEscape(card.symbol)}</text>
+        </g>
+        <g transform="translate(110 690)" fill="none" stroke="${light}" stroke-opacity=".55" stroke-width="9">
+          <path d="M0 120h480M35 120V10M135 120V10M245 120V10M355 120V10M445 120V10M0 10h480M25 10l215-85 215 85"/>
+        </g>
+        <rect x="28" y="28" width="644" height="944" rx="28" fill="none" stroke="${light}" stroke-opacity=".55" stroke-width="4"/>
+        <rect x="46" y="46" width="608" height="908" rx="20" fill="none" stroke="${light}" stroke-opacity=".16" stroke-width="2"/>
+        <text x="350" y="885" text-anchor="middle" fill="#fff7e7" font-family="Georgia,serif" font-size="44" font-weight="700">${xmlEscape(smallName)}</text>
+        <text x="350" y="925" text-anchor="middle" fill="${light}" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="6">${xmlEscape(card.rarityLabel.toUpperCase())}</text>
+      </svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+  }
+
+
+  function preloadArtwork(card) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.onload = () => resolve(card);
+      image.onerror = () => reject(new Error(`Artwork introuvable : ${card.name}`));
+      image.src = artworkUrl(card);
+    });
+  }
+
+  function armArtworkImages(root = document) {
+    root.querySelectorAll('img[data-card-artwork]').forEach(image => {
+      if (image.dataset.armed === '1') return;
+      image.dataset.armed = '1';
+      image.addEventListener('error', () => {
+        if (image.dataset.retry === '1') {
+          image.classList.add('artwork-load-error');
+          image.alt = `Artwork indisponible : ${image.dataset.cardName || 'carte'}`;
+          return;
+        }
+        image.dataset.retry = '1';
+        image.style.background = '#2b1420';
+        image.alt = `Erreur de chargement : ${image.dataset.cardName || 'carte'}`;
+      });
+    });
+  }
+
+  function pickRarity() {
+    const roll = secureRandom() * 100;
+    let cursor = 0;
+    for (const [key, config] of Object.entries(RARITIES)) {
+      cursor += config.chance;
+      if (roll < cursor) return key;
+    }
+    return 'common';
+  }
+
+  function pickCard(excludedIds = new Set()) {
+    for (let attempt = 0; attempt < 50; attempt += 1) {
+      const rarity = pickRarity();
+      const pool = CARDS.filter(card => card.rarity === rarity && !excludedIds.has(card.id));
+      if (pool.length) return pool[Math.floor(secureRandom() * pool.length)];
+    }
+    const fallback = CARDS.filter(card => !excludedIds.has(card.id));
+    return fallback[Math.floor(secureRandom() * fallback.length)];
+  }
+
+  function drawBooster() {
+    const selected = [];
+    const used = new Set();
+    while (selected.length < 5) {
+      const card = pickCard(used);
+      used.add(card.id);
+      selected.push(card);
+    }
+    return selected;
+  }
+
+  function addBoosterToCollection(cards) {
+    const timestamp = new Date().toISOString();
+    const enriched = cards.map(card => {
+      const previous = collection[card.id];
+      const isNew = !previous;
+      collection[card.id] = {
+        quantity: (previous?.quantity || 0) + 1,
+        firstObtainedAt: previous?.firstObtainedAt || timestamp,
+        lastObtainedAt: timestamp
+      };
+      return { ...card, isNew };
+    });
+    saveJson(STORAGE.collection, collection);
+
+    const history = loadJson(STORAGE.openingHistory, []);
+    history.unshift({ date: zurichDateKey(), cardIds: cards.map(card => card.id), openedAt: timestamp });
+    saveJson(STORAGE.openingHistory, history.slice(0, 30));
+    return enriched;
+  }
+
+  async function openDailyBooster() {
+    if (!boosterAvailable()) {
+      showToast('Le booster du jour a déjà été ouvert.');
+      return;
+    }
+    const cards = drawBooster();
+    els.openBoosterButton.disabled = true;
+    els.openBoosterButton.textContent = 'Chargement des artworks…';
+    try {
+      await Promise.all(cards.map(preloadArtwork));
+      localStorage.setItem(STORAGE.lastBoosterDate, zurichDateKey());
+      currentBooster = addBoosterToCollection(cards);
+      renderBooster(currentBooster);
+      renderAll();
+      els.boosterDialog.showModal();
+    } catch (error) {
+      console.error(error);
+      showToast('Impossible de charger un artwork. Recharge la page puis réessaie.');
+      renderBoosterStatus();
+    }
+  }
+
+  function renderBooster(cards) {
+    boosterRevealIndex = -1;
+    boosterTransitionLocked = false;
+    els.boosterCards.className = 'booster-cards booster-sequence';
+    els.boosterCards.innerHTML = `
+      <button class="booster-pack-stage" type="button" aria-label="Ouvrir le booster">
+        <span class="booster-pack-wrapper" aria-hidden="true">
+          <span class="pack-piece pack-piece-top">
+            <span class="pack-brand">MYTHOS</span>
+            <span class="pack-omega">Ω</span>
+          </span>
+          <span class="pack-tear-line"></span>
+          <span class="pack-piece pack-piece-bottom">
+            <span class="pack-count">5 CARTES</span>
+            <span class="pack-stars">✦ ✦ ✦</span>
+          </span>
+          <span class="pack-burst"></span>
+        </span>
+        <span class="booster-tap-hint">Toucher pour ouvrir</span>
+      </button>`;
+
+    els.boosterInstruction.textContent = 'Touche le booster pour l’ouvrir.';
+    els.revealAllButton.hidden = true;
+    els.closeBoosterButton.hidden = true;
+    els.closeBoosterButton.disabled = true;
+
+    const pack = els.boosterCards.querySelector('.booster-pack-stage');
+    pack.addEventListener('click', () => openBoosterPack(pack), { once: true });
+  }
+
+  function openBoosterPack(pack) {
+    if (boosterTransitionLocked) return;
+    boosterTransitionLocked = true;
+    pack.classList.add('opening');
+    els.boosterInstruction.textContent = 'Le sceau se brise…';
+    if (navigator.vibrate) navigator.vibrate([35, 40, 80]);
+
+    window.setTimeout(() => {
+      boosterRevealIndex = 0;
+      boosterTransitionLocked = false;
+      showCurrentBoosterCard();
+    }, 850);
+  }
+
+  function showCurrentBoosterCard() {
+    const card = currentBooster[boosterRevealIndex];
+    if (!card) return;
+
+    const count = boosterRevealIndex + 1;
+    els.boosterInstruction.textContent = count < currentBooster.length
+      ? `Carte ${count} sur ${currentBooster.length} — touche-la pour continuer.`
+      : `Dernière carte — touche-la pour terminer.`;
+
+    els.boosterCards.innerHTML = `
+      <button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}" aria-label="Carte ${count} sur ${currentBooster.length} : ${card.name}">
+        <span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span>
+        <span class="booster-card-counter">${count} / ${currentBooster.length}</span>
+        ${card.isNew ? '<span class="new-ribbon sequence-ribbon">NOUVELLE</span>' : '<span class="duplicate-ribbon">DOUBLON</span>'}
+        <img src="${artworkUrl(card)}" data-clean-source="${card.artwork}" data-card-artwork="1" data-card-name="${card.name}" loading="eager" decoding="async" alt="${card.name}" />
+        <span class="sequence-card-copy">
+          <small>${card.rarityLabel} · ${card.kind}</small>
+          <strong>${card.name}</strong>
+          <span>Toucher pour continuer →</span>
+        </span>
+      </button>`;
+
+    armArtworkImages(els.boosterCards);
+    const button = els.boosterCards.querySelector('.booster-single-card');
+    requestAnimationFrame(() => requestAnimationFrame(() => button.classList.remove('entering')));
+    button.addEventListener('click', () => advanceBoosterCard(button), { once: true });
+  }
+
+  function advanceBoosterCard(button) {
+    if (boosterTransitionLocked) return;
+    boosterTransitionLocked = true;
+    button.disabled = true;
+    button.classList.add('swipe-right');
+    if (navigator.vibrate) navigator.vibrate(22);
+
+    window.setTimeout(() => {
+      if (boosterRevealIndex < currentBooster.length - 1) {
+        boosterRevealIndex += 1;
+        boosterTransitionLocked = false;
+        showCurrentBoosterCard();
+      } else {
+        showBoosterComplete();
+      }
+    }, 460);
+  }
+
+  function showBoosterComplete() {
+    boosterTransitionLocked = false;
+    els.boosterInstruction.textContent = 'Les cinq cartes ont été révélées.';
+    els.boosterCards.innerHTML = `
+      <div class="booster-complete" role="status">
+        <span class="complete-omega">Ω</span>
+        <strong>Booster terminé</strong>
+        <p>Les 5 cartes ont rejoint ta collection.</p>
+      </div>`;
+    els.closeBoosterButton.hidden = false;
+    els.closeBoosterButton.disabled = false;
+    els.closeBoosterButton.textContent = 'Voir les cartes dans l’album';
+  }
+
+  function renderStats() {
+    const entries = Object.values(collection);
+    const distinct = entries.length;
+    const copies = entries.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+    els.collectionProgress.textContent = `${distinct} / 100`;
+    els.albumProgress.textContent = `${distinct} / 100`;
+    els.totalCopies.textContent = copies;
+    els.progressBar.style.width = `${distinct}%`;
+  }
+
+  function renderBoosterStatus() {
+    const available = boosterAvailable();
+    els.openBoosterButton.disabled = !available;
+    els.openBoosterButton.textContent = available ? 'Ouvrir le booster' : 'Booster déjà ouvert';
+    els.boosterStatus.textContent = available
+      ? 'Disponible maintenant — 5 cartes aléatoires'
+      : 'Reviens demain pour cinq nouvelles cartes.';
+    els.nextBoosterText.textContent = available
+      ? 'Le booster restera disponible jusqu’à minuit.'
+      : `Prochain booster dans ${formatCountdown(secondsUntilZurichMidnight())}`;
+  }
+
+  function renderRecentCards() {
+    const recent = CARDS
+      .filter(card => collection[card.id])
+      .sort((a, b) => new Date(collection[b.id].lastObtainedAt) - new Date(collection[a.id].lastObtainedAt))
+      .slice(0, 8);
+    if (!recent.length) {
+      els.recentCards.className = 'recent-strip empty-state';
+      els.recentCards.textContent = 'Aucune carte découverte pour le moment.';
+      return;
+    }
+    els.recentCards.className = 'recent-strip';
+    els.recentCards.innerHTML = recent.map(card => `
+      <button class="mini-card rarity-framed" data-rarity="${card.rarity}" type="button" data-card-id="${card.id}" style="${rarityStyle(card.rarity)}">
+        <span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span>
+        <img src="${artworkUrl(card)}" data-clean-source="${card.artwork}" data-card-artwork="1" data-card-name="${card.name}" loading="eager" decoding="async" alt="${card.name}" />
+        <span>${card.name}</span>
+      </button>`).join('');
+    armArtworkImages(els.recentCards);
+    els.recentCards.querySelectorAll('[data-card-id]').forEach(button => {
+      button.addEventListener('click', () => showCardDetail(Number(button.dataset.cardId)));
+    });
+  }
+
+  function renderRaritySummary() {
+    els.raritySummary.innerHTML = Object.entries(RARITIES).map(([key, config]) => {
+      const owned = CARDS.filter(card => card.rarity === key && collection[card.id]).length;
+      const chance = config.chance < 1 ? config.chance.toFixed(2) : config.chance.toFixed(0);
+      return `
+        <div class="rarity-row" style="--rarity-color:${config.color}">
+          <span class="rarity-dot"></span>
+          <div><strong>${config.label}</strong><small> — ${owned}/${config.count}</small></div>
+          <small>${chance}% / tirage</small>
+        </div>`;
+    }).join('');
+  }
+
+  function renderAlbum() {
+    const query = els.searchInput.value.trim().toLocaleLowerCase('fr');
+    const rarity = els.rarityFilter.value;
+    const filtered = CARDS.filter(card => {
+      const owned = Boolean(collection[card.id]);
+      const matchesOwned = currentOwnedFilter === 'all' || (currentOwnedFilter === 'owned' && owned) || (currentOwnedFilter === 'missing' && !owned);
+      const matchesRarity = rarity === 'all' || card.rarity === rarity;
+      const matchesQuery = !query || card.name.toLocaleLowerCase('fr').includes(query) || card.kind.toLocaleLowerCase('fr').includes(query);
+      return matchesOwned && matchesRarity && matchesQuery;
+    });
+
+    if (!filtered.length) {
+      els.albumGrid.innerHTML = '<div class="panel empty-state" style="grid-column:1/-1">Aucune carte ne correspond à ces filtres.</div>';
+      return;
+    }
+
+    els.albumGrid.innerHTML = filtered.map(card => {
+      const owned = collection[card.id];
+      return `
+        <button class="collection-card rarity-framed ${owned ? '' : 'locked'}" data-rarity="${card.rarity}" type="button" data-card-id="${card.id}" style="${rarityStyle(card.rarity)}">
+          <span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span>
+          <img src="${artworkUrl(card)}" data-clean-source="${card.artwork}" data-card-artwork="1" data-card-name="${card.name}" loading="lazy" decoding="async" alt="${owned ? card.name : 'Carte non découverte'}" />
+          <span class="card-number">#${card.number}</span>
+          ${owned && owned.quantity > 1 ? `<span class="copy-badge">×${owned.quantity}</span>` : ''}
+          ${owned ? '' : '<span class="lock-mark" title="Carte non découverte">🔒</span>'}
+          <span class="card-copy">
+            <strong>${owned ? card.name : '???'}</strong>
+            <small>${card.rarityLabel}</small>
+          </span>
+        </button>`;
+    }).join('');
+
+    armArtworkImages(els.albumGrid);
+    els.albumGrid.querySelectorAll('[data-card-id]').forEach(button => {
+      button.addEventListener('click', () => showCardDetail(Number(button.dataset.cardId)));
+    });
+  }
+
+  function showCardDetail(cardId) {
+    const card = CARDS.find(item => item.id === cardId);
+    if (!card) return;
+    const owned = collection[card.id];
+    const date = owned?.firstObtainedAt
+      ? new Intl.DateTimeFormat('fr-CH', { dateStyle: 'long' }).format(new Date(owned.firstObtainedAt))
+      : 'Non découverte';
+    els.cardDialogContent.innerHTML = `
+      <div style="${rarityStyle(card.rarity)}">
+        <div class="detail-art rarity-framed ${owned ? "" : "locked"}" data-rarity="${card.rarity}"><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><img src="${artworkUrl(card)}" data-clean-source="${card.artwork}" data-card-artwork="1" data-card-name="${card.name}" loading="eager" decoding="async" alt="${card.name}" /></div>
+        <div class="detail-copy">
+          <span class="detail-rarity">${card.rarityLabel} · #${card.number}</span>
+          <h2>${owned ? card.name : 'Carte non découverte'}</h2>
+          <p>${owned ? card.description : 'Ouvre ton booster quotidien pour tenter de révéler cette carte.'}</p>
+          <div class="detail-meta">
+            <div><small>Type</small><strong>${owned ? card.kind : '???'}</strong></div>
+            <div><small>Exemplaires</small><strong>${owned?.quantity || 0}</strong></div>
+            <div style="grid-column:1/-1"><small>Première découverte</small><strong>${date}</strong></div>
+          </div>
+        </div>
+      </div>`;
+    armArtworkImages(els.cardDialogContent);
+    els.cardDialog.showModal();
+  }
+
+  function navigate(viewName) {
+    const mapping = { home: els.homeView, album: els.albumView, info: els.infoView };
+    Object.entries(mapping).forEach(([name, view]) => view.classList.toggle('active', name === viewName));
+    document.querySelectorAll('.nav-button').forEach(button => button.classList.toggle('active', button.dataset.nav === viewName));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (viewName === 'album') renderAlbum();
+  }
+
+  function showToast(message) {
+    window.clearTimeout(toastTimer);
+    els.toast.textContent = message;
+    els.toast.classList.add('show');
+    toastTimer = window.setTimeout(() => els.toast.classList.remove('show'), 2600);
+  }
+
+  function renderAll() {
+    renderStats();
+    renderBoosterStatus();
+    renderRecentCards();
+    renderRaritySummary();
+    if (els.albumView.classList.contains('active')) renderAlbum();
+  }
+
+  function bindEvents() {
+    document.querySelectorAll('[data-nav]').forEach(button => button.addEventListener('click', () => navigate(button.dataset.nav)));
+    els.openBoosterButton.addEventListener('click', openDailyBooster);
+    els.closeBoosterButton.addEventListener('click', () => {
+      els.boosterDialog.close();
+      navigate('album');
+      showToast('Les cinq cartes ont rejoint ton album.');
+    });
+    els.closeCardDialog.addEventListener('click', () => els.cardDialog.close());
+    els.searchInput.addEventListener('input', renderAlbum);
+    els.rarityFilter.addEventListener('change', renderAlbum);
+
+    document.querySelectorAll('[data-owned-filter]').forEach(button => {
+      button.addEventListener('click', () => {
+        currentOwnedFilter = button.dataset.ownedFilter;
+        document.querySelectorAll('[data-owned-filter]').forEach(item => item.classList.toggle('active', item === button));
+        renderAlbum();
+      });
+    });
+
+    els.resetDailyButton.addEventListener('click', () => {
+      localStorage.removeItem(STORAGE.lastBoosterDate);
+      renderBoosterStatus();
+      showToast('Le booster est de nouveau disponible.');
+    });
+
+    els.resetAllButton.addEventListener('click', () => {
+      if (!window.confirm('Effacer toute la collection et l’historique de boosters ?')) return;
+      Object.values(STORAGE).forEach(key => localStorage.removeItem(key));
+      collection = {};
+      renderAll();
+      navigate('home');
+      showToast('La collection a été effacée.');
+    });
+
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      pendingInstallPrompt = event;
+      els.installButton.classList.remove('hidden');
+    });
+
+    els.installButton.addEventListener('click', async () => {
+      if (!pendingInstallPrompt) return;
+      pendingInstallPrompt.prompt();
+      await pendingInstallPrompt.userChoice;
+      pendingInstallPrompt = null;
+      els.installButton.classList.add('hidden');
+    });
+
+    window.addEventListener('appinstalled', () => {
+      showToast('Mythos est installé sur ton appareil.');
+      els.installButton.classList.add('hidden');
+    });
+  }
+
+  function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+    window.addEventListener('load', async () => {
+      try {
+        const registration = await navigator.serviceWorker.register('./sw.js?v=4.0.1', { updateViaCache: 'none' });
+        await registration.update();
+      } catch (error) {
+        console.warn('Service worker:', error);
+      }
+    });
+  }
+
+  if (CARDS.length !== 100) {
+    console.error(`Le jeu doit contenir 100 cartes, mais ${CARDS.length} ont été chargées.`);
+  }
+
+  bindEvents();
+  renderAll();
+  window.setInterval(renderBoosterStatus, 1000);
+})();
+</script>
+</body>
+</html>
