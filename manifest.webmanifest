@@ -1,0 +1,24 @@
+{
+  "name": "Mythos — Album mythologique",
+  "short_name": "Mythos",
+  "description": "Ouvre un booster quotidien et complète les 100 cartes de la mythologie grecque.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080d19",
+  "theme_color": "#11172a",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
