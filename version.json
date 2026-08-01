@@ -1,5 +1,5 @@
 {
-  "version": "6.1.0",
+  "version": "6.1.1",
   "released": "2026-08-01",
-  "notes": "Restauration des cadres et ornements premium, avec effets légendaires et animation mythique céleste renforcée."
+  "notes": "Fix ornements: cadres et ornements autour des cartes sans recouvrir les artworks dans l’album."
 }
