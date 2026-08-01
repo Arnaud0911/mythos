@@ -19,6 +19,304 @@
   --radius:22px;--font-scale:1;
 }
 *{box-sizing:border-box}html{background:var(--bg);font-size:calc(16px * var(--font-scale))}body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 12% 0%,rgba(75,104,190,.24),transparent 31rem),radial-gradient(circle at 90% 25%,rgba(201,143,49,.1),transparent 28rem),var(--bg);transition:background .25s,color .25s}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.52;cursor:not-allowed}.hidden{display:none!important}.app-shell{width:min(100%,820px);margin:auto;min-height:100vh;padding-bottom:94px}.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:calc(12px + env(safe-area-inset-top)) 17px 12px;background:linear-gradient(to bottom,rgba(8,13,25,.98),rgba(8,13,25,.88),rgba(8,13,25,.45));backdrop-filter:blur(18px)}.brand-mark{display:grid;place-items:center;width:43px;height:43px;border-radius:13px;background:#0f1c3b;border:1px solid rgba(232,189,101,.42);color:var(--gold);font:900 27px Georgia,serif}.topbar h1{margin:0;font:800 22px Georgia,serif;letter-spacing:.16em}.eyebrow{margin:0 0 4px;color:var(--gold);font-size:.63rem;font-weight:900;letter-spacing:.17em}.version-pill{margin-left:auto;padding:6px 9px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:.65rem;font-weight:800}.update-banner{position:sticky;top:67px;z-index:39;display:flex;align-items:center;gap:10px;padding:10px 14px;background:#2a2140;border-block:1px solid rgba(232,189,101,.24);box-shadow:0 8px 28px rgba(0,0,0,.25)}.update-banner p{margin:0;flex:1;font-size:.78rem}.update-banner button{border:0;border-radius:10px;padding:8px 11px;font-weight:900}.update-now{background:var(--gold);color:#1b1420}.update-dismiss{background:transparent;color:var(--muted)}main{padding:6px 15px 26px}.view{display:none;animation:viewIn .25s ease}.view.active{display:block}@keyframes viewIn{from{opacity:0;transform:translateY(6px)}}h2,h3{font-family:Georgia,serif}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:13px 2px 15px}.section-heading h2,.section-heading h3{margin:0}.section-heading h2{font-size:1.85rem}.section-heading h3{font-size:1.35rem}.panel{border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 43%),var(--surface);box-shadow:0 14px 45px rgba(0,0,0,.18);padding:17px}.muted{color:var(--muted)}.hero{position:relative;overflow:hidden;min-height:425px;padding:26px 21px 22px;border-radius:30px;border:1px solid rgba(232,189,101,.23);background:radial-gradient(circle at 50% 40%,rgba(232,189,101,.18),transparent 34%),linear-gradient(155deg,#192344,#0d1428 67%);box-shadow:var(--shadow)}.hero:before,.hero:after{content:"";position:absolute;width:220px;height:220px;border:1px solid rgba(232,189,101,.12);transform:rotate(45deg)}.hero:before{right:-125px;top:-130px}.hero:after{left:-125px;bottom:-150px}.hero-copy{text-align:center;position:relative;z-index:2}.hero-copy h2{margin:7px 0 8px;font-size:clamp(1.8rem,8vw,2.7rem)}.hero-copy p{margin:0}.pack-art{position:relative;z-index:2;display:grid;place-items:center;height:190px;margin:7px 0}.pack-core{display:grid;place-items:center;width:145px;height:185px;border-radius:18px;background:linear-gradient(150deg,#273e72,#101a36 62%,#080e20);border:2px solid #d3a64a;box-shadow:0 25px 55px rgba(0,0,0,.45),inset 0 0 30px rgba(232,189,101,.14);transform:rotate(-2deg)}.pack-core span{font:900 74px Georgia,serif;color:var(--gold)}.pack-core small{font-weight:900;letter-spacing:.16em;color:var(--gold2)}.hero-actions{position:relative;z-index:2;display:grid;gap:9px}.primary-button,.secondary-button,.danger-button,.ghost-button{width:100%;min-height:47px;border-radius:14px;font-weight:950;border:0;padding:12px 14px}.primary-button{color:#17131b;background:linear-gradient(135deg,#ffe9a4,#c58a2d);box-shadow:0 10px 25px rgba(197,138,45,.2)}.secondary-button{color:var(--text);background:var(--surface3);border:1px solid var(--border)}.ghost-button{color:var(--gold);background:transparent;border:1px solid rgba(232,189,101,.34)}.danger-button{color:#ffdce0;background:rgba(255,90,108,.1);border:1px solid rgba(255,90,108,.35)}.countdown{position:relative;z-index:2;margin:10px 0 0;text-align:center;color:var(--muted);font-size:.77rem}.quick-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.stat-card{min-height:96px;padding:14px;border:1px solid var(--border);border-radius:17px;background:var(--surface)}.stat-card span,.stat-card small{display:block;color:var(--muted);font-size:.72rem}.stat-card strong{display:block;margin:5px 0 2px;font-size:1.35rem}.progress-track{height:7px;margin-top:9px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}.progress-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .35s}.home-section{margin-top:12px}.recent-strip{display:flex;gap:14px;overflow-x:auto;padding:28px 5px 13px;scroll-snap-type:x mandatory}.mini-card{position:relative;flex:0 0 118px;aspect-ratio:.68;border:0;border-radius:14px;padding:0;background:#0b1120;overflow:visible;scroll-snap-align:start}.mini-card img{width:100%;height:100%;object-fit:cover;border-radius:14px}.mini-card .mini-label{position:absolute;z-index:4;left:0;right:0;bottom:0;padding:28px 7px 7px;border-radius:0 0 14px 14px;background:linear-gradient(transparent,rgba(3,6,12,.96));color:white;font-weight:850;font-size:.7rem;text-align:left}.rarity-list{display:grid;gap:9px}.rarity-row{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}.rarity-row:last-child{border-bottom:0}.rarity-dot{width:10px;height:10px;border-radius:50%;background:var(--rarity-color);box-shadow:0 0 12px var(--rarity-color)}.rarity-row small{color:var(--muted)}.pity-grid{display:grid;gap:12px}.pity-item{padding:12px;border-radius:15px;background:rgba(255,255,255,.035);border:1px solid var(--border)}.pity-item header{display:flex;justify-content:space-between;gap:8px}.pity-item strong{font-size:.85rem}.pity-item small{color:var(--muted)}.filters{display:grid;gap:10px}.search-box{display:flex;align-items:center;gap:8px;padding:0 12px;border:1px solid var(--border);border-radius:14px;background:var(--surface2)}.search-box input{width:100%;padding:12px 0;border:0;outline:0;color:var(--text);background:transparent}.filter-row{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px}.chip{flex:0 0 auto;padding:8px 11px;border-radius:99px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-size:.72rem;font-weight:850}.chip.active{color:#17131b;background:var(--gold);border-color:var(--gold)}.select-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.select-grid select,.setting-select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:13px;background:var(--surface2);color:var(--text)}.album-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:49px 28px;padding:50px 18px 45px}.collection-card{position:relative;aspect-ratio:.68;border:0;border-radius:14px;padding:0;background:#0b1120;overflow:visible;text-align:left}.collection-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:14px}.collection-card.locked img{filter:grayscale(1) brightness(.43) contrast(.9)}.collection-card.locked:after{content:"?";position:absolute;z-index:3;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.5);font:900 3.3rem Georgia,serif}.card-overlay{position:absolute;z-index:5;left:0;right:0;bottom:0;padding:34px 8px 8px;border-radius:0 0 14px 14px;background:linear-gradient(transparent,rgba(3,6,12,.98));color:white}.card-overlay small{display:block;color:#d6d9e2;font-size:.59rem}.card-overlay strong{display:block;font-size:.78rem;line-height:1.15}.card-number{position:absolute;z-index:6;top:7px;left:7px;padding:4px 6px;border-radius:8px;background:rgba(4,7,13,.78);color:white;font-size:.58rem;font-weight:900}.copy-badge{position:absolute;z-index:6;top:7px;right:7px;padding:4px 7px;border-radius:99px;background:rgba(4,7,13,.8);color:white;font-size:.62rem;font-weight:900}.favorite-button{position:absolute;z-index:7;right:7px;bottom:53px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.23);background:rgba(5,8,15,.76);color:#dce2ee;font-size:1rem}.favorite-button.active{color:#ffd56b}.empty-state{padding:25px;text-align:center;color:var(--muted)}.rarity-framed{--frame:#adb6c7;--glow:rgba(173,182,199,.25);--out:1px}.rarity-framed:before{content:"";position:absolute;z-index:2;inset:calc(-1 * var(--out));border-radius:calc(14px + var(--out));border:var(--out) solid var(--frame);box-shadow:0 7px 18px rgba(0,0,0,.3),0 0 14px var(--glow);pointer-events:none}.rarity-framed[data-rarity="uncommon"]{--frame:#63d59a;--out:2px;--glow:rgba(99,213,154,.34)}.rarity-framed[data-rarity="rare"]{--frame:#61a9ff;--out:3px;--glow:rgba(97,169,255,.43)}.rarity-framed[data-rarity="epic"]{--frame:#bd7cff;--out:4px;--glow:rgba(189,124,255,.5)}.rarity-framed[data-rarity="legendary"]{--frame:#f2b84b;--out:5px;--glow:rgba(242,184,75,.58)}.rarity-framed[data-rarity="mythic"]{--frame:#e7f7ff;--out:5px;--glow:rgba(126,211,255,.75)}.ornament{position:absolute;z-index:8;left:50%;top:calc(-15px - var(--out));width:58%;height:18px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,var(--frame) 25%,#fff5c8 50%,var(--frame) 75%,transparent);clip-path:polygon(0 100%,14% 45%,30% 72%,40% 10%,50% 65%,60% 10%,70% 72%,86% 45%,100% 100%);filter:drop-shadow(0 0 5px var(--glow));pointer-events:none}.collection-card[data-rarity="common"] .ornament{height:5px;top:-5px;width:28%;clip-path:none}.collection-card[data-rarity="uncommon"] .ornament{height:10px;top:-10px;width:38%}.collection-card[data-rarity="rare"] .ornament{height:14px;top:-14px;width:48%}.collection-card[data-rarity="epic"] .ornament{height:20px;top:-20px;width:62%}.collection-card[data-rarity="legendary"] .ornament{height:28px;top:-28px;width:78%}.collection-card[data-rarity="mythic"] .ornament{height:38px;top:-38px;width:92%;animation:mythicPulse 2.3s infinite}@keyframes mythicPulse{50%{filter:drop-shadow(0 0 15px rgba(126,211,255,.95))}}.progress-overview{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{padding:14px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.035)}.metric span{display:block;color:var(--muted);font-size:.7rem}.metric strong{display:block;margin-top:5px;font-size:1.35rem}.progress-section{margin-top:12px}.progress-list{display:grid;gap:10px}.progress-entry{padding:12px;border:1px solid var(--border);border-radius:15px;background:rgba(255,255,255,.03)}.progress-entry header{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}.progress-entry small{color:var(--muted)}.set-grid,.achievement-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.set-card,.achievement-card{padding:13px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.035)}.set-card h4,.achievement-card h4{margin:4px 0 5px;font-family:Georgia,serif}.set-card p,.achievement-card p{margin:0;color:var(--muted);font-size:.7rem;line-height:1.4}.set-card button{margin-top:9px;border:0;background:transparent;color:var(--gold);font-weight:850;padding:0}.achievement-card.locked{opacity:.48;filter:grayscale(.6)}.achievement-icon{font-size:1.45rem}.history-list{display:grid;gap:9px}.history-item{padding:12px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03)}.history-item header{display:flex;justify-content:space-between;gap:9px}.history-item small{color:var(--muted)}.history-cards{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.history-tag{padding:5px 7px;border-radius:9px;background:var(--surface2);font-size:.65rem}.settings-stack{display:grid;gap:12px}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06)}.setting-row:last-child{border-bottom:0}.setting-copy strong{display:block}.setting-copy small{display:block;margin-top:3px;color:var(--muted);line-height:1.35}.switch{position:relative;width:48px;height:28px;flex:0 0 auto}.switch input{opacity:0;width:0;height:0}.slider{position:absolute;inset:0;border-radius:99px;background:#35415a;transition:.2s}.slider:before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;border-radius:50%;background:white;transition:.2s}.switch input:checked+.slider{background:#b8832e}.switch input:checked+.slider:before{transform:translateX(20px)}.button-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.file-input{display:none}.status-line{min-height:20px;margin:9px 0 0;color:var(--muted);font-size:.74rem}.status-line.ok{color:var(--ok)}.status-line.error{color:var(--danger)}textarea.gift-input{width:100%;min-height:94px;resize:vertical;padding:12px;border:1px solid var(--border);border-radius:13px;background:var(--surface2);color:var(--text);font:650 .72rem/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}.bottom-nav{position:fixed;z-index:50;left:50%;bottom:0;transform:translateX(-50%);display:grid;grid-template-columns:repeat(4,1fr);width:min(100%,820px);padding:7px 8px calc(7px + env(safe-area-inset-bottom));border-top:1px solid var(--border);background:rgba(8,13,25,.94);backdrop-filter:blur(18px)}.nav-button{border:0;background:transparent;color:#818aa0;font-size:.61rem;font-weight:800;padding:5px}.nav-button span{display:block;font-size:1.3rem;margin-bottom:2px}.nav-button.active{color:var(--gold)}dialog{border:1px solid var(--border);color:var(--text);background:#0c1324;box-shadow:var(--shadow)}dialog::backdrop{background:rgba(2,4,9,.88);backdrop-filter:blur(9px)}.booster-dialog{width:min(95vw,730px);max-height:95vh;padding:0;border-radius:26px;overflow:auto}.dialog-inner{padding:22px 15px 19px;text-align:center}.dialog-inner h2{margin:3px 0}.booster-stage{display:grid;place-items:center;min-height:540px;padding:30px 0 45px}.booster-pack-button{position:relative;width:200px;height:285px;border:0;border-radius:23px;background:linear-gradient(145deg,#304a86,#101a37 66%,#080d1d);border:2px solid #d5aa4e;color:var(--gold);box-shadow:0 30px 70px rgba(0,0,0,.55);font:900 95px Georgia,serif}.booster-pack-button small{display:block;font:900 .72rem system-ui;letter-spacing:.16em}.booster-pack-button.opening{animation:packOpen .85s both}@keyframes packOpen{40%{transform:scale(1.06) rotate(-3deg)}100%{transform:scale(.2) rotate(15deg);opacity:0}}.booster-single-card{position:relative;width:min(78vw,330px);aspect-ratio:.68;border:0;border-radius:22px;padding:0;background:#111;overflow:visible}.booster-single-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:22px}.booster-single-card:before{border-radius:calc(22px + var(--out))}.booster-single-card .ornament{top:calc(-24px - var(--out));height:30px}.booster-single-card[data-rarity="legendary"] .ornament{height:48px;top:-47px}.booster-single-card[data-rarity="mythic"] .ornament{height:62px;top:-61px}.booster-single-card.entering{animation:cardEnter .5s both}.booster-single-card.swipe{animation:cardSwipe .42s both}@keyframes cardEnter{from{opacity:0;transform:translateY(45px) scale(.88) rotateY(35deg)}}@keyframes cardSwipe{to{opacity:0;transform:translateX(115%) rotate(10deg)}}.reveal-copy{position:absolute;z-index:6;left:0;right:0;bottom:0;padding:65px 13px 14px;border-radius:0 0 22px 22px;background:linear-gradient(transparent,rgba(3,5,10,.98));text-align:left;color:white}.reveal-copy small,.reveal-copy span{display:block}.reveal-copy strong{display:block;font:800 1.25rem Georgia,serif}.reveal-copy span{margin-top:5px;color:#d8dce6;font-size:.7rem}.reveal-counter{position:absolute;z-index:7;left:9px;top:9px;padding:5px 7px;border-radius:9px;background:rgba(3,5,10,.78);font-size:.68rem;font-weight:900}.ribbon{position:absolute;z-index:7;right:-7px;top:16px;padding:6px 10px;border-radius:8px 0 0 8px;background:var(--gold);color:#1a1420;font-size:.62rem;font-weight:950}.ribbon.duplicate{background:#53627e;color:white}.rarity-aura{position:absolute;z-index:0;inset:-35px;border-radius:35px;opacity:.72;filter:blur(18px);background:radial-gradient(circle,var(--glow),transparent 65%);animation:aura 1.5s ease-in-out infinite}@keyframes aura{50%{transform:scale(1.09);opacity:1}}.booster-complete{padding:45px 20px}.booster-complete .omega{font:900 80px Georgia,serif;color:var(--gold)}.card-dialog{width:min(94vw,680px);max-height:93vh;border-radius:25px;padding:0;overflow:auto}.dialog-close{position:sticky;z-index:20;top:9px;float:right;margin:9px 9px 0 0;width:39px;height:39px;border-radius:50%;border:1px solid var(--border);background:rgba(9,14,26,.9);color:white;font-size:1.4rem}.detail-wrap{padding:17px}.detail-art{position:relative;width:min(100%,390px);aspect-ratio:.68;margin:32px auto 20px;border-radius:18px}.detail-art img{width:100%;height:100%;object-fit:cover;border-radius:18px}.detail-art:before{border-radius:calc(18px + var(--out))}.detail-copy h2{margin:5px 0}.detail-copy p{color:var(--muted);line-height:1.55}.detail-meta{display:grid;grid-template-columns:1fr 1fr;gap:9px}.detail-meta div{padding:11px;border:1px solid var(--border);border-radius:13px;background:var(--surface)}.detail-meta small{display:block;color:var(--muted)}.detail-meta strong{display:block;margin-top:3px}.toast{position:fixed;z-index:100;left:50%;bottom:calc(86px + env(safe-area-inset-bottom));transform:translate(-50%,20px);width:min(88vw,500px);padding:12px 15px;border:1px solid var(--border);border-radius:13px;background:#1b2742;color:white;opacity:0;pointer-events:none;transition:.25s;text-align:center;font-weight:800;font-size:.78rem}.toast.show{opacity:1;transform:translate(-50%,0)}body[data-theme="hades"]{--bg:#0e0714;--surface:#1b1024;--surface2:#271632;--surface3:#342043;--accent:#b16ee8;background:radial-gradient(circle at 20% 0,rgba(123,50,150,.25),transparent 32rem),radial-gradient(circle at 90% 25%,rgba(180,43,74,.13),transparent 28rem),var(--bg)}body[data-theme="poseidon"]{--bg:#06131c;--surface:#0d2430;--surface2:#123445;--surface3:#19465b;--accent:#56c9ea;background:radial-gradient(circle at 15% 0,rgba(35,147,185,.26),transparent 31rem),radial-gradient(circle at 90% 25%,rgba(62,101,223,.15),transparent 28rem),var(--bg)}body[data-theme="athena"]{--bg:#0d1116;--surface:#171d24;--surface2:#222a33;--surface3:#2e3945;--accent:#b9d0e3;background:radial-gradient(circle at 15% 0,rgba(172,196,214,.18),transparent 31rem),radial-gradient(circle at 90% 25%,rgba(201,143,49,.1),transparent 28rem),var(--bg)}body.high-contrast{--text:#fff;--muted:#d5dceb;--border:rgba(255,255,255,.28)}body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}@media(min-width:650px){.quick-stats,.progress-overview{grid-template-columns:repeat(4,1fr)}.album-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:55px 36px}.set-grid,.achievement-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:390px){main{padding-inline:11px}.album-grid{gap:46px 22px;padding-inline:13px}.select-grid{grid-template-columns:1fr}.button-grid{grid-template-columns:1fr}.set-grid,.achievement-grid{grid-template-columns:1fr}.version-pill{display:none}}
+
+/* === Mythos v6.1 — ornements premium restaurés === */
+.rarity-framed{
+  --frame-outset:1px;
+  --frame-width:1px;
+  --frame-dark:#4d5665;
+  --frame-main:#aeb7c5;
+  --frame-light:#edf2f7;
+  --rarity-glow:rgba(174,183,197,.20);
+  --ornament-top-width:22%;
+  --ornament-top-height:6px;
+  --ornament-side-width:0px;
+  --ornament-side-height:0%;
+  --ornament-bottom-width:22%;
+  --ornament-bottom-height:4px;
+  --ornament-gem-size:0px;
+  position:relative;
+  overflow:visible!important;
+  isolation:isolate;
+}
+.rarity-framed::before{
+  content:"";
+  position:absolute;
+  z-index:4;
+  inset:calc(-1 * var(--frame-outset));
+  border:var(--frame-width) solid transparent;
+  border-radius:inherit;
+  background:
+    linear-gradient(#0000,#0000) padding-box,
+    linear-gradient(135deg,var(--frame-dark),var(--frame-light) 22%,var(--frame-main) 48%,var(--frame-dark) 72%,var(--frame-light)) border-box;
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.38),
+    0 0 12px var(--rarity-glow),
+    inset 0 0 0 1px rgba(255,255,255,.15);
+  pointer-events:none;
+}
+.rarity-ornament{
+  position:absolute;
+  z-index:10;
+  display:block;
+  pointer-events:none;
+  background:linear-gradient(145deg,var(--frame-light),var(--frame-main) 37%,var(--frame-dark) 76%,var(--frame-light));
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.72)) drop-shadow(0 0 7px var(--rarity-glow));
+}
+.rarity-ornament-top{
+  left:50%;
+  top:calc(-1 * var(--ornament-top-height) - var(--frame-outset) + 2px);
+  width:var(--ornament-top-width);
+  height:var(--ornament-top-height);
+  transform:translateX(-50%);
+  transform-origin:bottom center;
+  clip-path:polygon(0 58%,7% 39%,15% 44%,22% 12%,34% 38%,42% 36%,50% 0,58% 36%,66% 38%,78% 12%,85% 44%,93% 39%,100% 58%,95% 100%,5% 100%);
+}
+.rarity-ornament-top::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:18%;
+  width:var(--ornament-gem-size);
+  height:var(--ornament-gem-size);
+  transform:translateX(-50%) rotate(45deg);
+  border:1px solid rgba(255,255,255,.92);
+  background:radial-gradient(circle at 30% 25%,#fff 0 10%,var(--frame-light) 11% 24%,var(--frame-main) 42%,var(--frame-dark) 100%);
+  box-shadow:0 0 8px var(--rarity-glow);
+}
+.rarity-ornament-top::after{
+  content:"";
+  position:absolute;
+  left:9%;right:9%;bottom:1px;height:2px;
+  border-radius:99px;
+  background:linear-gradient(90deg,transparent,var(--frame-light),transparent);
+  opacity:.9;
+}
+.rarity-ornament-side{
+  top:50%;
+  width:var(--ornament-side-width);
+  height:var(--ornament-side-height);
+  clip-path:polygon(52% 0,100% 10%,62% 25%,94% 39%,58% 50%,94% 61%,62% 75%,100% 90%,52% 100%,22% 82%,42% 64%,0 50%,42% 36%,22% 18%);
+  background:linear-gradient(180deg,var(--frame-light),var(--frame-main) 20%,var(--frame-dark) 49%,var(--frame-main) 79%,var(--frame-light));
+}
+.rarity-ornament-left{
+  left:calc(-1 * var(--ornament-side-width) - var(--frame-outset) + 2px);
+  transform:translateY(-50%);
+}
+.rarity-ornament-right{
+  right:calc(-1 * var(--ornament-side-width) - var(--frame-outset) + 2px);
+  transform:translateY(-50%) scaleX(-1);
+}
+.rarity-ornament-side::before{
+  content:"";
+  position:absolute;
+  top:8%;bottom:8%;left:46%;width:2px;
+  border-radius:99px;
+  background:linear-gradient(transparent,var(--frame-light) 17%,var(--frame-main) 50%,var(--frame-light) 83%,transparent);
+}
+.rarity-ornament-side::after{
+  content:"";
+  position:absolute;
+  left:45%;top:50%;
+  width:var(--ornament-gem-size);height:var(--ornament-gem-size);
+  transform:translate(-50%,-50%) rotate(45deg);
+  border:1px solid rgba(255,255,255,.9);
+  background:radial-gradient(circle at 30% 25%,#fff 0 10%,var(--frame-light) 12% 26%,var(--frame-main) 45%,var(--frame-dark) 100%);
+  box-shadow:0 0 8px var(--rarity-glow);
+}
+.rarity-ornament-bottom{
+  left:50%;
+  bottom:calc(-1 * var(--ornament-bottom-height) - var(--frame-outset) + 2px);
+  width:var(--ornament-bottom-width);
+  height:var(--ornament-bottom-height);
+  transform:translateX(-50%);
+  transform-origin:top center;
+  clip-path:polygon(0 0,38% 0,44% 30%,50% 100%,56% 30%,62% 0,100% 0,91% 55%,65% 58%,58% 100%,42% 100%,35% 58%,9% 55%);
+}
+.rarity-ornament-bottom::before{
+  content:"";
+  position:absolute;
+  left:50%;top:12%;
+  width:var(--ornament-gem-size);height:var(--ornament-gem-size);
+  transform:translateX(-50%) rotate(45deg);
+  border:1px solid rgba(255,255,255,.9);
+  background:radial-gradient(circle at 30% 25%,#fff 0 10%,var(--frame-light) 12% 26%,var(--frame-main) 45%,var(--frame-dark) 100%);
+  box-shadow:0 0 8px var(--rarity-glow);
+}
+
+/* Progression visuelle par rareté. */
+.rarity-framed[data-rarity="common"]{
+  --frame-outset:1px;--frame-width:1px;
+  --frame-dark:#4f5968;--frame-main:#939daa;--frame-light:#dfe5ec;
+  --rarity-glow:rgba(180,190,205,.18);
+  --ornament-top-width:20%;--ornament-top-height:5px;
+  --ornament-bottom-width:20%;--ornament-bottom-height:3px;
+}
+.rarity-framed[data-rarity="common"] .rarity-ornament-top,
+.rarity-framed[data-rarity="common"] .rarity-ornament-bottom{clip-path:none;border-radius:0 0 7px 7px;opacity:.72}
+.rarity-framed[data-rarity="common"] .rarity-ornament-side{display:none}
+
+.rarity-framed[data-rarity="uncommon"]{
+  --frame-outset:2px;--frame-width:2px;
+  --frame-dark:#12452f;--frame-main:#45bb7e;--frame-light:#c9f8dc;
+  --rarity-glow:rgba(80,215,145,.32);
+  --ornament-top-width:34%;--ornament-top-height:15px;
+  --ornament-side-width:7px;--ornament-side-height:31%;
+  --ornament-bottom-width:34%;--ornament-bottom-height:9px;
+  --ornament-gem-size:4px;
+}
+.rarity-framed[data-rarity="rare"]{
+  --frame-outset:4px;--frame-width:3px;
+  --frame-dark:#143a72;--frame-main:#4b9ff5;--frame-light:#e1f3ff;
+  --rarity-glow:rgba(70,155,255,.48);
+  --ornament-top-width:49%;--ornament-top-height:24px;
+  --ornament-side-width:12px;--ornament-side-height:45%;
+  --ornament-bottom-width:49%;--ornament-bottom-height:16px;
+  --ornament-gem-size:7px;
+}
+.rarity-framed[data-rarity="epic"]{
+  --frame-outset:6px;--frame-width:4px;
+  --frame-dark:#421b66;--frame-main:#a858e5;--frame-light:#f1dcff;
+  --rarity-glow:rgba(187,103,255,.62);
+  --ornament-top-width:63%;--ornament-top-height:34px;
+  --ornament-side-width:17px;--ornament-side-height:60%;
+  --ornament-bottom-width:63%;--ornament-bottom-height:23px;
+  --ornament-gem-size:10px;
+}
+.rarity-framed[data-rarity="legendary"]{
+  --frame-outset:8px;--frame-width:5px;
+  --frame-dark:#663500;--frame-main:#d99121;--frame-light:#fff0ad;
+  --rarity-glow:rgba(244,180,55,.78);
+  --ornament-top-width:77%;--ornament-top-height:43px;
+  --ornament-side-width:22px;--ornament-side-height:71%;
+  --ornament-bottom-width:77%;--ornament-bottom-height:31px;
+  --ornament-gem-size:13px;
+}
+.rarity-framed[data-rarity="legendary"]::before{
+  background:
+    linear-gradient(#0000,#0000) padding-box,
+    linear-gradient(120deg,#6c3704,#e6a331 17%,#fff7c9 35%,#c97812 52%,#fff1a8 69%,#d98e1d 84%,#6c3704) border-box;
+  animation:legendaryFrameGlow 2.8s ease-in-out infinite;
+}
+.rarity-framed[data-rarity="legendary"] .rarity-ornament-top::before,
+.rarity-framed[data-rarity="legendary"] .rarity-ornament-bottom::before,
+.rarity-framed[data-rarity="legendary"] .rarity-ornament-side::after{
+  background:radial-gradient(circle at 30% 24%,#fff 0 9%,#ffe06f 18%,#e74730 48%,#6d1518 100%);
+  box-shadow:0 0 10px rgba(255,70,45,.8),0 0 19px rgba(245,185,62,.62);
+}
+
+.rarity-framed[data-rarity="mythic"]{
+  --frame-outset:11px;--frame-width:7px;
+  --frame-dark:#6b4000;--frame-main:#ffe875;--frame-light:#fffef5;
+  --rarity-glow:rgba(255,240,145,.98);
+  --ornament-top-width:94%;--ornament-top-height:57px;
+  --ornament-side-width:30px;--ornament-side-height:84%;
+  --ornament-bottom-width:92%;--ornament-bottom-height:42px;
+  --ornament-gem-size:18px;
+  animation:mythicCardAura 2.15s ease-in-out infinite;
+}
+.rarity-framed[data-rarity="mythic"]::before{
+  border-width:7px;
+  background:
+    linear-gradient(#0000,#0000) padding-box,
+    linear-gradient(115deg,#fffdf0 0%,#ffe66d 10%,#fff 19%,#8de2ff 31%,#d6a4ff 42%,#fff6b0 54%,#fff 65%,#ffb9e4 77%,#7bd9ff 88%,#ffe46b 96%,#fffdf0 100%) border-box;
+  background-size:300% 300%;
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.5),
+    0 0 18px rgba(255,255,255,.95),
+    0 0 38px rgba(255,234,104,.88),
+    0 0 62px rgba(103,211,255,.62),
+    0 0 86px rgba(213,159,255,.42),
+    inset 0 0 0 2px rgba(255,255,255,.85);
+  animation:mythicFrameShimmer 2.7s linear infinite;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament{
+  background:linear-gradient(115deg,#fffdf4 0%,#ffe774 13%,#fff 25%,#88e0ff 39%,#d8a8ff 52%,#fff7b9 66%,#fff 78%,#75d5ff 90%,#ffe873 100%);
+  background-size:260% 260%;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-top{
+  clip-path:polygon(0 61%,5% 38%,11% 43%,17% 7%,28% 29%,37% 33%,43% 10%,50% 0,57% 10%,63% 33%,72% 29%,83% 7%,89% 43%,95% 38%,100% 61%,95% 100%,5% 100%);
+  animation:mythicCrownBlaze 1.85s ease-in-out infinite,mythicOrnamentSweep 3.1s linear infinite;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-side,
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-bottom{
+  animation:mythicSideBlaze 2.15s ease-in-out infinite,mythicOrnamentSweep 3.1s linear infinite;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-top::before,
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-bottom::before,
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-side::after{
+  border-width:2px;
+  background:radial-gradient(circle at 30% 24%,#fff 0 10%,#c9f6ff 20%,#51c5ff 43%,#9c6dff 70%,#38206f 100%);
+  box-shadow:0 0 13px #fff,0 0 25px rgba(79,199,255,.95),0 0 40px rgba(214,163,255,.75);
+  animation:mythicGemPulse 1.45s ease-in-out infinite;
+}
+.rarity-framed[data-rarity="mythic"] .rarity-ornament-top::after{
+  height:3px;
+  box-shadow:-38px -9px 0 -1px rgba(255,255,255,.95),38px -9px 0 -1px rgba(255,255,255,.95),-62px 7px 0 -1px #ffe874,62px 7px 0 -1px #8de6ff;
+  animation:mythicSparkles 1.7s ease-in-out infinite;
+}
+
+@keyframes legendaryFrameGlow{
+  0%,100%{filter:drop-shadow(0 0 2px rgba(255,207,92,.45))}
+  50%{filter:drop-shadow(0 0 9px rgba(255,207,92,.82))}
+}
+@keyframes mythicFrameShimmer{
+  0%{background-position:0% 50%;filter:brightness(1)}
+  50%{background-position:100% 50%;filter:brightness(1.34)}
+  100%{background-position:0% 50%;filter:brightness(1)}
+}
+@keyframes mythicCardAura{
+  0%,100%{filter:drop-shadow(0 0 5px rgba(255,245,178,.7)) drop-shadow(0 0 8px rgba(105,211,255,.42))}
+  50%{filter:drop-shadow(0 0 18px rgba(255,249,208,1)) drop-shadow(0 0 28px rgba(105,211,255,.82)) drop-shadow(0 0 38px rgba(211,151,255,.62))}
+}
+@keyframes mythicCrownBlaze{
+  0%,100%{filter:drop-shadow(0 2px 2px rgba(0,0,0,.65)) drop-shadow(0 0 11px rgba(255,238,124,.78))}
+  50%{filter:drop-shadow(0 2px 2px rgba(0,0,0,.65)) drop-shadow(0 0 28px rgba(255,255,255,1)) drop-shadow(0 0 38px rgba(98,213,255,.94))}
+}
+@keyframes mythicSideBlaze{
+  0%,100%{filter:drop-shadow(0 2px 2px rgba(0,0,0,.7)) drop-shadow(0 0 8px rgba(255,235,112,.72))}
+  50%{filter:drop-shadow(0 2px 2px rgba(0,0,0,.7)) drop-shadow(0 0 22px rgba(112,217,255,.96)) drop-shadow(0 0 28px rgba(214,160,255,.75))}
+}
+@keyframes mythicOrnamentSweep{
+  0%{background-position:0% 50%}
+  100%{background-position:260% 50%}
+}
+@keyframes mythicGemPulse{
+  0%,100%{transform:translateX(-50%) rotate(45deg) scale(1)}
+  50%{transform:translateX(-50%) rotate(45deg) scale(1.28)}
+}
+@keyframes mythicSparkles{
+  0%,100%{opacity:.45;filter:brightness(1)}
+  50%{opacity:1;filter:brightness(1.8)}
+}
+
+/* Espacement nécessaire pour que les ornements restent entièrement visibles. */
+.album-grid{gap:62px 44px!important;padding:68px 27px 54px!important}
+.recent-strip{gap:23px!important;padding:54px 18px 28px!important}
+.booster-single-card,.detail-art{margin-top:64px!important;margin-bottom:56px!important}
+
+/* Les cartes de l'album gardent les quatre ornements. */
+.album-grid .collection-card{overflow:visible!important}
+
+/* Version compacte pour la bande « cartes récentes ». */
+.mini-card .rarity-ornament-side,.mini-card .rarity-ornament-bottom{display:none}
+.mini-card .rarity-ornament-top{transform:translateX(-50%) scale(.72);transform-origin:bottom center}
+.mini-card[data-rarity="legendary"]{margin-inline:6px}
+.mini-card[data-rarity="mythic"]{margin-inline:12px}
+
+/* La couronne de l'album est légèrement réduite, les côtés et la base restent complets. */
+.collection-card .rarity-ornament-top{transform:translateX(-50%) scale(.86);transform-origin:bottom center}
+.collection-card[data-rarity="mythic"] .rarity-ornament-top{transform:translateX(-50%) scale(.9)}
+
+@media(max-width:390px){
+  .album-grid{gap:58px 32px!important;padding:65px 18px 50px!important}
+  .collection-card[data-rarity="legendary"]{--ornament-side-width:18px;--ornament-bottom-height:27px}
+  .collection-card[data-rarity="mythic"]{--frame-outset:8px;--ornament-side-width:23px;--ornament-bottom-height:35px;--ornament-top-height:50px}
+}
+@media(prefers-reduced-motion:reduce){
+  .rarity-framed,.rarity-framed::before,.rarity-ornament,.rarity-ornament::before,.rarity-ornament::after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -27,7 +325,7 @@
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.0</span>
+      <span id="versionPill" class="version-pill">v6.1</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -117,7 +415,7 @@
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.0.0';
+const APP_VERSION = '6.1.0';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -178,7 +476,7 @@ function updatePity(cards){pity.rare=cards.some(c=>RARITIES[c.rarity].rank>=2)?0
 function addCards(cards,source,extra={}){const stamp=nowIso();const enriched=cards.map(card=>{const prev=collection[card.id];collection[card.id]={quantity:(prev?.quantity||0)+1,firstObtainedAt:prev?.firstObtainedAt||stamp,lastObtainedAt:stamp};return {...card,isNew:!prev}});saveJson(STORAGE.collection,collection);history.unshift({date:zurichDateKey(),cardIds:cards.map(c=>c.id),openedAt:stamp,source,...extra});history=history.slice(0,730);saveJson(STORAGE.openingHistory,history);return enriched}
 async function openBooster(source){if(source==='daily'&&!boosterAvailable()){showToast('Le booster quotidien a déjà été ouvert.');return}if(source==='bonus'&&bonusBoosters<1){showToast('Aucun booster bonus disponible.');return}const button=source==='daily'?els.openDailyButton:els.openBonusButton;button.disabled=true;button.textContent='Chargement des artworks…';try{const drawn=drawBooster();await Promise.all(drawn.cards.map(preloadArtwork));if(source==='daily')localStorage.setItem(STORAGE.lastBoosterDate,zurichDateKey());else{bonusBoosters--;localStorage.setItem(STORAGE.bonusBoosters,String(bonusBoosters))}updatePity(drawn.cards);currentBooster=addCards(drawn.cards,source,{guarantee:drawn.guarantee});renderAll();renderBoosterPack(source,drawn.guarantee);els.boosterDialog.showModal()}catch(e){console.error(e);showToast('Une illustration n’a pas pu être chargée.');renderBoosterStatus()}}
 function renderBoosterPack(source,guarantee){boosterIndex=-1;boosterLocked=false;els.boosterDialogTitle.textContent=source==='bonus'?'Booster bonus':'Booster du jour';els.boosterInstruction.textContent=guarantee==='epic'?'Garantie Épique+ activée. Touche le booster.':guarantee==='rare'?'Garantie Rare+ activée. Touche le booster.':'Touche le booster pour l’ouvrir.';els.closeBoosterButton.classList.add('hidden');els.boosterStage.innerHTML=`<button class="booster-pack-button" type="button" aria-label="Ouvrir le booster">Ω<small>5 CARTES</small></button>`;const pack=els.boosterStage.querySelector('button');pack.addEventListener('click',()=>{if(boosterLocked)return;boosterLocked=true;pack.classList.add('opening');vibrate([35,35,70]);setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?10:850)},{once:true})}
-function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="rarity-aura"></span><span class="ornament"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
+function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
 function advanceBooster(btn){if(boosterLocked)return;boosterLocked=true;btn.classList.add('swipe');setTimeout(()=>{if(boosterIndex<4){boosterIndex++;boosterLocked=false;showBoosterCard()}else{showBoosterComplete()}},settings.reduceMotion?10:430)}
 function showBoosterComplete(){boosterLocked=false;els.boosterInstruction.textContent='Les cinq cartes ont rejoint ta collection.';els.boosterStage.innerHTML=`<div class="booster-complete"><div class="omega">Ω</div><h2>Booster terminé</h2><p class="muted">Ta progression et tes succès ont été mis à jour.</p></div>`;els.closeBoosterButton.classList.remove('hidden')}
 function vibrate(pattern){if(settings.vibration&&navigator.vibrate)navigator.vibrate(pattern)}
@@ -188,15 +486,15 @@ function dateToDay(k){const [y,m,d]=String(k).split('-').map(Number);return Math
 function computeStreaks(){const dates=[...new Set(history.filter(h=>h.source==='daily'||!h.source).map(h=>h.date).filter(Boolean))].sort((a,b)=>dateToDay(a)-dateToDay(b));let longest=0,run=0,prev=null;for(const k of dates){const day=dateToDay(k);run=prev!==null&&day===prev+1?run+1:1;longest=Math.max(longest,run);prev=day}let current=0;if(dates.length){const latest=dateToDay(dates.at(-1)),today=dateToDay(zurichDateKey());if(latest===today||latest===today-1){current=1;for(let i=dates.length-2;i>=0;i--){if(dateToDay(dates[i])===latest-current)current++;else break}}}return {currentStreak:current,longestStreak:longest}}
 function renderBoosterStatus(){const available=boosterAvailable();els.openDailyButton.disabled=!available;els.openDailyButton.textContent=available?'Ouvrir le booster quotidien':'Booster quotidien déjà ouvert';els.boosterStatus.textContent=available?'Disponible maintenant — 5 cartes aléatoires':'Reviens demain pour cinq nouvelles cartes.';els.nextBoosterText.textContent=available?'Disponible jusqu’à minuit, heure de Zurich.':`Prochain booster dans ${formatCountdown(secondsUntilMidnight())}`;els.openBonusButton.classList.toggle('hidden',bonusBoosters<1);els.openBonusButton.textContent=`Ouvrir un booster bonus (${bonusBoosters})`}
 function renderHome(){const s=getStats();els.homeCollection.textContent=`${s.distinct} / 100`;els.homeProgressBar.style.width=`${s.distinct}%`;els.homeDuplicates.textContent=s.duplicates;els.homeStreak.textContent=`${s.currentStreak} jour${s.currentStreak>1?'s':''}`;els.homeLongestStreak.textContent=`Record : ${s.longestStreak}`;els.homeBoosters.textContent=s.boosters;els.homeBonusCount.textContent=`${bonusBoosters} bonus disponible${bonusBoosters>1?'s':''}`;els.albumProgress.textContent=`${s.distinct} / 100`;els.pityGrid.innerHTML=[{key:'rare',label:'Rare ou supérieure',limit:5,color:RARITIES.rare.color},{key:'epic',label:'Épique ou supérieure',limit:20,color:RARITIES.epic.color}].map(x=>{const failures=Math.min(pity[x.key],x.limit-1),remaining=x.limit-failures;return `<div class="pity-item"><header><strong>${x.label}</strong><small>${failures===x.limit-1?'Garantie au prochain booster':`Au plus ${remaining} booster${remaining>1?'s':''}`}</small></header><div class="progress-track"><div class="progress-fill" style="width:${failures/x.limit*100}%;background:${x.color}"></div></div></div>`}).join('');renderRecent();renderRaritySummary()}
-function renderRecent(){const recent=CARDS.filter(c=>collection[c.id]).sort((a,b)=>new Date(collection[b.id].lastObtainedAt)-new Date(collection[a.id].lastObtainedAt)).slice(0,8);if(!recent.length){els.recentCards.className='recent-strip empty-state';els.recentCards.textContent='Aucune carte découverte.';return}els.recentCards.className='recent-strip';els.recentCards.innerHTML=recent.map(c=>`<button class="mini-card rarity-framed" data-rarity="${c.rarity}" data-card="${c.id}" style="${rarityStyle(c.rarity)}"><span class="ornament"></span><img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"><span class="mini-label">${escapeHtml(c.name)}</span></button>`).join('');els.recentCards.querySelectorAll('[data-card]').forEach(b=>b.addEventListener('click',()=>showCardDetail(+b.dataset.card)))}
+function renderRecent(){const recent=CARDS.filter(c=>collection[c.id]).sort((a,b)=>new Date(collection[b.id].lastObtainedAt)-new Date(collection[a.id].lastObtainedAt)).slice(0,8);if(!recent.length){els.recentCards.className='recent-strip empty-state';els.recentCards.textContent='Aucune carte découverte.';return}els.recentCards.className='recent-strip';els.recentCards.innerHTML=recent.map(c=>`<button class="mini-card rarity-framed" data-rarity="${c.rarity}" data-card="${c.id}" style="${rarityStyle(c.rarity)}"><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"><span class="mini-label">${escapeHtml(c.name)}</span></button>`).join('');els.recentCards.querySelectorAll('[data-card]').forEach(b=>b.addEventListener('click',()=>showCardDetail(+b.dataset.card)))}
 function renderRaritySummary(){els.raritySummary.innerHTML=Object.entries(RARITIES).map(([k,r])=>{const owned=CARDS.filter(c=>c.rarity===k&&collection[c.id]).length;const chance=r.chance<1?r.chance.toFixed(2):r.chance.toFixed(0);return `<div class="rarity-row" style="--rarity-color:${r.color}"><span class="rarity-dot"></span><div><strong>${r.label}</strong><small> — ${owned}/${r.count}</small></div><small>${chance}% / tirage</small></div>`}).join('')}
 function populateFilters(){els.rarityFilter.innerHTML='<option value="all">Toutes les raretés</option>'+Object.entries(RARITIES).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');const kinds=[...new Set(CARDS.map(c=>c.kind))].sort((a,b)=>a.localeCompare(b,'fr'));els.kindFilter.innerHTML='<option value="all">Tous les types</option>'+kinds.map(k=>`<option>${escapeHtml(k)}</option>`).join('');els.setFilter.innerHTML='<option value="all">Tous les ensembles</option>'+SETS.map(s=>`<option value="${s.id}">${s.name}</option>`).join('')}
 function filteredCards(){const q=filters.query.toLocaleLowerCase('fr');let list=CARDS.filter(c=>{const owned=!!collection[c.id];if(filters.owned==='owned'&&!owned)return false;if(filters.owned==='missing'&&owned)return false;if(filters.favorites&&!favorites.has(c.id))return false;if(filters.rarity!=='all'&&c.rarity!==filters.rarity)return false;if(filters.kind!=='all'&&c.kind!==filters.kind)return false;if(filters.set!=='all'&&!SETS.find(s=>s.id===filters.set)?.ids.includes(c.id))return false;if(q&&!`${c.number} ${c.name} ${c.kind}`.toLocaleLowerCase('fr').includes(q))return false;return true});const sorters={number:(a,b)=>a.id-b.id,name:(a,b)=>a.name.localeCompare(b.name,'fr'),rarity:(a,b)=>RARITIES[b.rarity].rank-RARITIES[a.rarity].rank||a.id-b.id,copies:(a,b)=>(collection[b.id]?.quantity||0)-(collection[a.id]?.quantity||0)||a.id-b.id,recent:(a,b)=>new Date(collection[b.id]?.lastObtainedAt||0)-new Date(collection[a.id]?.lastObtainedAt||0)};return list.sort(sorters[filters.sort]||sorters.number)}
-function renderAlbum(){const list=filteredCards();if(!list.length){els.albumGrid.innerHTML='<div class="panel empty-state" style="grid-column:1/-1">Aucune carte ne correspond à ces filtres.</div>';return}els.albumGrid.innerHTML=list.map(c=>{const owned=collection[c.id],fav=favorites.has(c.id);return `<button class="collection-card rarity-framed ${owned?'':'locked'}" data-rarity="${c.rarity}" data-card="${c.id}" style="${rarityStyle(c.rarity)}"><span class="ornament"></span><span class="card-number">#${c.number}</span>${owned?`<span class="copy-badge">×${owned.quantity}</span>`:''}<img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"><span class="card-overlay"><small>${c.rarityLabel} · ${c.kind}</small><strong>${owned?escapeHtml(c.name):'Carte non découverte'}</strong></span>${owned?`<span class="favorite-button ${fav?'active':''}" data-favorite="${c.id}" role="button" aria-label="Favori">★</span>`:''}</button>`}).join('');els.albumGrid.querySelectorAll('[data-card]').forEach(b=>b.addEventListener('click',e=>{if(e.target.closest('[data-favorite]'))return;showCardDetail(+b.dataset.card)}));els.albumGrid.querySelectorAll('[data-favorite]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();toggleFavorite(+b.dataset.favorite)}))}
+function renderAlbum(){const list=filteredCards();if(!list.length){els.albumGrid.innerHTML='<div class="panel empty-state" style="grid-column:1/-1">Aucune carte ne correspond à ces filtres.</div>';return}els.albumGrid.innerHTML=list.map(c=>{const owned=collection[c.id],fav=favorites.has(c.id);return `<button class="collection-card rarity-framed ${owned?'':'locked'}" data-rarity="${c.rarity}" data-card="${c.id}" style="${rarityStyle(c.rarity)}"><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="card-number">#${c.number}</span>${owned?`<span class="copy-badge">×${owned.quantity}</span>`:''}<img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"><span class="card-overlay"><small>${c.rarityLabel} · ${c.kind}</small><strong>${owned?escapeHtml(c.name):'Carte non découverte'}</strong></span>${owned?`<span class="favorite-button ${fav?'active':''}" data-favorite="${c.id}" role="button" aria-label="Favori">★</span>`:''}</button>`}).join('');els.albumGrid.querySelectorAll('[data-card]').forEach(b=>b.addEventListener('click',e=>{if(e.target.closest('[data-favorite]'))return;showCardDetail(+b.dataset.card)}));els.albumGrid.querySelectorAll('[data-favorite]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();toggleFavorite(+b.dataset.favorite)}))}
 function toggleFavorite(id){if(!collection[id])return;if(favorites.has(id))favorites.delete(id);else favorites.add(id);saveJson(STORAGE.favorites,[...favorites]);renderAlbum();renderProgress();showToast(favorites.has(id)?'Ajoutée aux favorites.':'Retirée des favorites.')}
 function memberships(cardId){return SETS.filter(s=>s.ids.includes(cardId)).map(s=>s.name)}
 function formatDate(value){if(!value)return '—';try{return new Intl.DateTimeFormat('fr-CH',{dateStyle:'long'}).format(new Date(value))}catch{return '—'}}
-function showCardDetail(id){const c=CARDS.find(x=>x.id===id);if(!c)return;const owned=collection[id],fav=favorites.has(id);els.cardDialogContent.innerHTML=`<div class="detail-wrap"><div class="detail-art rarity-framed ${owned?'':'locked'}" data-rarity="${c.rarity}" style="${rarityStyle(c.rarity)}"><span class="ornament"></span><img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"></div><div class="detail-copy"><p class="eyebrow">${c.rarityLabel} · #${c.number}</p><h2>${owned?escapeHtml(c.name):'Carte non découverte'}</h2><p>${owned?escapeHtml(c.description):'Ouvre des boosters pour révéler cette carte.'}</p>${owned?`<button id="detailFavoriteButton" class="secondary-button" type="button">${fav?'★ Retirer des favorites':'☆ Ajouter aux favorites'}</button>`:''}<div class="detail-meta"><div><small>Type</small><strong>${owned?escapeHtml(c.kind):'???'}</strong></div><div><small>Exemplaires</small><strong>${owned?.quantity||0}</strong></div><div><small>Première obtention</small><strong>${formatDate(owned?.firstObtainedAt)}</strong></div><div><small>Dernière obtention</small><strong>${formatDate(owned?.lastObtainedAt)}</strong></div><div style="grid-column:1/-1"><small>Ensembles</small><strong>${memberships(c.id).join(' · ')||'Aucun'}</strong></div></div></div></div>`;const fb=$('detailFavoriteButton');if(fb)fb.addEventListener('click',()=>{toggleFavorite(id);els.cardDialog.close()});els.cardDialog.showModal()}
+function showCardDetail(id){const c=CARDS.find(x=>x.id===id);if(!c)return;const owned=collection[id],fav=favorites.has(id);els.cardDialogContent.innerHTML=`<div class="detail-wrap"><div class="detail-art rarity-framed ${owned?'':'locked'}" data-rarity="${c.rarity}" style="${rarityStyle(c.rarity)}"><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"></div><div class="detail-copy"><p class="eyebrow">${c.rarityLabel} · #${c.number}</p><h2>${owned?escapeHtml(c.name):'Carte non découverte'}</h2><p>${owned?escapeHtml(c.description):'Ouvre des boosters pour révéler cette carte.'}</p>${owned?`<button id="detailFavoriteButton" class="secondary-button" type="button">${fav?'★ Retirer des favorites':'☆ Ajouter aux favorites'}</button>`:''}<div class="detail-meta"><div><small>Type</small><strong>${owned?escapeHtml(c.kind):'???'}</strong></div><div><small>Exemplaires</small><strong>${owned?.quantity||0}</strong></div><div><small>Première obtention</small><strong>${formatDate(owned?.firstObtainedAt)}</strong></div><div><small>Dernière obtention</small><strong>${formatDate(owned?.lastObtainedAt)}</strong></div><div style="grid-column:1/-1"><small>Ensembles</small><strong>${memberships(c.id).join(' · ')||'Aucun'}</strong></div></div></div></div>`;const fb=$('detailFavoriteButton');if(fb)fb.addEventListener('click',()=>{toggleFavorite(id);els.cardDialog.close()});els.cardDialog.showModal()}
 function renderProgress(){const s=getStats();const rarest=CARDS.filter(c=>collection[c.id]).sort((a,b)=>RARITIES[b.rarity].rank-RARITIES[a.rarity].rank)[0];els.progressOverview.innerHTML=[['Cartes distinctes',`${s.distinct}/100`],['Exemplaires',s.copies],['Doublons',s.duplicates],['Série actuelle',`${s.currentStreak} j`],['Record',`${s.longestStreak} j`],['Boosters',s.boosters],['Cadeaux reçus',s.gifts],['Plus rare',rarest?.name||'—']].map(([a,b])=>`<div class="metric"><span>${a}</span><strong>${escapeHtml(String(b))}</strong></div>`).join('');els.rarityProgress.innerHTML=Object.entries(RARITIES).map(([k,r])=>{const n=CARDS.filter(c=>c.rarity===k&&collection[c.id]).length,p=n/r.count*100;return `<div class="progress-entry"><header><strong style="color:${r.color}">${r.label}</strong><small>${n}/${r.count}</small></header><div class="progress-track"><div class="progress-fill" style="width:${p}%;background:${r.color}"></div></div></div>`}).join('');els.setGrid.innerHTML=SETS.map(set=>{const n=set.ids.filter(id=>collection[id]).length,p=n/set.ids.length*100;return `<article class="set-card"><span class="achievement-icon">${set.icon}</span><h4>${set.name}</h4><p>${n}/${set.ids.length} cartes</p><div class="progress-track"><div class="progress-fill" style="width:${p}%"></div></div><button type="button" data-open-set="${set.id}">Voir l’ensemble</button></article>`}).join('');els.setGrid.querySelectorAll('[data-open-set]').forEach(b=>b.addEventListener('click',()=>{filters.set=b.dataset.openSet;els.setFilter.value=filters.set;navigate('album');renderAlbum()}));const achievements=getAchievements(s);els.achievementGrid.innerHTML=achievements.map(a=>`<article class="achievement-card ${a.unlocked?'':'locked'}"><span class="achievement-icon">${a.icon}</span><h4>${a.name}</h4><p>${a.description}</p><p style="margin-top:7px;color:${a.unlocked?'var(--ok)':'var(--muted)'}">${a.unlocked?'Débloqué':'À accomplir'}</p></article>`).join('');renderHistory()}
 function getAchievements(s){const gods=CARDS.filter(c=>collection[c.id]&&/Dieu|Déesse/.test(c.kind)).length;const monsters=CARDS.filter(c=>collection[c.id]&&/Créature|Monstre|Dragon|Géant|Centaure|Satyre|Harpie/.test(c.kind)).length;return [
   {name:'Premier pas',icon:'Ω',description:'Ouvrir un premier booster.',unlocked:s.boosters>=1},{name:'Collectionneur I',icon:'◇',description:'Obtenir 25 cartes distinctes.',unlocked:s.distinct>=25},{name:'Collectionneur II',icon:'◆',description:'Obtenir 50 cartes distinctes.',unlocked:s.distinct>=50},{name:'Collectionneur III',icon:'✦',description:'Obtenir 75 cartes distinctes.',unlocked:s.distinct>=75},{name:'Maître du Panthéon',icon:'♛',description:'Compléter les 100 cartes.',unlocked:s.distinct>=100},{name:'Favori des dieux',icon:'⚡',description:'Obtenir une carte légendaire.',unlocked:CARDS.some(c=>collection[c.id]&&c.rarity==='legendary')},{name:'Élu du destin',icon:'☄',description:'Obtenir la carte mythique.',unlocked:CARDS.some(c=>collection[c.id]&&c.rarity==='mythic')},{name:'Panthéon',icon:'♜',description:'Obtenir cinq dieux ou déesses.',unlocked:gods>=5},{name:'Chasseur de monstres',icon:'⚔',description:'Obtenir dix créatures ou monstres.',unlocked:monsters>=10},{name:'Fidélité',icon:'☀',description:'Atteindre une série de 7 jours.',unlocked:s.longestStreak>=7},{name:'Messager des dieux',icon:'☤',description:'Recevoir cinq cadeaux.',unlocked:s.gifts>=5},{name:'Conservateur',icon:'★',description:'Ajouter dix cartes aux favorites.',unlocked:favorites.size>=10}
