@@ -1,4 +1,4 @@
-const VERSION='6.2.0';
+const VERSION='6.2.3';
 const SHELL=`mythos-shell-${VERSION}`;
 const RUNTIME=`mythos-runtime-${VERSION}`;
 const SHELL_FILES=['./','./index.html','./manifest.webmanifest','./version.json','./icons/favicon.png','./icons/apple-touch-icon.png','./icons/icon-192.png','./icons/icon-512.png'];

@@ -1,5 +1,5 @@
 {
-  "version": "6.2.1",
+  "version": "6.2.3",
   "released": "2026-08-03",
-  "notes": "Dézoom des artworks: affichage en contain pour mieux voir les personnages entiers dans l’album, le booster, les cartes récentes et la fiche détaillée."
+  "notes": "Intégration des nouveaux artworks dézoomés pour remplacer les anciennes cartes trop zoomées (Apollon, Arès, Dionysos, Achille, Thésée, Persée, Jason, Bellérophon, Hector, Cronos)."
 }
