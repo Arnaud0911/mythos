@@ -1,5 +1,5 @@
 {
-  "version": "6.1.2",
-  "released": "2026-08-01",
-  "notes": "Suppression totale du voile devant les artworks. Les cartes manquantes restent visibles en niveaux de gris; cadres et ornements sont uniquement autour."
+  "version": "6.2.0",
+  "released": "2026-08-03",
+  "notes": "Nouvelle ouverture interactive du booster: cinq impacts sur le sceau, fissures progressives, vibrations et effets sonores croissants, puis révélation des cartes une par une."
 }
