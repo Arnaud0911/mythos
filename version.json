@@ -1,5 +1,5 @@
 {
-  "version": "6.2.6",
-  "released": "2026-08-03",
-  "notes": "Remplacement du visuel d’Apollon par un artwork dézoomé afin que la tête ne soit plus coupée, sans modifier la taille ni le fit des cartes."
+  "version": "6.2.7",
+  "released": "2026-08-04",
+  "notes": "Remplacement des anciens visuels trop zoomés d’Aphrodite, Hermès, Héraclès et Triton par leurs nouveaux artworks dézoomés, comme pour Apollon."
 }
