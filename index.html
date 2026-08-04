@@ -592,6 +592,88 @@
   .booster-crack-box,.pack-half,.pack-seal-button,.crack-segment{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 
+
+/* === Mythos v6.3.0 — fissures haute visibilité === */
+.booster-crack-box{
+  width:min(76vw,246px);
+  filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
+}
+.pack-cracks{
+  z-index:8!important;
+  mix-blend-mode:screen;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.95));
+}
+.crack-segment{
+  stroke:#fffdf0!important;
+  stroke-width:4.8!important;
+  stroke-dasharray:300!important;
+  stroke-dashoffset:300!important;
+  filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 7px #ffe47a) drop-shadow(0 0 16px rgba(255,176,37,.98))!important;
+}
+.crack-a{stroke-width:5.8!important}.crack-b{stroke-width:4.2!important}.crack-c{stroke-width:6.4!important}.crack-d{stroke-width:4.8!important}.crack-e{stroke-width:7.2!important}.crack-f{stroke-width:5.4!important}.crack-g{stroke-width:4.4!important}.crack-h{stroke-width:5.2!important}.crack-i{stroke-width:5.8!important}.crack-j{stroke-width:7.8!important}
+.crack-stage-1 .crack-a,
+.crack-stage-2 .crack-a,.crack-stage-2 .crack-b,.crack-stage-2 .crack-g,
+.crack-stage-3 .crack-a,.crack-stage-3 .crack-b,.crack-stage-3 .crack-c,.crack-stage-3 .crack-g,.crack-stage-3 .crack-h,
+.crack-stage-4 .crack-a,.crack-stage-4 .crack-b,.crack-stage-4 .crack-c,.crack-stage-4 .crack-d,.crack-stage-4 .crack-e,.crack-stage-4 .crack-g,.crack-stage-4 .crack-h,.crack-stage-4 .crack-i,
+.crack-stage-5 .crack-segment{
+  opacity:1!important;
+  animation:drawCrackVisible .34s cubic-bezier(.08,.86,.25,1) forwards,crackGlowPulse .7s .34s ease-in-out!important;
+}
+.crack-stage-3 .crack-segment{stroke:#f8ffff!important;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 10px #8fe9ff) drop-shadow(0 0 22px rgba(255,199,65,.95))!important}
+.crack-stage-4 .crack-segment,.crack-stage-5 .crack-segment{filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 12px #fff0a3) drop-shadow(0 0 28px #ffae24)!important}
+.pack-impact-flash{
+  position:absolute;
+  z-index:6;
+  left:50%;top:50%;
+  width:26px;height:26px;
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(.2);
+  opacity:0;
+  pointer-events:none;
+  background:radial-gradient(circle,#fff 0 12%,#fff5ad 22%,rgba(255,195,53,.82) 42%,transparent 72%);
+  box-shadow:0 0 28px #fff,0 0 58px #ffd45c,0 0 100px rgba(90,203,255,.65);
+}
+.impact-1 .pack-impact-flash{animation:impactFlashVisible .34s ease-out}
+.impact-2 .pack-impact-flash{animation:impactFlashVisible .38s ease-out}
+.impact-3 .pack-impact-flash{animation:impactFlashStrong .44s ease-out}
+.impact-4 .pack-impact-flash{animation:impactFlashStrong .5s ease-out}
+.impact-5 .pack-impact-flash{animation:impactFlashFinal .68s ease-out}
+.crack-stage-1 .pack-half{box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 38px rgba(0,0,0,.4),0 0 16px rgba(255,203,76,.18)}
+.crack-stage-2 .pack-half{filter:brightness(.94);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 42px rgba(0,0,0,.44),0 0 24px rgba(255,203,76,.24)}
+.crack-stage-3 .pack-half{filter:brightness(.88) saturate(1.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 48px rgba(0,0,0,.5),0 0 34px rgba(255,203,76,.31)}
+.crack-stage-4 .pack-half{filter:brightness(.8) saturate(1.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 54px rgba(0,0,0,.58),0 0 46px rgba(255,203,76,.42)}
+.crack-stage-5 .pack-half{filter:brightness(.72) saturate(1.25);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 62px rgba(0,0,0,.65),0 0 64px rgba(255,215,94,.58)}
+.crack-stage-2 .pack-light-leak{opacity:.12;transform:translate(-50%,-50%) scale(.55)}
+.crack-stage-3 .pack-light-leak{opacity:.34!important;transform:translate(-50%,-50%) scale(1.2)!important}
+.crack-stage-4 .pack-light-leak{opacity:.68!important;transform:translate(-50%,-50%) scale(2.25)!important}
+.crack-stage-5 .pack-light-leak{opacity:1!important;transform:translate(-50%,-50%) scale(6.4)!important;transition:all .46s ease-out!important}
+.crack-stage-1 .pack-seal-button{animation:sealHitPulse .3s ease}
+.crack-stage-2 .pack-seal-button{animation:sealHitPulse .34s ease;filter:brightness(1.08)}
+.crack-stage-3 .pack-seal-button{animation:sealHitPulseStrong .38s ease;filter:brightness(1.18)}
+.crack-stage-4 .pack-seal-button{animation:sealHitPulseStrong .42s ease;filter:brightness(1.28)}
+.crack-stage-5 .pack-seal-button{animation:sealBreakVisible .58s ease-out forwards!important}
+.pack-hit-dot{width:10px!important;height:10px!important}
+.crack-stage-1 .pack-hit-dot:nth-child(-n+1),.crack-stage-2 .pack-hit-dot:nth-child(-n+2),.crack-stage-3 .pack-hit-dot:nth-child(-n+3),.crack-stage-4 .pack-hit-dot:nth-child(-n+4),.crack-stage-5 .pack-hit-dot:nth-child(-n+5){box-shadow:0 0 5px #fff,0 0 14px #ffd961!important;transform:scale(1.42)!important}
+.booster-crack-box.impact-1{animation:packHitOneVisible .32s ease}
+.booster-crack-box.impact-2{animation:packHitTwoVisible .36s ease}
+.booster-crack-box.impact-3{animation:packHitThreeVisible .42s ease}
+.booster-crack-box.impact-4{animation:packHitFourVisible .47s ease}
+.booster-crack-box.impact-5{animation:packHitFiveVisible .6s ease}
+@keyframes drawCrackVisible{0%{stroke-dashoffset:300;opacity:.2}35%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
+@keyframes crackGlowPulse{0%,100%{filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 7px #ffe47a) drop-shadow(0 0 16px rgba(255,176,37,.98))}50%{filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff0a3) drop-shadow(0 0 34px #ff9f1c)}}
+@keyframes impactFlashVisible{0%{opacity:1;transform:translate(-50%,-50%) scale(.25)}55%{opacity:.95;transform:translate(-50%,-50%) scale(5.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(8)}}
+@keyframes impactFlashStrong{0%{opacity:1;transform:translate(-50%,-50%) scale(.3)}50%{opacity:1;transform:translate(-50%,-50%) scale(8)}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
+@keyframes impactFlashFinal{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}42%{opacity:1;transform:translate(-50%,-50%) scale(13)}100%{opacity:0;transform:translate(-50%,-50%) scale(22)}}
+@keyframes sealHitPulse{35%{transform:translate(-50%,-50%) scale(.84)}65%{transform:translate(-50%,-50%) scale(1.12)}}
+@keyframes sealHitPulseStrong{25%{transform:translate(-50%,-50%) scale(.78) rotate(-3deg)}55%{transform:translate(-50%,-50%) scale(1.18) rotate(3deg)}80%{transform:translate(-50%,-50%) scale(.96)}}
+@keyframes sealBreakVisible{20%{transform:translate(-50%,-50%) scale(.78) rotate(-5deg)}48%{transform:translate(-50%,-50%) scale(1.28) rotate(8deg);filter:brightness(2.2)}100%{transform:translate(-50%,-50%) scale(.08) rotate(46deg);opacity:0;filter:brightness(3)}}
+@keyframes packHitOneVisible{25%{transform:translate(-6px,1px) rotate(-.8deg)}55%{transform:translate(5px,-1px) rotate(.7deg)}80%{transform:translate(-2px,0)}}
+@keyframes packHitTwoVisible{20%{transform:translate(-8px,2px) rotate(-1.2deg)}45%{transform:translate(8px,-2px) rotate(1.2deg)}70%{transform:translate(-4px,1px)}}
+@keyframes packHitThreeVisible{15%{transform:translate(-11px,3px) rotate(-1.8deg) scale(1.015)}35%{transform:translate(11px,-3px) rotate(1.8deg)}55%{transform:translate(-8px,2px)}75%{transform:translate(5px,-1px)}}
+@keyframes packHitFourVisible{12%{transform:translate(-14px,4px) rotate(-2.5deg) scale(1.025)}28%{transform:translate(14px,-4px) rotate(2.5deg)}46%{transform:translate(-11px,3px)}64%{transform:translate(9px,-2px)}82%{transform:translate(-5px,1px)}}
+@keyframes packHitFiveVisible{10%{transform:translate(-18px,5px) rotate(-3.5deg) scale(1.04)}23%{transform:translate(18px,-5px) rotate(3.5deg)}38%{transform:translate(-15px,4px)}53%{transform:translate(13px,-3px)}68%{transform:translate(-10px,2px)}83%{transform:translate(6px,-1px)}}
+@media(max-width:390px){.booster-crack-box{width:min(75vw,230px)}}
+
 </style>
 </head>
 <body>
@@ -600,7 +682,7 @@
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.2.0</span>
+      <span id="versionPill" class="version-pill">v6.3.0</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -690,7 +772,7 @@
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.2.7';
+const APP_VERSION = '6.3.0';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -741,7 +823,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.2.7`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.0`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -763,6 +845,7 @@ function renderBoosterPack(source,guarantee){
       <span class="pack-title" aria-hidden="true">MYTHOS</span>
       <span class="pack-subtitle" aria-hidden="true">5 CARTES</span>
       <span class="pack-light-leak" aria-hidden="true"></span>
+      <span class="pack-impact-flash" aria-hidden="true"></span>
       <svg class="pack-cracks" viewBox="0 0 230 310" aria-hidden="true">
         <path class="crack-segment crack-a" d="M115 155 L101 140 L96 124 L84 113 L78 96"/>
         <path class="crack-segment crack-b" d="M101 140 L85 146 L72 139 M96 124 L108 112 L104 101"/>
@@ -770,6 +853,10 @@ function renderBoosterPack(source,guarantee){
         <path class="crack-segment crack-d" d="M143 122 L158 132 L177 128 M160 111 L153 97 L160 84"/>
         <path class="crack-segment crack-e" d="M115 155 L109 176 L95 194 L89 217 L70 237 L60 263 M109 176 L127 190 L135 211 L151 228 L169 251"/>
         <path class="crack-segment crack-f" d="M95 194 L76 189 L64 198 M89 217 L102 231 L98 246 M135 211 L151 202 L166 207 M151 228 L143 244 L149 260"/>
+        <path class="crack-segment crack-g" d="M78 96 L67 79 L51 67 L43 48 M67 79 L50 83 L39 75"/>
+        <path class="crack-segment crack-h" d="M171 91 L184 73 L194 54 L202 35 M184 73 L201 78 L214 68"/>
+        <path class="crack-segment crack-i" d="M60 263 L48 279 L34 292 M169 251 L185 270 L199 288 M98 246 L84 265"/>
+        <path class="crack-segment crack-j" d="M115 155 L83 164 L54 157 L31 166 M115 155 L148 164 L178 156 L208 168"/>
       </svg>
       <button class="pack-seal-button" type="button" aria-label="Frapper le sceau, cinq impacts nécessaires">
         <span class="seal-omega">Ω</span><small>FRAPPER</small>
@@ -796,12 +883,12 @@ function renderBoosterPack(source,guarantee){
     els.boosterInstruction.textContent=messages[hits];
     playPackCrackEffect(hits);
     vibrate({1:22,2:[25,18,30],3:[32,18,42],4:[38,16,55],5:[48,18,72,20,95]}[hits]);
-    const releaseDelay=settings.reduceMotion?20:240;
+    const releaseDelay=settings.reduceMotion?20:360;
     setTimeout(()=>box.classList.remove(`impact-${hits}`),releaseDelay);
     if(hits<5){setTimeout(()=>{boosterLocked=false},releaseDelay);return}
     seal.disabled=true;
-    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:250);
-    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1120);
+    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:390);
+    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1380);
   });
 }
 function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
