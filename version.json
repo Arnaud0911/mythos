@@ -1,5 +1,5 @@
 {
-  "version": "6.2.5",
+  "version": "6.2.6",
   "released": "2026-08-03",
-  "notes": "Les cartes remplissent à nouveau parfaitement leur cadre. Seuls les anciens artworks trop zoomés ont été remplacés par les nouveaux visuels dézoomés."
+  "notes": "Remplacement du visuel d’Apollon par un artwork dézoomé afin que la tête ne soit plus coupée, sans modifier la taille ni le fit des cartes."
 }
