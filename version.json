@@ -1,5 +1,5 @@
 {
-  "version": "6.2.4",
+  "version": "6.2.5",
   "released": "2026-08-03",
-  "notes": "Forçage du rechargement des nouveaux artworks intégrés (cache busting + nettoyage des anciens caches), y compris Apollon et les autres cartes corrigées."
+  "notes": "Les cartes remplissent à nouveau parfaitement leur cadre. Seuls les anciens artworks trop zoomés ont été remplacés par les nouveaux visuels dézoomés."
 }
