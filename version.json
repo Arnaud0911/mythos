@@ -1,5 +1,5 @@
 {
-  "version": "6.2.3",
+  "version": "6.2.4",
   "released": "2026-08-03",
-  "notes": "Intégration des nouveaux artworks dézoomés pour remplacer les anciennes cartes trop zoomées (Apollon, Arès, Dionysos, Achille, Thésée, Persée, Jason, Bellérophon, Hector, Cronos)."
+  "notes": "Forçage du rechargement des nouveaux artworks intégrés (cache busting + nettoyage des anciens caches), y compris Apollon et les autres cartes corrigées."
 }

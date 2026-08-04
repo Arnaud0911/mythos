@@ -690,7 +690,7 @@
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.2.3';
+const APP_VERSION = '6.2.4';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -741,7 +741,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return card.artwork}
+function artworkUrl(card){return `${card.artwork}?v=6.2.4`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
