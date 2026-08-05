@@ -593,7 +593,7 @@
 }
 
 
-/* === Mythos v6.3.1 — fissures haute visibilité === */
+/* === Mythos v6.3.2 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -674,6 +674,118 @@
 @keyframes packHitFiveVisible{10%{transform:translate(-18px,5px) rotate(-3.5deg) scale(1.04)}23%{transform:translate(18px,-5px) rotate(3.5deg)}38%{transform:translate(-15px,4px)}53%{transform:translate(13px,-3px)}68%{transform:translate(-10px,2px)}83%{transform:translate(6px,-1px)}}
 @media(max-width:390px){.booster-crack-box{width:min(75vw,230px)}}
 
+
+
+/* === Mythos v6.3.2 — fissures progressives toujours visibles === */
+.booster-crack-box{
+  width:min(78vw,252px)!important;
+  filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
+}
+.pack-cracks{
+  z-index:12!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  overflow:visible!important;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.9))!important;
+}
+.crack-segment{
+  opacity:0!important;
+  stroke:#fffef2!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:none!important;
+  stroke-dashoffset:0!important;
+  vector-effect:non-scaling-stroke;
+  filter:
+    drop-shadow(0 0 1px #000)
+    drop-shadow(0 0 3px #fff)
+    drop-shadow(0 0 9px #ffe36b)
+    drop-shadow(0 0 20px rgba(255,155,26,.98))!important;
+  transition:opacity .15s ease,stroke-width .2s ease,filter .2s ease!important;
+  animation:none!important;
+}
+/* Les fissures restent affichées après chaque pression, même si les animations sont réduites. */
+.crack-stage-1 .crack-a{
+  opacity:1!important;stroke-width:5.5!important;
+  animation:crackAppearV632 .28s ease-out!important;
+}
+.crack-stage-2 .crack-a,.crack-stage-2 .crack-b,.crack-stage-2 .crack-g{
+  opacity:1!important;stroke-width:6.2!important;
+}
+.crack-stage-2 .crack-b,.crack-stage-2 .crack-g{animation:crackAppearV632 .3s ease-out!important}
+.crack-stage-3 .crack-a,.crack-stage-3 .crack-b,.crack-stage-3 .crack-c,.crack-stage-3 .crack-g,.crack-stage-3 .crack-h{
+  opacity:1!important;stroke-width:7px!important;
+  filter:drop-shadow(0 0 1px #000) drop-shadow(0 0 4px #fff) drop-shadow(0 0 12px #8feaff) drop-shadow(0 0 25px #ffb529)!important;
+}
+.crack-stage-3 .crack-c,.crack-stage-3 .crack-h{animation:crackAppearV632 .34s ease-out!important}
+.crack-stage-4 .crack-a,.crack-stage-4 .crack-b,.crack-stage-4 .crack-c,.crack-stage-4 .crack-d,.crack-stage-4 .crack-e,.crack-stage-4 .crack-g,.crack-stage-4 .crack-h,.crack-stage-4 .crack-i{
+  opacity:1!important;stroke-width:8px!important;
+  filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 5px #fff) drop-shadow(0 0 15px #fff0a4) drop-shadow(0 0 33px #ff9817)!important;
+}
+.crack-stage-4 .crack-d,.crack-stage-4 .crack-e,.crack-stage-4 .crack-i{animation:crackAppearV632 .38s ease-out!important}
+.crack-stage-5 .crack-segment{
+  opacity:1!important;stroke-width:9px!important;
+  filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 7px #fff) drop-shadow(0 0 20px #fff4b8) drop-shadow(0 0 44px #ff7f0d)!important;
+}
+.crack-stage-5 .crack-f,.crack-stage-5 .crack-j{animation:crackAppearFinalV632 .48s ease-out!important}
+
+/* La boîte s'assombrit progressivement afin que les fissures blanches ressortent clairement. */
+.crack-stage-1 .pack-half{filter:brightness(.91) saturate(1.08)!important}
+.crack-stage-2 .pack-half{filter:brightness(.82) saturate(1.14)!important}
+.crack-stage-3 .pack-half{filter:brightness(.72) saturate(1.22)!important}
+.crack-stage-4 .pack-half{filter:brightness(.62) saturate(1.3)!important}
+.crack-stage-5 .pack-half{filter:brightness(.52) saturate(1.38)!important}
+
+/* La lumière centrale et le sceau indiquent aussi qu'il faut continuer à appuyer. */
+.crack-stage-1 .pack-light-leak{opacity:.18!important;transform:translate(-50%,-50%) scale(.75)!important}
+.crack-stage-2 .pack-light-leak{opacity:.32!important;transform:translate(-50%,-50%) scale(1.15)!important}
+.crack-stage-3 .pack-light-leak{opacity:.5!important;transform:translate(-50%,-50%) scale(1.75)!important}
+.crack-stage-4 .pack-light-leak{opacity:.78!important;transform:translate(-50%,-50%) scale(2.8)!important}
+.crack-stage-5 .pack-light-leak{opacity:1!important;transform:translate(-50%,-50%) scale(6.8)!important}
+.crack-stage-1 .pack-seal-button{box-shadow:0 0 0 7px rgba(232,189,101,.25),0 0 18px #e8bd65,0 12px 25px rgba(0,0,0,.58),inset 0 0 20px rgba(232,189,101,.32)!important}
+.crack-stage-2 .pack-seal-button{box-shadow:0 0 0 8px rgba(232,189,101,.3),0 0 27px #ffd766,0 12px 25px rgba(0,0,0,.58),inset 0 0 23px rgba(255,215,102,.38)!important}
+.crack-stage-3 .pack-seal-button{box-shadow:0 0 0 9px rgba(232,189,101,.34),0 0 38px #ffe58c,0 12px 25px rgba(0,0,0,.58),inset 0 0 28px rgba(255,226,125,.46)!important}
+.crack-stage-4 .pack-seal-button{box-shadow:0 0 0 10px rgba(255,227,133,.4),0 0 52px #fff0a3,0 12px 25px rgba(0,0,0,.58),inset 0 0 34px rgba(255,238,161,.58)!important}
+
+.pack-impact-flash{z-index:11!important}
+.impact-1 .pack-impact-flash{animation:impactFlashV632 .36s ease-out!important}
+.impact-2 .pack-impact-flash{animation:impactFlashV632 .42s ease-out!important}
+.impact-3 .pack-impact-flash{animation:impactFlashStrongV632 .48s ease-out!important}
+.impact-4 .pack-impact-flash{animation:impactFlashStrongV632 .56s ease-out!important}
+.impact-5 .pack-impact-flash{animation:impactFlashFinalV632 .72s ease-out!important}
+
+@keyframes crackAppearV632{
+  0%{opacity:0;transform:scale(.92);stroke-width:2px}
+  45%{opacity:1;transform:scale(1.035)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes crackAppearFinalV632{
+  0%{opacity:0;transform:scale(.82)}
+  35%{opacity:1;transform:scale(1.07)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes impactFlashV632{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(.25)}
+  58%{opacity:1;transform:translate(-50%,-50%) scale(7)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(11)}
+}
+@keyframes impactFlashStrongV632{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(.3)}
+  52%{opacity:1;transform:translate(-50%,-50%) scale(10)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(16)}
+}
+@keyframes impactFlashFinalV632{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}
+  42%{opacity:1;transform:translate(-50%,-50%) scale(16)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(25)}
+}
+@media(max-width:390px){
+  .booster-crack-box{width:min(75vw,235px)!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .crack-segment{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -682,7 +794,7 @@
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.3.1</span>
+      <span id="versionPill" class="version-pill">v6.3.2</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -772,7 +884,7 @@
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.3.1';
+const APP_VERSION = '6.3.2';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -823,7 +935,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.3.1`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.2`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -836,10 +948,10 @@ function renderBoosterPack(source,guarantee){
   boosterIndex=-1;boosterLocked=false;
   els.boosterDialogTitle.textContent=source==='bonus'?'Booster bonus':'Booster du jour';
   const guaranteeText=guarantee==='epic'?'Garantie Épique+ activée. ':guarantee==='rare'?'Garantie Rare+ activée. ':'';
-  els.boosterInstruction.textContent=`${guaranteeText}Appuie 5 fois sur le sceau Ω pour fissurer la boîte.`;
+  els.boosterInstruction.textContent=`${guaranteeText}Appuie sur le sceau pour ouvrir la boîte.`;
   els.closeBoosterButton.classList.add('hidden');
   els.boosterStage.innerHTML=`
-    <div class="booster-crack-box crack-stage-0" role="group" aria-label="Boîte Mythos à ouvrir en cinq impacts">
+    <div class="booster-crack-box crack-stage-0" role="group" aria-label="Boîte Mythos à fissurer en appuyant plusieurs fois sur le sceau">
       <span class="pack-half pack-lid" aria-hidden="true"></span>
       <span class="pack-half pack-base" aria-hidden="true"></span>
       <span class="pack-title" aria-hidden="true">MYTHOS</span>
@@ -858,20 +970,19 @@ function renderBoosterPack(source,guarantee){
         <path class="crack-segment crack-i" d="M60 263 L48 279 L34 292 M169 251 L185 270 L199 288 M98 246 L84 265"/>
         <path class="crack-segment crack-j" d="M115 155 L83 164 L54 157 L31 166 M115 155 L148 164 L178 156 L208 168"/>
       </svg>
-      <button class="pack-seal-button" type="button" aria-label="Frapper le sceau, cinq impacts nécessaires">
-        <span class="seal-omega">Ω</span><small>FRAPPER</small>
+      <button class="pack-seal-button" type="button" aria-label="Appuyer sur le sceau pour fissurer la boîte">
+        <span class="seal-omega">Ω</span><small>APPUYER</small>
       </button>
-      <span class="pack-hit-meter" aria-hidden="true"><i class="pack-hit-dot"></i><i class="pack-hit-dot"></i><i class="pack-hit-dot"></i><i class="pack-hit-dot"></i><i class="pack-hit-dot"></i></span>
     </div>`;
   const box=els.boosterStage.querySelector('.booster-crack-box');
   const seal=els.boosterStage.querySelector('.pack-seal-button');
   let hits=0;
   const messages=[
     '',
-    'Première fissure — encore 4 impacts.',
-    'Le sceau faiblit — encore 3 impacts.',
-    'La boîte se fend — encore 2 impacts.',
-    'Presque ouverte — encore 1 impact.',
+    'Une première fissure apparaît… continue d’appuyer sur le sceau.',
+    'La boîte se fragilise… appuie encore sur le sceau.',
+    'Les fissures s’étendent… continue d’appuyer.',
+    'La lumière traverse la boîte… le sceau est sur le point de céder.',
     'Le sceau cède…'
   ];
   seal.addEventListener('click',()=>{
@@ -879,7 +990,7 @@ function renderBoosterPack(source,guarantee){
     boosterLocked=true;
     hits++;
     box.className=`booster-crack-box crack-stage-${hits} impact-${hits}`;
-    seal.setAttribute('aria-label',hits<5?`${hits} impact sur 5. Frapper encore ${5-hits} fois.`:'Cinquième impact. Ouverture de la boîte.');
+    seal.setAttribute('aria-label',hits<5?'La boîte se fissure. Appuyer encore sur le sceau.':'Le sceau cède et la boîte s’ouvre.');
     els.boosterInstruction.textContent=messages[hits];
     playPackCrackEffect(hits);
     vibrate({1:22,2:[25,18,30],3:[32,18,42],4:[38,16,55],5:[48,18,72,20,95]}[hits]);

@@ -1,5 +1,5 @@
 {
-  "version": "6.3.1",
-  "released": "2026-08-04",
-  "notes": "Tous les artworks Artefacts et Lieux (069–087, hors Pandore) ont été remplacés par les nouvelles versions. Les personnages divins ne sont plus montrés à la place des objets, et les lieux utilisent les nouveaux visuels dédiés."
+  "version": "6.3.2",
+  "released": "2026-08-05",
+  "notes": "Restauration renforcée de l’ouverture du booster : fissures lumineuses permanentes et de plus en plus étendues à chaque pression, sans afficher le nombre de pressions nécessaires."
 }
