@@ -1,5 +1,5 @@
 {
-  "version": "6.3.4",
+  "version": "6.3.5",
   "released": "2026-08-17",
-  "notes": "Animation d’ouverture retravaillée : fissures plus irrégulières, moins symétriques, ne partant pas forcément du centre ; la boîte se craquelle davantage à chaque appui et se casse au cinquième."
+  "notes": "Zoom de l’application désactivé : pinch-to-zoom et gestes de zoom Safari bloqués, tout en conservant le défilement normal de Mythos."
 }
