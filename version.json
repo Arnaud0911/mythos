@@ -1,5 +1,5 @@
 {
-  "version": "6.3.3",
+  "version": "6.3.4",
   "released": "2026-08-17",
-  "notes": "Nouvelle animation d’ouverture du booster : petites fissures fines au premier impact, propagation importante au troisième, réseau dense de craquelures au cinquième puis ouverture de la boîte."
+  "notes": "Animation d’ouverture retravaillée : fissures plus irrégulières, moins symétriques, ne partant pas forcément du centre ; la boîte se craquelle davantage à chaque appui et se casse au cinquième."
 }
