@@ -593,7 +593,7 @@
 }
 
 
-/* === Mythos v6.3.2 — fissures haute visibilité === */
+/* === Mythos v6.3.3 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -676,7 +676,7 @@
 
 
 
-/* === Mythos v6.3.2 — fissures progressives toujours visibles === */
+/* === Mythos v6.3.3 — fissures progressives toujours visibles === */
 .booster-crack-box{
   width:min(78vw,252px)!important;
   filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
@@ -786,6 +786,144 @@
   .crack-segment{animation:none!important}
 }
 
+
+
+/* === Mythos v6.3.3 — boîte craquelée : fissures fines et nombreuses === */
+.booster-crack-box{
+  width:min(77vw,248px)!important;
+  filter:drop-shadow(0 30px 45px rgba(0,0,0,.72))!important;
+}
+/* La boîte garde un aspect rigide/fermé jusqu'à la rupture du sceau. */
+.pack-half{
+  background:
+    radial-gradient(circle at 50% 48%,rgba(255,226,137,.10),transparent 24%),
+    linear-gradient(145deg,#334d86 0%,#1c2d59 40%,#111c3c 72%,#080e20 100%)!important;
+  border-color:#d8ae55!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.07),
+    inset 0 0 38px rgba(0,0,0,.42),
+    0 0 0 1px rgba(0,0,0,.38)!important;
+}
+.pack-cracks{
+  z-index:13!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  overflow:visible!important;
+  filter:none!important;
+}
+/* Traits volontairement fins : on doit voir un réseau de craquelures et non de gros éclairs. */
+.crack-segment{
+  opacity:0!important;
+  fill:none!important;
+  stroke:#fff6cf!important;
+  stroke-width:1.25!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:180!important;
+  stroke-dashoffset:180!important;
+  vector-effect:non-scaling-stroke;
+  filter:
+    drop-shadow(0 0 .7px rgba(0,0,0,1))
+    drop-shadow(0 0 1.6px rgba(255,255,255,.92))
+    drop-shadow(0 0 3.5px rgba(255,203,92,.72))!important;
+  animation:none!important;
+}
+.crack-segment.hair{stroke-width:.9!important;opacity:0!important}
+.crack-segment.micro{stroke-width:.65!important;opacity:0!important}
+
+/* 1er appui : petit foyer de craquelures autour du sceau. */
+.crack-stage-1 .crack-s1,
+.crack-stage-2 .crack-s1{
+  opacity:.96!important;
+  animation:crackDrawFine .34s cubic-bezier(.1,.85,.2,1) forwards!important;
+}
+.crack-stage-1 .crack-s1.hair,.crack-stage-2 .crack-s1.hair{opacity:.76!important}
+
+/* 2e appui : le réseau reste présent, mais ne grossit pas artificiellement. */
+.crack-stage-2 .pack-seal-button{filter:brightness(1.04)!important}
+
+/* 3e appui : forte propagation, avec beaucoup de branches secondaires fines. */
+.crack-stage-3 .crack-s1,.crack-stage-4 .crack-s1,
+.crack-stage-3 .crack-s3,.crack-stage-4 .crack-s3{
+  opacity:.98!important;
+  animation:crackDrawFine .4s cubic-bezier(.1,.86,.2,1) forwards!important;
+}
+.crack-stage-3 .crack-s3.hair,.crack-stage-4 .crack-s3.hair{opacity:.82!important}
+.crack-stage-3 .crack-s3.micro,.crack-stage-4 .crack-s3.micro{opacity:.68!important}
+.crack-stage-3 .pack-cracks,.crack-stage-4 .pack-cracks{
+  filter:drop-shadow(0 0 3px rgba(255,207,102,.26))!important;
+}
+
+/* 4e appui : mêmes fissures, lumière interne plus forte pour faire sentir que la boîte va céder. */
+.crack-stage-4 .pack-half{filter:brightness(.86) saturate(1.09)!important}
+.crack-stage-4 .pack-light-leak{opacity:.36!important;transform:translate(-50%,-50%) scale(1.3)!important}
+
+/* 5e appui : toute la surface craquelle, puis seulement ensuite la boîte s'ouvre. */
+.crack-stage-5 .crack-s1,
+.crack-stage-5 .crack-s3,
+.crack-stage-5 .crack-s5{
+  opacity:1!important;
+  animation:crackDrawFinalFine .52s cubic-bezier(.08,.88,.18,1) forwards!important;
+}
+.crack-stage-5 .crack-s5.hair{opacity:.9!important}
+.crack-stage-5 .crack-s5.micro{opacity:.76!important}
+.crack-stage-5 .pack-cracks{
+  filter:
+    drop-shadow(0 0 2px rgba(255,255,255,.48))
+    drop-shadow(0 0 5px rgba(255,197,75,.35))!important;
+}
+.crack-stage-5 .pack-half{filter:brightness(.76) saturate(1.16)!important}
+.crack-stage-5 .pack-light-leak{opacity:.92!important;transform:translate(-50%,-50%) scale(3.1)!important}
+
+/* Flash bref au point d'impact, pas un gros éclair recouvrant les fissures. */
+.pack-impact-flash{z-index:11!important}
+.crack-stage-1 .pack-impact-flash,.crack-stage-3 .pack-impact-flash,.crack-stage-5 .pack-impact-flash{
+  width:18px!important;height:18px!important;
+  opacity:0;
+  box-shadow:0 0 12px #fff9dd,0 0 30px rgba(255,199,74,.7)!important;
+}
+
+/* Impacts de plus en plus physiques. */
+.booster-crack-box.impact-1{animation:boxTapFine1 .22s ease!important}
+.booster-crack-box.impact-2{animation:boxTapFine2 .24s ease!important}
+.booster-crack-box.impact-3{animation:boxTapFine3 .30s ease!important}
+.booster-crack-box.impact-4{animation:boxTapFine4 .32s ease!important}
+.booster-crack-box.impact-5{animation:boxTapFine5 .48s ease!important}
+
+/* Ouverture : le couvercle et la base se séparent comme une vraie boîte cassée. */
+.booster-crack-box.opening .pack-lid{
+  transform:translateY(-105px) rotateX(-30deg) rotate(-5deg)!important;
+  opacity:0!important;
+  filter:brightness(1.55)!important;
+}
+.booster-crack-box.opening .pack-base{
+  transform:translateY(72px) rotateX(20deg) rotate(4deg)!important;
+  opacity:0!important;
+  filter:brightness(1.28)!important;
+}
+.booster-crack-box.opening .pack-cracks{opacity:0!important;transition:opacity .3s .18s ease!important}
+
+@keyframes crackDrawFine{
+  0%{stroke-dashoffset:180;opacity:0}
+  22%{opacity:1}
+  100%{stroke-dashoffset:0}
+}
+@keyframes crackDrawFinalFine{
+  0%{stroke-dashoffset:180;opacity:0}
+  15%{opacity:1}
+  100%{stroke-dashoffset:0}
+}
+@keyframes boxTapFine1{30%{transform:translateX(-3px) rotate(-.3deg)}65%{transform:translateX(2px) rotate(.2deg)}}
+@keyframes boxTapFine2{25%{transform:translate(-4px,1px) rotate(-.5deg)}55%{transform:translate(4px,-1px) rotate(.5deg)}}
+@keyframes boxTapFine3{20%{transform:translate(-7px,2px) rotate(-1deg)}45%{transform:translate(7px,-2px) rotate(1deg)}70%{transform:translate(-4px,1px)}}
+@keyframes boxTapFine4{16%{transform:translate(-9px,2px) rotate(-1.4deg)}38%{transform:translate(9px,-2px) rotate(1.4deg)}62%{transform:translate(-6px,1px)}82%{transform:translate(3px,-1px)}}
+@keyframes boxTapFine5{12%{transform:translate(-13px,3px) rotate(-2deg)}28%{transform:translate(13px,-3px) rotate(2deg)}46%{transform:translate(-10px,2px)}64%{transform:translate(8px,-2px)}82%{transform:translate(-4px,1px)}}
+
+@media(max-width:390px){.booster-crack-box{width:min(74vw,232px)!important}}
+@media(prefers-reduced-motion:reduce){
+  .crack-segment{animation:none!important;stroke-dashoffset:0!important}
+}
+
 </style>
 </head>
 <body>
@@ -794,7 +932,7 @@
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.3.2</span>
+      <span id="versionPill" class="version-pill">v6.3.3</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -884,7 +1022,7 @@
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.3.2';
+const APP_VERSION = '6.3.3';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -935,7 +1073,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.3.2`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.3`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -959,16 +1097,55 @@ function renderBoosterPack(source,guarantee){
       <span class="pack-light-leak" aria-hidden="true"></span>
       <span class="pack-impact-flash" aria-hidden="true"></span>
       <svg class="pack-cracks" viewBox="0 0 230 310" aria-hidden="true">
-        <path class="crack-segment crack-a" d="M115 155 L101 140 L96 124 L84 113 L78 96"/>
-        <path class="crack-segment crack-b" d="M101 140 L85 146 L72 139 M96 124 L108 112 L104 101"/>
-        <path class="crack-segment crack-c" d="M115 155 L131 139 L143 122 L160 111 L171 91"/>
-        <path class="crack-segment crack-d" d="M143 122 L158 132 L177 128 M160 111 L153 97 L160 84"/>
-        <path class="crack-segment crack-e" d="M115 155 L109 176 L95 194 L89 217 L70 237 L60 263 M109 176 L127 190 L135 211 L151 228 L169 251"/>
-        <path class="crack-segment crack-f" d="M95 194 L76 189 L64 198 M89 217 L102 231 L98 246 M135 211 L151 202 L166 207 M151 228 L143 244 L149 260"/>
-        <path class="crack-segment crack-g" d="M78 96 L67 79 L51 67 L43 48 M67 79 L50 83 L39 75"/>
-        <path class="crack-segment crack-h" d="M171 91 L184 73 L194 54 L202 35 M184 73 L201 78 L214 68"/>
-        <path class="crack-segment crack-i" d="M60 263 L48 279 L34 292 M169 251 L185 270 L199 288 M98 246 L84 265"/>
-        <path class="crack-segment crack-j" d="M115 155 L83 164 L54 157 L31 166 M115 155 L148 164 L178 156 L208 168"/>
+        <!-- Premier impact : petites craquelures fines autour du sceau -->
+        <path class="crack-segment crack-s1" d="M115 155 L109 148 L106 139 L100 134"/>
+        <path class="crack-segment crack-s1" d="M115 155 L122 149 L126 140 L132 135"/>
+        <path class="crack-segment crack-s1" d="M115 155 L108 160 L103 168"/>
+        <path class="crack-segment crack-s1" d="M115 155 L123 161 L128 168"/>
+        <path class="crack-segment crack-s1 hair" d="M109 148 L103 146 L99 141"/>
+        <path class="crack-segment crack-s1 hair" d="M122 149 L128 147 L133 142"/>
+
+        <!-- Troisième impact : réseau qui se propage vers toute la boîte -->
+        <path class="crack-segment crack-s3" d="M100 134 L94 124 L86 119 L82 108 L73 101"/>
+        <path class="crack-segment crack-s3 hair" d="M94 124 L84 129 L77 126"/>
+        <path class="crack-segment crack-s3 hair" d="M86 119 L91 110 L88 103"/>
+        <path class="crack-segment crack-s3" d="M132 135 L139 124 L147 118 L151 107 L160 99"/>
+        <path class="crack-segment crack-s3 hair" d="M139 124 L149 129 L157 125"/>
+        <path class="crack-segment crack-s3 hair" d="M147 118 L143 109 L147 102"/>
+        <path class="crack-segment crack-s3" d="M103 168 L98 179 L90 187 L87 200 L79 209"/>
+        <path class="crack-segment crack-s3 hair" d="M98 179 L88 176 L82 181"/>
+        <path class="crack-segment crack-s3 hair" d="M90 187 L97 193 L96 201"/>
+        <path class="crack-segment crack-s3" d="M128 168 L133 179 L141 187 L144 200 L153 209"/>
+        <path class="crack-segment crack-s3 hair" d="M133 179 L143 176 L149 181"/>
+        <path class="crack-segment crack-s3 hair" d="M141 187 L135 193 L136 201"/>
+        <path class="crack-segment crack-s3 micro" d="M73 101 L67 96 L64 88"/>
+        <path class="crack-segment crack-s3 micro" d="M160 99 L166 94 L170 86"/>
+
+        <!-- Cinquième impact : nombreuses fissures fines jusqu'aux bords -->
+        <path class="crack-segment crack-s5" d="M73 101 L62 91 L56 79 L45 72 L40 58 L29 49"/>
+        <path class="crack-segment crack-s5 hair" d="M62 91 L51 94 L42 88 L34 91"/>
+        <path class="crack-segment crack-s5 hair" d="M56 79 L61 69 L56 61"/>
+        <path class="crack-segment crack-s5 micro" d="M45 72 L36 68 L31 61"/>
+        <path class="crack-segment crack-s5" d="M160 99 L171 89 L178 77 L188 69 L194 55 L205 45"/>
+        <path class="crack-segment crack-s5 hair" d="M171 89 L182 93 L191 86 L200 89"/>
+        <path class="crack-segment crack-s5 hair" d="M178 77 L173 67 L179 59"/>
+        <path class="crack-segment crack-s5 micro" d="M188 69 L197 64 L202 57"/>
+        <path class="crack-segment crack-s5" d="M79 209 L72 220 L66 232 L56 242 L51 255 L39 267 L33 282"/>
+        <path class="crack-segment crack-s5 hair" d="M72 220 L61 216 L53 221"/>
+        <path class="crack-segment crack-s5 hair" d="M66 232 L73 240 L70 249"/>
+        <path class="crack-segment crack-s5 hair" d="M56 242 L45 239 L38 245"/>
+        <path class="crack-segment crack-s5 micro" d="M51 255 L59 263 L56 272"/>
+        <path class="crack-segment crack-s5" d="M153 209 L161 220 L167 232 L177 242 L182 255 L194 267 L201 282"/>
+        <path class="crack-segment crack-s5 hair" d="M161 220 L172 216 L180 221"/>
+        <path class="crack-segment crack-s5 hair" d="M167 232 L160 240 L163 249"/>
+        <path class="crack-segment crack-s5 hair" d="M177 242 L188 239 L196 245"/>
+        <path class="crack-segment crack-s5 micro" d="M182 255 L174 263 L177 272"/>
+        <path class="crack-segment crack-s5" d="M115 155 L92 157 L73 153 L56 158 L39 153 L22 160"/>
+        <path class="crack-segment crack-s5 hair" d="M73 153 L66 144 L56 143"/>
+        <path class="crack-segment crack-s5 micro" d="M56 158 L49 168 L39 170"/>
+        <path class="crack-segment crack-s5" d="M115 155 L138 157 L157 153 L174 158 L192 153 L210 160"/>
+        <path class="crack-segment crack-s5 hair" d="M157 153 L164 144 L174 143"/>
+        <path class="crack-segment crack-s5 micro" d="M174 158 L181 168 L191 170"/>
       </svg>
       <button class="pack-seal-button" type="button" aria-label="Appuyer sur le sceau pour fissurer la boîte">
         <span class="seal-omega">Ω</span><small>APPUYER</small>
@@ -979,11 +1156,11 @@ function renderBoosterPack(source,guarantee){
   let hits=0;
   const messages=[
     '',
-    'Une première fissure apparaît… continue d’appuyer sur le sceau.',
-    'La boîte se fragilise… appuie encore sur le sceau.',
-    'Les fissures s’étendent… continue d’appuyer.',
-    'La lumière traverse la boîte… le sceau est sur le point de céder.',
-    'Le sceau cède…'
+    'La boîte se craquelle… continue d’appuyer sur le sceau.',
+    'Le sceau résiste encore…',
+    'Les fissures se propagent dans toute la boîte… continue.',
+    'La boîte est sur le point de céder…',
+    'Le sceau se brise… la boîte s’ouvre !'
   ];
   seal.addEventListener('click',()=>{
     if(boosterLocked||hits>=5)return;
@@ -998,8 +1175,8 @@ function renderBoosterPack(source,guarantee){
     setTimeout(()=>box.classList.remove(`impact-${hits}`),releaseDelay);
     if(hits<5){setTimeout(()=>{boosterLocked=false},releaseDelay);return}
     seal.disabled=true;
-    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:390);
-    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1380);
+    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:680);
+    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1750);
   });
 }
 function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}

@@ -1,5 +1,5 @@
 {
-  "version": "6.3.2",
-  "released": "2026-08-05",
-  "notes": "Restauration renforcée de l’ouverture du booster : fissures lumineuses permanentes et de plus en plus étendues à chaque pression, sans afficher le nombre de pressions nécessaires."
+  "version": "6.3.3",
+  "released": "2026-08-17",
+  "notes": "Nouvelle animation d’ouverture du booster : petites fissures fines au premier impact, propagation importante au troisième, réseau dense de craquelures au cinquième puis ouverture de la boîte."
 }
