@@ -593,7 +593,7 @@
 }
 
 
-/* === Mythos v6.3.5 — fissures haute visibilité === */
+/* === Mythos v6.3.6 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -676,7 +676,7 @@
 
 
 
-/* === Mythos v6.3.5 — fissures progressives toujours visibles === */
+/* === Mythos v6.3.6 — fissures progressives toujours visibles === */
 .booster-crack-box{
   width:min(78vw,252px)!important;
   filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
@@ -788,7 +788,7 @@
 
 
 
-/* === Mythos v6.3.5 — boîte craquelée : fissures fines et nombreuses === */
+/* === Mythos v6.3.6 — boîte craquelée : fissures fines et nombreuses === */
 .booster-crack-box{
   width:min(77vw,248px)!important;
   filter:drop-shadow(0 30px 45px rgba(0,0,0,.72))!important;
@@ -926,7 +926,7 @@
 
 
 
-/* === Mythos v6.3.5 — verrouillage du zoom de l’application === */
+/* === Mythos v6.3.6 — verrouillage du zoom de l’application === */
 html, body {
   touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
@@ -940,7 +940,7 @@ html, body {
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.3.5</span>
+      <span id="versionPill" class="version-pill">v6.3.6</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -1030,7 +1030,7 @@ html, body {
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.3.5';
+const APP_VERSION = '6.3.6';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -1081,7 +1081,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.3.5`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.6`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -1193,17 +1193,19 @@ function renderBoosterPack(source,guarantee){
     'La boîte est sur le point de céder…',
     'Le sceau se brise… la boîte s’ouvre !'
   ];
+  const crackStageClasses=level=>['booster-crack-box',...Array.from({length:level},(_,i)=>`crack-stage-${i+1}`)].join(' ');
   seal.addEventListener('click',()=>{
     if(boosterLocked||hits>=5)return;
     boosterLocked=true;
     hits++;
-    box.className=`booster-crack-box crack-stage-${hits} impact-${hits}`;
+    const impactClass=`impact-${hits}`;
+    box.className=`${crackStageClasses(hits)} ${impactClass}`;
     seal.setAttribute('aria-label',hits<5?'La boîte se fissure. Appuyer encore sur le sceau.':'Le sceau cède et la boîte s’ouvre.');
     els.boosterInstruction.textContent=messages[hits];
     playPackCrackEffect(hits);
     vibrate({1:22,2:[25,18,30],3:[32,18,42],4:[38,16,55],5:[48,18,72,20,95]}[hits]);
     const releaseDelay=settings.reduceMotion?20:360;
-    setTimeout(()=>box.classList.remove(`impact-${hits}`),releaseDelay);
+    setTimeout(()=>box.classList.remove(impactClass),releaseDelay);
     if(hits<5){setTimeout(()=>{boosterLocked=false},releaseDelay);return}
     seal.disabled=true;
     setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:680);
@@ -1324,7 +1326,7 @@ migrateData();reloadState();populateFilters();applySettings();bindEvents();rende
 </script>
 
 <script>
-/* Mythos v6.3.5 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
+/* Mythos v6.3.6 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
 ['gesturestart','gesturechange','gestureend'].forEach(type => {
   document.addEventListener(type, event => event.preventDefault(), { passive: false });
 });

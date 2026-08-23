@@ -1,5 +1,5 @@
 {
-  "version": "6.3.5",
-  "released": "2026-08-17",
-  "notes": "Zoom de l’application désactivé : pinch-to-zoom et gestes de zoom Safari bloqués, tout en conservant le défilement normal de Mythos."
+  "version": "6.3.6",
+  "released": "2026-08-23",
+  "notes": "Animation de fissures corrigée : la boîte conserve désormais tous les stades déjà atteints. Les fissures ne peuvent plus redevenir plus petites lors d’un nouvel appui ; elles ne font que progresser jusqu’à la casse au 5e appui."
 }
