@@ -593,7 +593,7 @@
 }
 
 
-/* === Mythos v6.3.7 — fissures haute visibilité === */
+/* === Mythos v6.3.8 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -676,7 +676,7 @@
 
 
 
-/* === Mythos v6.3.7 — fissures progressives toujours visibles === */
+/* === Mythos v6.3.8 — fissures progressives toujours visibles === */
 .booster-crack-box{
   width:min(78vw,252px)!important;
   filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
@@ -788,7 +788,7 @@
 
 
 
-/* === Mythos v6.3.7 — boîte craquelée : fissures fines et nombreuses === */
+/* === Mythos v6.3.8 — boîte craquelée : fissures fines et nombreuses === */
 .booster-crack-box{
   width:min(77vw,248px)!important;
   filter:drop-shadow(0 30px 45px rgba(0,0,0,.72))!important;
@@ -926,7 +926,7 @@
 
 
 
-/* === Mythos v6.3.7 — verrouillage du zoom de l’application === */
+/* === Mythos v6.3.8 — verrouillage du zoom de l’application === */
 html, body {
   touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
@@ -934,7 +934,7 @@ html, body {
 
 
 
-/* === Mythos v6.3.7 — fissures procédurales & reveals de rareté === */
+/* === Mythos v6.3.8 — fissures procédurales & reveals de rareté === */
 .pack-cracks{position:absolute;inset:0;z-index:8!important;overflow:visible;pointer-events:none}
 .crack-segment{fill:none;stroke:#fff8df!important;stroke-width:var(--crack-width,1.4px)!important;stroke-linecap:round;stroke-linejoin:round;opacity:var(--crack-opacity,.9)!important;vector-effect:non-scaling-stroke;stroke-dasharray:var(--crack-length,80)!important;stroke-dashoffset:0!important;filter:drop-shadow(0 0 1px rgba(255,255,255,.98)) drop-shadow(0 0 5px rgba(255,220,112,.9)) drop-shadow(0 0 11px rgba(255,170,56,.72))!important}
 .crack-segment.new-stage{stroke-dashoffset:var(--crack-length,80)!important;animation:drawProceduralCrack calc(.14s + .035s * var(--crack-width,1.4)) ease-out forwards!important}
@@ -987,6 +987,20 @@ html, body {
 @keyframes mythicRays{0%{opacity:0;transform:scale(.45) rotate(-28deg)}28%{opacity:1}100%{opacity:.22;transform:scale(1.28) rotate(18deg)}}
 @keyframes mythicCardPulse{0%{filter:drop-shadow(0 0 0 rgba(255,214,81,0))}22%{filter:drop-shadow(0 0 18px rgba(255,240,170,.9)) drop-shadow(0 0 34px rgba(255,222,90,.82)) drop-shadow(0 0 62px rgba(255,182,42,.64))}100%{filter:drop-shadow(0 0 14px rgba(255,230,150,.45)) drop-shadow(0 0 24px rgba(255,198,66,.32))}}
 
+
+/* === Mythos v6.3.8 — album vertical & fiche carte scrollable === */
+html,body{overflow-x:hidden!important;max-width:100%}
+#albumView,#albumGrid{overflow-x:hidden!important;overscroll-behavior-x:none!important;touch-action:pan-y!important}
+#albumView .filters{overflow:hidden}
+#albumView .filter-row{overflow-x:hidden!important;flex-wrap:wrap;touch-action:pan-y!important}
+#albumView .album-grid,#albumView .collection-card{touch-action:pan-y!important}
+.card-dialog{position:fixed;inset:0;margin:auto;width:min(94vw,680px);height:min(93dvh,900px);max-height:93dvh;padding:0;overflow:hidden!important;border-radius:25px;overscroll-behavior:contain;touch-action:pan-y!important}
+.card-dialog::backdrop{touch-action:none}
+#cardDialogContent{height:100%;max-height:93dvh;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y!important;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+.card-dialog .dialog-close{position:absolute!important;z-index:40;top:9px;right:9px;margin:0!important;float:none!important}
+body.card-modal-open{position:fixed!important;left:0;right:0;width:100%;overflow:hidden!important;touch-action:none!important}
+body.card-modal-open .card-dialog,body.card-modal-open #cardDialogContent{touch-action:pan-y!important}
+
 </style>
 </head>
 <body>
@@ -995,7 +1009,7 @@ html, body {
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.3.7</span>
+      <span id="versionPill" class="version-pill">v6.3.8</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -1085,7 +1099,7 @@ html, body {
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.3.7';
+const APP_VERSION = '6.3.8';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -1136,7 +1150,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.3.7`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.8`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -1342,7 +1356,12 @@ function renderAlbum(){const list=filteredCards();if(!list.length){els.albumGrid
 function toggleFavorite(id){if(!collection[id])return;if(favorites.has(id))favorites.delete(id);else favorites.add(id);saveJson(STORAGE.favorites,[...favorites]);renderAlbum();renderProgress();showToast(favorites.has(id)?'Ajoutée aux favorites.':'Retirée des favorites.')}
 function memberships(cardId){return SETS.filter(s=>s.ids.includes(cardId)).map(s=>s.name)}
 function formatDate(value){if(!value)return '—';try{return new Intl.DateTimeFormat('fr-CH',{dateStyle:'long'}).format(new Date(value))}catch{return '—'}}
-function showCardDetail(id){const c=CARDS.find(x=>x.id===id);if(!c)return;const owned=collection[id],fav=favorites.has(id);els.cardDialogContent.innerHTML=`<div class="detail-wrap"><div class="detail-art rarity-framed ${owned?'':'locked'}" data-rarity="${c.rarity}" style="${rarityStyle(c.rarity)}"><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"></div><div class="detail-copy"><p class="eyebrow">${c.rarityLabel} · #${c.number}</p><h2>${owned?escapeHtml(c.name):'Carte non découverte'}</h2><p>${owned?escapeHtml(c.description):'Ouvre des boosters pour révéler cette carte.'}</p>${owned?`<button id="detailFavoriteButton" class="secondary-button" type="button">${fav?'★ Retirer des favorites':'☆ Ajouter aux favorites'}</button>`:''}<div class="detail-meta"><div><small>Type</small><strong>${owned?escapeHtml(c.kind):'???'}</strong></div><div><small>Exemplaires</small><strong>${owned?.quantity||0}</strong></div><div><small>Première obtention</small><strong>${formatDate(owned?.firstObtainedAt)}</strong></div><div><small>Dernière obtention</small><strong>${formatDate(owned?.lastObtainedAt)}</strong></div><div style="grid-column:1/-1"><small>Ensembles</small><strong>${memberships(c.id).join(' · ')||'Aucun'}</strong></div></div></div></div>`;const fb=$('detailFavoriteButton');if(fb)fb.addEventListener('click',()=>{toggleFavorite(id);els.cardDialog.close()});els.cardDialog.showModal()}
+
+let cardDialogPageScrollY=0;
+function lockCardDialogPage(){cardDialogPageScrollY=window.scrollY||window.pageYOffset||0;document.body.style.top=`-${cardDialogPageScrollY}px`;document.body.classList.add('card-modal-open')}
+function unlockCardDialogPage(){if(!document.body.classList.contains('card-modal-open'))return;document.body.classList.remove('card-modal-open');document.body.style.top='';window.scrollTo(0,cardDialogPageScrollY)}
+
+function showCardDetail(id){const c=CARDS.find(x=>x.id===id);if(!c)return;const owned=collection[id],fav=favorites.has(id);els.cardDialogContent.innerHTML=`<div class="detail-wrap"><div class="detail-art rarity-framed ${owned?'':'locked'}" data-rarity="${c.rarity}" style="${rarityStyle(c.rarity)}"><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><img src="${artworkUrl(c)}" alt="${escapeHtml(c.name)}"></div><div class="detail-copy"><p class="eyebrow">${c.rarityLabel} · #${c.number}</p><h2>${owned?escapeHtml(c.name):'Carte non découverte'}</h2><p>${owned?escapeHtml(c.description):'Ouvre des boosters pour révéler cette carte.'}</p>${owned?`<button id="detailFavoriteButton" class="secondary-button" type="button">${fav?'★ Retirer des favorites':'☆ Ajouter aux favorites'}</button>`:''}<div class="detail-meta"><div><small>Type</small><strong>${owned?escapeHtml(c.kind):'???'}</strong></div><div><small>Exemplaires</small><strong>${owned?.quantity||0}</strong></div><div><small>Première obtention</small><strong>${formatDate(owned?.firstObtainedAt)}</strong></div><div><small>Dernière obtention</small><strong>${formatDate(owned?.lastObtainedAt)}</strong></div><div style="grid-column:1/-1"><small>Ensembles</small><strong>${memberships(c.id).join(' · ')||'Aucun'}</strong></div></div></div></div>`;const fb=$('detailFavoriteButton');if(fb)fb.addEventListener('click',()=>{toggleFavorite(id);els.cardDialog.close()});els.cardDialog.showModal();els.cardDialogContent.scrollTop=0;lockCardDialogPage()}
 function renderProgress(){const s=getStats();const rarest=CARDS.filter(c=>collection[c.id]).sort((a,b)=>RARITIES[b.rarity].rank-RARITIES[a.rarity].rank)[0];els.progressOverview.innerHTML=[['Cartes distinctes',`${s.distinct}/100`],['Exemplaires',s.copies],['Doublons',s.duplicates],['Série actuelle',`${s.currentStreak} j`],['Record',`${s.longestStreak} j`],['Boosters',s.boosters],['Cadeaux reçus',s.gifts],['Plus rare',rarest?.name||'—']].map(([a,b])=>`<div class="metric"><span>${a}</span><strong>${escapeHtml(String(b))}</strong></div>`).join('');els.rarityProgress.innerHTML=Object.entries(RARITIES).map(([k,r])=>{const n=CARDS.filter(c=>c.rarity===k&&collection[c.id]).length,p=n/r.count*100;return `<div class="progress-entry"><header><strong style="color:${r.color}">${r.label}</strong><small>${n}/${r.count}</small></header><div class="progress-track"><div class="progress-fill" style="width:${p}%;background:${r.color}"></div></div></div>`}).join('');els.setGrid.innerHTML=SETS.map(set=>{const n=set.ids.filter(id=>collection[id]).length,p=n/set.ids.length*100;return `<article class="set-card"><span class="achievement-icon">${set.icon}</span><h4>${set.name}</h4><p>${n}/${set.ids.length} cartes</p><div class="progress-track"><div class="progress-fill" style="width:${p}%"></div></div><button type="button" data-open-set="${set.id}">Voir l’ensemble</button></article>`}).join('');els.setGrid.querySelectorAll('[data-open-set]').forEach(b=>b.addEventListener('click',()=>{filters.set=b.dataset.openSet;els.setFilter.value=filters.set;navigate('album');renderAlbum()}));const achievements=getAchievements(s);els.achievementGrid.innerHTML=achievements.map(a=>`<article class="achievement-card ${a.unlocked?'':'locked'}"><span class="achievement-icon">${a.icon}</span><h4>${a.name}</h4><p>${a.description}</p><p style="margin-top:7px;color:${a.unlocked?'var(--ok)':'var(--muted)'}">${a.unlocked?'Débloqué':'À accomplir'}</p></article>`).join('');renderHistory()}
 function getAchievements(s){const gods=CARDS.filter(c=>collection[c.id]&&/Dieu|Déesse/.test(c.kind)).length;const monsters=CARDS.filter(c=>collection[c.id]&&/Créature|Monstre|Dragon|Géant|Centaure|Satyre|Harpie/.test(c.kind)).length;return [
   {name:'Premier pas',icon:'Ω',description:'Ouvrir un premier booster.',unlocked:s.boosters>=1},{name:'Collectionneur I',icon:'◇',description:'Obtenir 25 cartes distinctes.',unlocked:s.distinct>=25},{name:'Collectionneur II',icon:'◆',description:'Obtenir 50 cartes distinctes.',unlocked:s.distinct>=50},{name:'Collectionneur III',icon:'✦',description:'Obtenir 75 cartes distinctes.',unlocked:s.distinct>=75},{name:'Maître du Panthéon',icon:'♛',description:'Compléter les 100 cartes.',unlocked:s.distinct>=100},{name:'Favori des dieux',icon:'⚡',description:'Obtenir une carte légendaire.',unlocked:CARDS.some(c=>collection[c.id]&&c.rarity==='legendary')},{name:'Élu du destin',icon:'☄',description:'Obtenir la carte mythique.',unlocked:CARDS.some(c=>collection[c.id]&&c.rarity==='mythic')},{name:'Panthéon',icon:'♜',description:'Obtenir cinq dieux ou déesses.',unlocked:gods>=5},{name:'Chasseur de monstres',icon:'⚔',description:'Obtenir dix créatures ou monstres.',unlocked:monsters>=10},{name:'Fidélité',icon:'☀',description:'Atteindre une série de 7 jours.',unlocked:s.longestStreak>=7},{name:'Messager des dieux',icon:'☤',description:'Recevoir cinq cadeaux.',unlocked:s.gifts>=5},{name:'Conservateur',icon:'★',description:'Ajouter dix cartes aux favorites.',unlocked:favorites.size>=10}
@@ -1365,7 +1384,7 @@ function setStatus(el,msg,type=''){el.textContent=msg;el.className=`status-line 
 function showToast(msg){clearTimeout(toastTimer);els.toast.textContent=msg;els.toast.classList.add('show');toastTimer=setTimeout(()=>els.toast.classList.remove('show'),2600)}
 function escapeHtml(s){return String(s).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]))}
 function renderAll(){renderBoosterStatus();renderHome();if(els.albumView.classList.contains('active'))renderAlbum();renderProgress();els.appVersionText.textContent=`Mythos v${APP_VERSION}`;els.dataVersionText.textContent=`Format de données v${DATA_VERSION} · ${Object.keys(collection).length} cartes distinctes`}
-function bindEvents(){document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.nav)));els.openDailyButton.addEventListener('click',()=>openBooster('daily'));els.openBonusButton.addEventListener('click',()=>openBooster('bonus'));els.closeBoosterButton.addEventListener('click',()=>{els.boosterDialog.close();navigate('album');showToast('Les cartes ont rejoint ton album.')});els.closeCardDialog.addEventListener('click',()=>els.cardDialog.close());document.querySelectorAll('[data-owned]').forEach(b=>b.addEventListener('click',()=>{filters.owned=b.dataset.owned;document.querySelectorAll('[data-owned]').forEach(x=>x.classList.toggle('active',x===b));renderAlbum()}));els.favoritesChip.addEventListener('click',()=>{filters.favorites=!filters.favorites;els.favoritesChip.classList.toggle('active',filters.favorites);renderAlbum()});els.searchInput.addEventListener('input',()=>{filters.query=els.searchInput.value.trim();renderAlbum()});els.rarityFilter.addEventListener('change',()=>{filters.rarity=els.rarityFilter.value;renderAlbum()});els.kindFilter.addEventListener('change',()=>{filters.kind=els.kindFilter.value;renderAlbum()});els.setFilter.addEventListener('change',()=>{filters.set=els.setFilter.value;renderAlbum()});els.sortFilter.addEventListener('change',()=>{filters.sort=els.sortFilter.value;renderAlbum()});els.themeSelect.addEventListener('change',()=>{settings.theme=els.themeSelect.value;saveSettings()});els.fontScaleSelect.addEventListener('change',()=>{settings.fontScale=els.fontScaleSelect.value;saveSettings()});els.highContrastToggle.addEventListener('change',()=>{settings.highContrast=els.highContrastToggle.checked;saveSettings()});els.reduceMotionToggle.addEventListener('change',()=>{settings.reduceMotion=els.reduceMotionToggle.checked;saveSettings()});els.soundToggle.addEventListener('change',()=>{settings.sound=els.soundToggle.checked;saveSettings();if(settings.sound)playRarityEffect('uncommon')});els.vibrationToggle.addEventListener('change',()=>{settings.vibration=els.vibrationToggle.checked;saveSettings();vibrate(30)});els.exportButton.addEventListener('click',exportBackup);els.importButton.addEventListener('click',()=>els.importFile.click());els.importFile.addEventListener('change',()=>{if(els.importFile.files[0])importBackup(els.importFile.files[0])});els.redeemGiftButton.addEventListener('click',redeemGift);els.offlineButton.addEventListener('click',prefetchArtworks);els.resetButton.addEventListener('click',resetData);els.checkUpdateButton.addEventListener('click',()=>checkForUpdate(true));els.updateNowButton.addEventListener('click',applyUpdate);els.dismissUpdateButton.addEventListener('click',()=>{if(pendingUpdateVersion)localStorage.setItem(STORAGE.dismissedVersion,pendingUpdateVersion);els.updateBanner.classList.add('hidden')});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkForUpdate(false)})}
+function bindEvents(){document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.nav)));els.openDailyButton.addEventListener('click',()=>openBooster('daily'));els.openBonusButton.addEventListener('click',()=>openBooster('bonus'));els.closeBoosterButton.addEventListener('click',()=>{els.boosterDialog.close();navigate('album');showToast('Les cartes ont rejoint ton album.')});els.closeCardDialog.addEventListener('click',()=>els.cardDialog.close());els.cardDialog.addEventListener('close',unlockCardDialogPage);els.cardDialog.addEventListener('cancel',()=>setTimeout(unlockCardDialogPage,0));document.querySelectorAll('[data-owned]').forEach(b=>b.addEventListener('click',()=>{filters.owned=b.dataset.owned;document.querySelectorAll('[data-owned]').forEach(x=>x.classList.toggle('active',x===b));renderAlbum()}));els.favoritesChip.addEventListener('click',()=>{filters.favorites=!filters.favorites;els.favoritesChip.classList.toggle('active',filters.favorites);renderAlbum()});els.searchInput.addEventListener('input',()=>{filters.query=els.searchInput.value.trim();renderAlbum()});els.rarityFilter.addEventListener('change',()=>{filters.rarity=els.rarityFilter.value;renderAlbum()});els.kindFilter.addEventListener('change',()=>{filters.kind=els.kindFilter.value;renderAlbum()});els.setFilter.addEventListener('change',()=>{filters.set=els.setFilter.value;renderAlbum()});els.sortFilter.addEventListener('change',()=>{filters.sort=els.sortFilter.value;renderAlbum()});els.themeSelect.addEventListener('change',()=>{settings.theme=els.themeSelect.value;saveSettings()});els.fontScaleSelect.addEventListener('change',()=>{settings.fontScale=els.fontScaleSelect.value;saveSettings()});els.highContrastToggle.addEventListener('change',()=>{settings.highContrast=els.highContrastToggle.checked;saveSettings()});els.reduceMotionToggle.addEventListener('change',()=>{settings.reduceMotion=els.reduceMotionToggle.checked;saveSettings()});els.soundToggle.addEventListener('change',()=>{settings.sound=els.soundToggle.checked;saveSettings();if(settings.sound)playRarityEffect('uncommon')});els.vibrationToggle.addEventListener('change',()=>{settings.vibration=els.vibrationToggle.checked;saveSettings();vibrate(30)});els.exportButton.addEventListener('click',exportBackup);els.importButton.addEventListener('click',()=>els.importFile.click());els.importFile.addEventListener('change',()=>{if(els.importFile.files[0])importBackup(els.importFile.files[0])});els.redeemGiftButton.addEventListener('click',redeemGift);els.offlineButton.addEventListener('click',prefetchArtworks);els.resetButton.addEventListener('click',resetData);els.checkUpdateButton.addEventListener('click',()=>checkForUpdate(true));els.updateNowButton.addEventListener('click',applyUpdate);els.dismissUpdateButton.addEventListener('click',()=>{if(pendingUpdateVersion)localStorage.setItem(STORAGE.dismissedVersion,pendingUpdateVersion);els.updateBanner.classList.add('hidden')});document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkForUpdate(false)})}
 async function registerSW(){if(!('serviceWorker'in navigator)||location.protocol==='file:')return;try{await navigator.serviceWorker.register(`./sw.js?v=${APP_VERSION}`,{updateViaCache:'none'})}catch(e){console.warn('Service worker',e)}}
 if(CARDS.length!==100)console.error('100 cartes attendues, reçu',CARDS.length);
 migrateData();reloadState();populateFilters();applySettings();bindEvents();renderAll();registerSW();checkForUpdate(false);setInterval(renderBoosterStatus,1000);
@@ -1373,7 +1392,7 @@ migrateData();reloadState();populateFilters();applySettings();bindEvents();rende
 </script>
 
 <script>
-/* Mythos v6.3.7 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
+/* Mythos v6.3.8 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
 ['gesturestart','gesturechange','gestureend'].forEach(type => {
   document.addEventListener(type, event => event.preventDefault(), { passive: false });
 });

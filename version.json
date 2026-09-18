@@ -1,5 +1,5 @@
 {
-  "version": "6.3.7",
-  "released": "2026-08-23",
-  "notes": "Booster refondu avec fissures procédurales progressives à chaque tap (0/1/2/3/4/5), sans texte parasite pendant la casse, et effets de révélation nettement plus spectaculaires selon la rareté des cartes."
+  "version": "6.3.8",
+  "released": "2026-09-18",
+  "notes": "Album verrouillé au défilement vertical, fiche de carte corrigée pour défiler sans entraîner l’album en arrière-plan, nouveau cadrage de Zeus avec tête entière, et nouveaux artworks pour Ouranos, Iris et le Cheval de Troie."
 }
