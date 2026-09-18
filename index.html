@@ -593,7 +593,7 @@
 }
 
 
-/* === Mythos v6.3.6 — fissures haute visibilité === */
+/* === Mythos v6.3.7 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -676,7 +676,7 @@
 
 
 
-/* === Mythos v6.3.6 — fissures progressives toujours visibles === */
+/* === Mythos v6.3.7 — fissures progressives toujours visibles === */
 .booster-crack-box{
   width:min(78vw,252px)!important;
   filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
@@ -788,7 +788,7 @@
 
 
 
-/* === Mythos v6.3.6 — boîte craquelée : fissures fines et nombreuses === */
+/* === Mythos v6.3.7 — boîte craquelée : fissures fines et nombreuses === */
 .booster-crack-box{
   width:min(77vw,248px)!important;
   filter:drop-shadow(0 30px 45px rgba(0,0,0,.72))!important;
@@ -926,11 +926,66 @@
 
 
 
-/* === Mythos v6.3.6 — verrouillage du zoom de l’application === */
+/* === Mythos v6.3.7 — verrouillage du zoom de l’application === */
 html, body {
   touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
 }
+
+
+
+/* === Mythos v6.3.7 — fissures procédurales & reveals de rareté === */
+.pack-cracks{position:absolute;inset:0;z-index:8!important;overflow:visible;pointer-events:none}
+.crack-segment{fill:none;stroke:#fff8df!important;stroke-width:var(--crack-width,1.4px)!important;stroke-linecap:round;stroke-linejoin:round;opacity:var(--crack-opacity,.9)!important;vector-effect:non-scaling-stroke;stroke-dasharray:var(--crack-length,80)!important;stroke-dashoffset:0!important;filter:drop-shadow(0 0 1px rgba(255,255,255,.98)) drop-shadow(0 0 5px rgba(255,220,112,.9)) drop-shadow(0 0 11px rgba(255,170,56,.72))!important}
+.crack-segment.new-stage{stroke-dashoffset:var(--crack-length,80)!important;animation:drawProceduralCrack calc(.14s + .035s * var(--crack-width,1.4)) ease-out forwards!important}
+@keyframes drawProceduralCrack{to{stroke-dashoffset:0}}
+.booster-crack-box.crack-stage-0 .pack-light-leak{opacity:0;transform:translate(-50%,-50%) scale(.18)}
+.booster-crack-box.crack-stage-1 .pack-light-leak{opacity:.04;transform:translate(-50%,-50%) scale(.42)}
+.booster-crack-box.crack-stage-2 .pack-light-leak{opacity:.09;transform:translate(-50%,-50%) scale(.62)}
+.booster-crack-box.crack-stage-3 .pack-light-leak{opacity:.2;transform:translate(-50%,-50%) scale(.96)}
+.booster-crack-box.crack-stage-4 .pack-light-leak{opacity:.34;transform:translate(-50%,-50%) scale(1.3)}
+.booster-crack-box.crack-stage-5 .pack-light-leak{opacity:.75;transform:translate(-50%,-50%) scale(2.2)}
+.booster-crack-box.crack-stage-1 .pack-seal-button{box-shadow:0 0 0 6px rgba(232,189,101,.2),0 10px 22px rgba(0,0,0,.55),0 0 10px rgba(255,223,123,.14),inset 0 0 17px rgba(232,189,101,.25)}
+.booster-crack-box.crack-stage-2 .pack-seal-button{box-shadow:0 0 0 6px rgba(232,189,101,.22),0 10px 22px rgba(0,0,0,.55),0 0 14px rgba(255,223,123,.18),inset 0 0 18px rgba(232,189,101,.28)}
+.booster-crack-box.crack-stage-3 .pack-seal-button{box-shadow:0 0 0 7px rgba(232,189,101,.24),0 10px 22px rgba(0,0,0,.55),0 0 24px rgba(255,223,123,.3),inset 0 0 21px rgba(232,189,101,.34)}
+.booster-crack-box.crack-stage-4 .pack-seal-button{box-shadow:0 0 0 8px rgba(232,189,101,.27),0 10px 22px rgba(0,0,0,.55),0 0 34px rgba(255,223,123,.42),inset 0 0 24px rgba(232,189,101,.38)}
+.booster-crack-box.crack-stage-5 .pack-seal-button{box-shadow:0 0 0 9px rgba(232,189,101,.32),0 10px 22px rgba(0,0,0,.55),0 0 42px rgba(255,223,123,.6),inset 0 0 26px rgba(232,189,101,.44)}
+.booster-single-card{transform-style:preserve-3d}
+.booster-single-card img{z-index:2}
+.reveal-flare,.reveal-rays,.reveal-stars{position:absolute;pointer-events:none;opacity:0}
+.reveal-flare{z-index:0;inset:-22px;border-radius:34px;background:radial-gradient(circle,var(--reveal-flare,rgba(255,255,255,.25)) 0 8%,var(--reveal-glow,rgba(255,215,120,.28)) 28%,transparent 72%);filter:blur(18px)}
+.reveal-rays{z-index:1;inset:-32px;border-radius:44px;background:repeating-conic-gradient(from -12deg,transparent 0 10deg,var(--reveal-ray,rgba(255,255,255,.2)) 10deg 14deg,transparent 14deg 30deg);-webkit-mask:radial-gradient(circle at center,transparent 0 34%,#000 47%,transparent 74%);mask:radial-gradient(circle at center,transparent 0 34%,#000 47%,transparent 74%);filter:blur(1.5px)}
+.reveal-stars{z-index:1;inset:-24px;border-radius:36px;background:radial-gradient(circle at 18% 22%,rgba(255,255,255,.96) 0 2px,transparent 3px),radial-gradient(circle at 78% 18%,rgba(255,255,255,.92) 0 1.8px,transparent 3px),radial-gradient(circle at 12% 78%,rgba(255,250,214,.95) 0 2.1px,transparent 3px),radial-gradient(circle at 84% 74%,rgba(255,255,255,.92) 0 1.8px,transparent 3px),radial-gradient(circle at 51% 12%,rgba(255,250,214,.85) 0 1.7px,transparent 3px),radial-gradient(circle at 66% 86%,rgba(255,255,255,.88) 0 1.9px,transparent 3px);filter:drop-shadow(0 0 10px var(--reveal-glow,rgba(255,255,255,.35)))}
+.booster-single-card.entering .reveal-flare{animation:revealFlare .9s ease-out both}
+.booster-single-card.entering .reveal-rays{animation:revealRays 1.45s ease-out both}
+.booster-single-card.entering .reveal-stars{animation:revealStars 1.2s ease-out both}
+@keyframes revealFlare{0%{opacity:0;transform:scale(.45)}28%{opacity:1}100%{opacity:.22;transform:scale(1.18)}}
+@keyframes revealRays{0%{opacity:0;transform:scale(.55) rotate(-22deg)}36%{opacity:.82}100%{opacity:.1;transform:scale(1.16) rotate(16deg)}}
+@keyframes revealStars{0%{opacity:0;transform:scale(.35)}46%{opacity:1}100%{opacity:.16;transform:scale(1.28)}}
+.booster-single-card[data-rarity="common"]{--reveal-flare:rgba(231,237,247,.2);--reveal-glow:rgba(201,210,224,.22);--reveal-ray:rgba(225,231,240,.14)}
+.booster-single-card[data-rarity="common"] .reveal-rays,.booster-single-card[data-rarity="common"] .reveal-stars{display:none}
+.booster-single-card[data-rarity="uncommon"]{--reveal-flare:rgba(109,255,166,.28);--reveal-glow:rgba(78,222,138,.35);--reveal-ray:rgba(117,255,176,.24)}
+.booster-single-card[data-rarity="uncommon"] .reveal-rays{opacity:.5}
+.booster-single-card[data-rarity="uncommon"] .reveal-stars{display:none}
+.booster-single-card[data-rarity="rare"]{--reveal-flare:rgba(102,175,255,.38);--reveal-glow:rgba(73,161,255,.5);--reveal-ray:rgba(138,205,255,.4)}
+.booster-single-card[data-rarity="rare"] .reveal-stars{opacity:.65}
+.booster-single-card[data-rarity="epic"]{--reveal-flare:rgba(195,117,255,.48);--reveal-glow:rgba(177,92,255,.62);--reveal-ray:rgba(223,188,255,.58)}
+.booster-single-card[data-rarity="epic"] .reveal-flare{filter:blur(24px)}
+.booster-single-card[data-rarity="epic"] .reveal-rays{inset:-38px}
+.booster-single-card[data-rarity="legendary"]{--reveal-flare:rgba(255,203,90,.6);--reveal-glow:rgba(255,191,51,.82);--reveal-ray:rgba(255,233,165,.72)}
+.booster-single-card[data-rarity="legendary"] .reveal-flare{inset:-30px;filter:blur(28px)}
+.booster-single-card[data-rarity="legendary"] .reveal-rays{inset:-48px}
+.booster-single-card[data-rarity="legendary"] .reveal-stars{inset:-34px;opacity:.98}
+.booster-single-card[data-rarity="legendary"].entering{animation:cardEnter .5s both,legendaryCardPulse 1.9s ease-out both}
+@keyframes legendaryCardPulse{0%{filter:drop-shadow(0 0 0 rgba(255,193,74,0))}35%{filter:drop-shadow(0 0 18px rgba(255,212,112,.86)) drop-shadow(0 0 34px rgba(255,188,72,.55))}100%{filter:drop-shadow(0 0 10px rgba(255,205,110,.36))}}
+.booster-single-card[data-rarity="mythic"]{--reveal-flare:rgba(255,231,120,.78);--reveal-glow:rgba(255,220,95,.98);--reveal-ray:rgba(255,245,188,.92)}
+.booster-single-card[data-rarity="mythic"] .reveal-flare{inset:-38px;filter:blur(34px)}
+.booster-single-card[data-rarity="mythic"] .reveal-rays{inset:-58px;animation:mythicRays 2.2s ease-out both}
+.booster-single-card[data-rarity="mythic"] .reveal-stars{inset:-40px;opacity:1;background:radial-gradient(circle at 18% 22%,rgba(255,255,255,.98) 0 2.2px,transparent 3px),radial-gradient(circle at 78% 18%,rgba(255,251,222,.96) 0 2.2px,transparent 3.4px),radial-gradient(circle at 12% 78%,rgba(255,250,214,.96) 0 2.5px,transparent 3.5px),radial-gradient(circle at 84% 74%,rgba(255,255,255,.96) 0 2.2px,transparent 3.4px),radial-gradient(circle at 51% 12%,rgba(255,250,214,.94) 0 2.1px,transparent 3.4px),radial-gradient(circle at 66% 86%,rgba(255,255,255,.94) 0 2.2px,transparent 3.4px),radial-gradient(circle at 29% 58%,rgba(255,245,190,.96) 0 2px,transparent 3px),radial-gradient(circle at 73% 57%,rgba(255,255,255,.92) 0 2px,transparent 3px)}
+.booster-single-card[data-rarity="mythic"] .rarity-aura{animation:aura .9s ease-in-out infinite}
+.booster-single-card[data-rarity="mythic"].entering{animation:cardEnter .5s both,mythicCardPulse 2.4s ease-out both}
+@keyframes mythicRays{0%{opacity:0;transform:scale(.45) rotate(-28deg)}28%{opacity:1}100%{opacity:.22;transform:scale(1.28) rotate(18deg)}}
+@keyframes mythicCardPulse{0%{filter:drop-shadow(0 0 0 rgba(255,214,81,0))}22%{filter:drop-shadow(0 0 18px rgba(255,240,170,.9)) drop-shadow(0 0 34px rgba(255,222,90,.82)) drop-shadow(0 0 62px rgba(255,182,42,.64))}100%{filter:drop-shadow(0 0 14px rgba(255,230,150,.45)) drop-shadow(0 0 24px rgba(255,198,66,.32))}}
 
 </style>
 </head>
@@ -940,7 +995,7 @@ html, body {
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.3.6</span>
+      <span id="versionPill" class="version-pill">v6.3.7</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -1030,7 +1085,7 @@ html, body {
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.3.6';
+const APP_VERSION = '6.3.7';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -1081,7 +1136,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.3.6`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.7`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -1104,115 +1159,107 @@ function renderBoosterPack(source,guarantee){
       <span class="pack-subtitle" aria-hidden="true">5 CARTES</span>
       <span class="pack-light-leak" aria-hidden="true"></span>
       <span class="pack-impact-flash" aria-hidden="true"></span>
-      <svg class="pack-cracks" viewBox="0 0 230 310" aria-hidden="true">
-        <!-- 1er appui : premières craquelures fines, irrégulières, non centrées -->
-        <path class="crack-segment crack-s1" d="M98 128 L90 121 L84 111 L74 105"/>
-        <path class="crack-segment crack-s1 hair" d="M90 121 L82 123 L76 118"/>
-        <path class="crack-segment crack-s1" d="M126 117 L131 108 L134 97"/>
-        <path class="crack-segment crack-s1 hair" d="M131 108 L139 106 L145 100"/>
-        <path class="crack-segment crack-s1" d="M138 169 L146 176 L151 186 L160 193"/>
-        <path class="crack-segment crack-s1 hair" d="M146 176 L154 173 L160 178"/>
-        <path class="crack-segment crack-s1 micro" d="M103 154 L95 158 L89 164"/>
-
-        <!-- 3e appui : la boîte craquelle davantage, avec de nombreuses branches -->
-        <path class="crack-segment crack-s3" d="M74 105 L63 96 L57 84 L46 78 L39 66 L28 59"/>
-        <path class="crack-segment crack-s3 hair" d="M63 96 L54 101 L46 98 L40 102"/>
-        <path class="crack-segment crack-s3 hair" d="M57 84 L62 74 L58 66"/>
-        <path class="crack-segment crack-s3 micro" d="M46 78 L37 74 L33 66"/>
-
-        <path class="crack-segment crack-s3" d="M126 117 L136 109 L145 100 L156 94 L162 83 L173 76"/>
-        <path class="crack-segment crack-s3 hair" d="M145 100 L152 104 L161 101"/>
-        <path class="crack-segment crack-s3 hair" d="M156 94 L153 84 L159 77"/>
-        <path class="crack-segment crack-s3 micro" d="M173 76 L181 71 L186 64"/>
-
-        <path class="crack-segment crack-s3" d="M138 169 L148 177 L157 186 L165 198 L176 207"/>
-        <path class="crack-segment crack-s3 hair" d="M157 186 L166 182 L174 186"/>
-        <path class="crack-segment crack-s3 hair" d="M165 198 L160 208 L165 216"/>
-        <path class="crack-segment crack-s3 micro" d="M176 207 L185 212 L191 220"/>
-
-        <path class="crack-segment crack-s3" d="M89 164 L81 176 L73 185 L68 198 L58 208"/>
-        <path class="crack-segment crack-s3 hair" d="M81 176 L71 173 L64 178"/>
-        <path class="crack-segment crack-s3 hair" d="M73 185 L78 193 L75 202"/>
-        <path class="crack-segment crack-s3 micro" d="M58 208 L48 212 L42 219"/>
-
-        <!-- 5e appui : réseau dense, irrégulier, sur toute la surface -->
-        <path class="crack-segment crack-s5" d="M28 59 L20 50 L18 40 L24 29"/>
-        <path class="crack-segment crack-s5 hair" d="M20 50 L12 53 L8 48"/>
-        <path class="crack-segment crack-s5 micro" d="M24 29 L18 23 L17 15"/>
-
-        <path class="crack-segment crack-s5" d="M58 208 L49 220 L42 233 L34 243 L29 257 L22 268 L20 283"/>
-        <path class="crack-segment crack-s5 hair" d="M49 220 L39 216 L31 221"/>
-        <path class="crack-segment crack-s5 hair" d="M42 233 L47 242 L44 251"/>
-        <path class="crack-segment crack-s5 hair" d="M34 243 L25 240 L18 245"/>
-        <path class="crack-segment crack-s5 micro" d="M29 257 L35 264 L33 273"/>
-
-        <path class="crack-segment crack-s5" d="M173 76 L185 69 L193 58 L204 50 L211 39 L214 27"/>
-        <path class="crack-segment crack-s5 hair" d="M185 69 L195 72 L203 67"/>
-        <path class="crack-segment crack-s5 hair" d="M193 58 L189 48 L194 41"/>
-        <path class="crack-segment crack-s5 micro" d="M204 50 L214 49 L220 43"/>
-
-        <path class="crack-segment crack-s5" d="M176 207 L188 214 L197 226 L205 237 L210 250 L213 264 L210 281"/>
-        <path class="crack-segment crack-s5 hair" d="M188 214 L198 210 L205 214"/>
-        <path class="crack-segment crack-s5 hair" d="M197 226 L193 236 L198 245"/>
-        <path class="crack-segment crack-s5 hair" d="M205 237 L214 235 L220 241"/>
-        <path class="crack-segment crack-s5 micro" d="M213 264 L206 272 L206 283"/>
-
-        <path class="crack-segment crack-s5" d="M106 84 L97 73 L84 68 L75 58 L62 52 L50 45"/>
-        <path class="crack-segment crack-s5 hair" d="M84 68 L87 58 L82 51"/>
-        <path class="crack-segment crack-s5 hair" d="M75 58 L66 61 L58 57"/>
-        <path class="crack-segment crack-s5 micro" d="M50 45 L44 37 L36 34"/>
-
-        <path class="crack-segment crack-s5" d="M146 149 L161 149 L174 144 L189 146 L203 141 L219 143"/>
-        <path class="crack-segment crack-s5 hair" d="M174 144 L179 134 L188 132"/>
-        <path class="crack-segment crack-s5 micro" d="M203 141 L209 151 L218 154"/>
-
-        <path class="crack-segment crack-s5" d="M103 154 L88 151 L75 154 L61 151 L46 154 L30 151 L16 154"/>
-        <path class="crack-segment crack-s5 hair" d="M75 154 L70 144 L61 142"/>
-        <path class="crack-segment crack-s5 micro" d="M46 154 L40 164 L31 167"/>
-
-        <path class="crack-segment crack-s5" d="M131 108 L127 92 L129 78 L124 63 L127 48 L123 33"/>
-        <path class="crack-segment crack-s5 hair" d="M129 78 L137 72 L139 64"/>
-        <path class="crack-segment crack-s5 micro" d="M124 63 L116 58 L114 49"/>
-
-        <path class="crack-segment crack-s5" d="M109 170 L103 183 L103 197 L99 212 L101 228 L96 245 L97 262"/>
-        <path class="crack-segment crack-s5 hair" d="M103 197 L111 202 L113 210"/>
-        <path class="crack-segment crack-s5 micro" d="M99 212 L90 217 L89 226"/>
-      </svg>
+      <svg class="pack-cracks" viewBox="0 0 230 310" aria-hidden="true"></svg>
       <button class="pack-seal-button" type="button" aria-label="Appuyer sur le sceau pour fissurer la boîte">
         <span class="seal-omega">Ω</span><small>APPUYER</small>
       </button>
     </div>`;
   const box=els.boosterStage.querySelector('.booster-crack-box');
   const seal=els.boosterStage.querySelector('.pack-seal-button');
+  const crackSvg=els.boosterStage.querySelector('.pack-cracks');
+  const crackPattern=createProceduralCrackPattern(Date.now()+Math.floor(Math.random()*1e6));
   let hits=0;
-  const messages=[
-    '',
-    'La boîte se craquelle… continue d’appuyer sur le sceau.',
-    'Le sceau résiste encore…',
-    'Les fissures se propagent dans toute la boîte… continue.',
-    'La boîte est sur le point de céder…',
-    'Le sceau se brise… la boîte s’ouvre !'
-  ];
-  const crackStageClasses=level=>['booster-crack-box',...Array.from({length:level},(_,i)=>`crack-stage-${i+1}`)].join(' ');
+  renderProceduralCracks(crackSvg,crackPattern,0);
   seal.addEventListener('click',()=>{
     if(boosterLocked||hits>=5)return;
     boosterLocked=true;
     hits++;
-    const impactClass=`impact-${hits}`;
-    box.className=`${crackStageClasses(hits)} ${impactClass}`;
+    renderProceduralCracks(crackSvg,crackPattern,hits);
+    box.className=`booster-crack-box crack-stage-${hits} impact-${hits}`;
     seal.setAttribute('aria-label',hits<5?'La boîte se fissure. Appuyer encore sur le sceau.':'Le sceau cède et la boîte s’ouvre.');
-    els.boosterInstruction.textContent=messages[hits];
+    els.boosterInstruction.textContent='';
     playPackCrackEffect(hits);
-    vibrate({1:22,2:[25,18,30],3:[32,18,42],4:[38,16,55],5:[48,18,72,20,95]}[hits]);
-    const releaseDelay=settings.reduceMotion?20:360;
-    setTimeout(()=>box.classList.remove(impactClass),releaseDelay);
+    vibrate({1:18,2:[18,14,22],3:[25,18,34],4:[32,18,44],5:[44,18,62,18,82]}[hits]);
+    const releaseDelay=settings.reduceMotion?20:380;
+    setTimeout(()=>box.classList.remove(`impact-${hits}`),releaseDelay);
     if(hits<5){setTimeout(()=>{boosterLocked=false},releaseDelay);return}
     seal.disabled=true;
-    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:680);
-    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1750);
+    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:640);
+    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1680);
   });
 }
-function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
+function mulberry32(seed){return function(){let t=seed+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
+function clampValue(v,min,max){return Math.max(min,Math.min(max,v))}
+function proceduralPoint(rand){
+  const side=rand();
+  if(side<.22)return {x:18+rand()*194,y:10+rand()*42,angle:Math.PI*(.22+rand()*.56)};
+  if(side<.44)return {x:178+rand()*34,y:18+rand()*272,angle:Math.PI*(.78+rand()*.44)};
+  if(side<.66)return {x:18+rand()*194,y:258+rand()*38,angle:-Math.PI*(.22+rand()*.56)};
+  if(side<.88)return {x:10+rand()*36,y:18+rand()*272,angle:-Math.PI*(.22+rand()*.44)};
+  return {x:35+rand()*160,y:42+rand()*220,angle:rand()*Math.PI*2};
+}
+function createProceduralCrackPattern(seed){
+  const rand=mulberry32(seed);
+  const stages=[null,{count:7,minLen:10,maxLen:18,segments:[2,3],branch:.18,micro:.12,width:[1.15,1.7],alpha:[.72,.88]},{count:10,minLen:11,maxLen:20,segments:[2,4],branch:.22,micro:.18,width:[1.1,1.8],alpha:[.72,.9]},{count:18,minLen:12,maxLen:22,segments:[3,5],branch:.32,micro:.24,width:[1.15,1.95],alpha:[.78,.95]},{count:24,minLen:12,maxLen:24,segments:[3,5],branch:.4,micro:.28,width:[1.2,2.05],alpha:[.82,.98]},{count:34,minLen:14,maxLen:26,segments:[4,6],branch:.5,micro:.34,width:[1.25,2.2],alpha:[.84,1]}];
+  const pattern=[];
+  for(let stage=1;stage<=5;stage++){
+    const cfg=stages[stage],list=[];
+    for(let i=0;i<cfg.count;i++)list.push(...generateCrackFamily(rand,cfg,stage));
+    pattern[stage]=list;
+  }
+  return pattern;
+}
+function generateCrackFamily(rand,cfg,stage){
+  const origin=proceduralPoint(rand);
+  const segMin=cfg.segments[0],segMax=cfg.segments[1];
+  const segmentCount=segMin+Math.floor(rand()*(segMax-segMin+1));
+  let x=origin.x,y=origin.y,angle=origin.angle+(rand()-.5)*.7;
+  let total=0;
+  const anchors=[];
+  let d=`M${x.toFixed(1)} ${y.toFixed(1)}`;
+  for(let s=0;s<segmentCount;s++){
+    const step=cfg.minLen+rand()*(cfg.maxLen-cfg.minLen);
+    angle+=((rand()-.5)*.9)+(stage>=3?(rand()-.5)*.18:0);
+    const nx=clampValue(x+Math.cos(angle)*step,8,222);
+    const ny=clampValue(y+Math.sin(angle)*step,8,302);
+    total+=Math.hypot(nx-x,ny-y);
+    d+=` L${nx.toFixed(1)} ${ny.toFixed(1)}`;
+    anchors.push({x:nx,y:ny,angle});
+    x=nx;y=ny;
+  }
+  const segments=[{stage,d,width:(cfg.width[0]+rand()*(cfg.width[1]-cfg.width[0])).toFixed(2),opacity:(cfg.alpha[0]+rand()*(cfg.alpha[1]-cfg.alpha[0])).toFixed(2),length:Math.ceil(total+16)}];
+  const branchCount=(rand()<cfg.branch?1:0)+(stage>=4&&rand()<cfg.branch*.58?1:0)+(stage===5&&rand()<cfg.branch*.42?1:0);
+  for(let b=0;b<branchCount && anchors.length;b++){
+    const base=anchors[Math.floor(rand()*Math.max(1,anchors.length-1))];
+    let bx=base.x,by=base.y,bAngle=base.angle+((rand()<.5?-1:1)*(.55+rand()*1.1));
+    const bSegs=1+Math.floor(rand()*(stage>=4?3:2));
+    let bd=`M${bx.toFixed(1)} ${by.toFixed(1)}`;let bLen=0;
+    for(let s=0;s<bSegs;s++){
+      const step=(cfg.minLen*.45)+rand()*(cfg.maxLen*.45);
+      bAngle+=(rand()-.5)*.95;
+      const nx=clampValue(bx+Math.cos(bAngle)*step,8,222);
+      const ny=clampValue(by+Math.sin(bAngle)*step,8,302);
+      bLen+=Math.hypot(nx-bx,ny-by);bd+=` L${nx.toFixed(1)} ${ny.toFixed(1)}`;bx=nx;by=ny;
+    }
+    segments.push({stage,d:bd,width:(.72+rand()*.85).toFixed(2),opacity:(.62+rand()*.22).toFixed(2),length:Math.ceil(bLen+12)});
+  }
+  if(rand()<cfg.micro && anchors.length){
+    const base=anchors[Math.floor(rand()*anchors.length)];
+    const mx=clampValue(base.x+((rand()-.5)*20),8,222),my=clampValue(base.y+((rand()-.5)*20),8,302);
+    const endx=clampValue(mx+Math.cos(base.angle+((rand()<.5?-1:1)*1.4))*(6+rand()*10),8,222),endy=clampValue(my+Math.sin(base.angle+((rand()<.5?-1:1)*1.4))*(6+rand()*10),8,302);
+    const md=`M${mx.toFixed(1)} ${my.toFixed(1)} L${endx.toFixed(1)} ${endy.toFixed(1)}`;
+    segments.push({stage,d:md,width:(.6+rand()*.55).toFixed(2),opacity:(.58+rand()*.18).toFixed(2),length:Math.ceil(Math.hypot(endx-mx,endy-my)+8)});
+  }
+  return segments;
+}
+function renderProceduralCracks(svg,pattern,stage){
+  if(!svg)return;
+  const visible=[];
+  for(let s=1;s<=stage;s++)for(const seg of pattern[s]||[])visible.push(seg);
+  svg.innerHTML=visible.map((seg,i)=>`<path class="crack-segment${seg.stage===stage?' new-stage':''}" d="${seg.d}" style="--crack-width:${seg.width};--crack-opacity:${seg.opacity};--crack-length:${seg.length};animation-delay:${(i%18)*.012}s"></path>`).join('');
+}
+
+function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="reveal-flare" aria-hidden="true"></span><span class="reveal-rays" aria-hidden="true"></span><span class="reveal-stars" aria-hidden="true"></span><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
 function advanceBooster(btn){if(boosterLocked)return;boosterLocked=true;btn.classList.add('swipe');setTimeout(()=>{if(boosterIndex<4){boosterIndex++;boosterLocked=false;showBoosterCard()}else{showBoosterComplete()}},settings.reduceMotion?10:430)}
 function showBoosterComplete(){boosterLocked=false;els.boosterInstruction.textContent='Les cinq cartes ont rejoint ta collection.';els.boosterStage.innerHTML=`<div class="booster-complete"><div class="omega">Ω</div><h2>Booster terminé</h2><p class="muted">Ta progression et tes succès ont été mis à jour.</p></div>`;els.closeBoosterButton.classList.remove('hidden')}
 function ensureMythosAudio(){
@@ -1326,7 +1373,7 @@ migrateData();reloadState();populateFilters();applySettings();bindEvents();rende
 </script>
 
 <script>
-/* Mythos v6.3.6 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
+/* Mythos v6.3.7 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
 ['gesturestart','gesturechange','gestureend'].forEach(type => {
   document.addEventListener(type, event => event.preventDefault(), { passive: false });
 });

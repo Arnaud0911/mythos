@@ -1,5 +1,5 @@
 {
-  "version": "6.3.6",
+  "version": "6.3.7",
   "released": "2026-08-23",
-  "notes": "Animation de fissures corrigée : la boîte conserve désormais tous les stades déjà atteints. Les fissures ne peuvent plus redevenir plus petites lors d’un nouvel appui ; elles ne font que progresser jusqu’à la casse au 5e appui."
+  "notes": "Booster refondu avec fissures procédurales progressives à chaque tap (0/1/2/3/4/5), sans texte parasite pendant la casse, et effets de révélation nettement plus spectaculaires selon la rareté des cartes."
 }
