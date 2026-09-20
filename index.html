@@ -475,27 +475,56 @@
   overflow:visible;
   pointer-events:none;
 }
-.crack-segment{
+.crack-cluster{opacity:1}
+.crack-shadow,
+.crack-core,
+.crack-inner,
+.crack-highlight,
+.crack-dust{
   fill:none;
-  stroke:#fff9d9;
-  stroke-width:2.1;
   stroke-linecap:round;
   stroke-linejoin:round;
-  opacity:0;
-  filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 5px rgba(255,210,86,.95));
-  stroke-dasharray:190;
-  stroke-dashoffset:190;
+  stroke-dasharray:var(--crack-length,120);
+  stroke-dashoffset:var(--crack-length,120);
+  vector-effect:non-scaling-stroke;
 }
-.crack-a{stroke-width:2.4}.crack-b{stroke-width:1.8}.crack-c{stroke-width:2.9}.crack-d{stroke-width:2}.crack-e{stroke-width:3.5}.crack-f{stroke-width:2.2}
-.crack-stage-1 .crack-a,
-.crack-stage-2 .crack-a,.crack-stage-2 .crack-b,
-.crack-stage-3 .crack-a,.crack-stage-3 .crack-b,.crack-stage-3 .crack-c,
-.crack-stage-4 .crack-a,.crack-stage-4 .crack-b,.crack-stage-4 .crack-c,.crack-stage-4 .crack-d,
-.crack-stage-5 .crack-segment{
-  opacity:1;
-  animation:drawCrack .2s ease-out forwards;
+.crack-shadow{
+  stroke:rgba(22,10,6,.72);
+  stroke-width:calc(var(--crack-width,1.5) * 2.9);
+  opacity:calc(var(--crack-opacity,.85) * .58);
+  filter:url(#crackShadowFilter);
 }
-.crack-stage-2 .crack-a,.crack-stage-4 .crack-c{filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px rgba(255,210,86,1))}
+.crack-core{
+  stroke:rgba(46,25,16,.96);
+  stroke-width:calc(var(--crack-width,1.5) * 1.95);
+  opacity:calc(var(--crack-opacity,.9) * .95);
+  filter:url(#crackDepthFilter);
+}
+.crack-inner{
+  stroke:rgba(10,5,3,.82);
+  stroke-width:calc(var(--crack-width,1.5) * .78);
+  opacity:calc(var(--crack-opacity,.9) * .82);
+}
+.crack-highlight{
+  stroke:rgba(255,243,213,.78);
+  stroke-width:calc(var(--crack-width,1.5) * .42);
+  opacity:calc(var(--crack-opacity,.9) * .76);
+  filter:drop-shadow(0 0 1px rgba(255,250,231,.48));
+  stroke-dasharray:2 10 4 14;
+}
+.crack-dust{
+  stroke:rgba(214,184,135,.32);
+  stroke-width:calc(var(--crack-width,1.5) * 3.8);
+  opacity:calc(var(--crack-opacity,.85) * .22);
+  filter:url(#crackDustFilter);
+}
+.crack-shadow.new-stage,
+.crack-core.new-stage,
+.crack-inner.new-stage,
+.crack-highlight.new-stage,
+.crack-dust.new-stage{
+  animation:drawProceduralCrack calc(.16s + .04s * var(--crack-width,1.4)) ease-out forwards;
+}
 .pack-light-leak{
   position:absolute;
   z-index:2;
@@ -593,7 +622,7 @@
 }
 
 
-/* === Mythos v6.3.8 — fissures haute visibilité === */
+/* === Mythos v6.3.9 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -676,7 +705,7 @@
 
 
 
-/* === Mythos v6.3.8 — fissures progressives toujours visibles === */
+/* === Mythos v6.3.9 — fissures progressives toujours visibles === */
 .booster-crack-box{
   width:min(78vw,252px)!important;
   filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
@@ -788,7 +817,7 @@
 
 
 
-/* === Mythos v6.3.8 — boîte craquelée : fissures fines et nombreuses === */
+/* === Mythos v6.3.9 — boîte craquelée : fissures fines et nombreuses === */
 .booster-crack-box{
   width:min(77vw,248px)!important;
   filter:drop-shadow(0 30px 45px rgba(0,0,0,.72))!important;
@@ -926,7 +955,7 @@
 
 
 
-/* === Mythos v6.3.8 — verrouillage du zoom de l’application === */
+/* === Mythos v6.3.9 — verrouillage du zoom de l’application === */
 html, body {
   touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
@@ -934,7 +963,7 @@ html, body {
 
 
 
-/* === Mythos v6.3.8 — fissures procédurales & reveals de rareté === */
+/* === Mythos v6.3.9 — fissures procédurales & reveals de rareté === */
 .pack-cracks{position:absolute;inset:0;z-index:8!important;overflow:visible;pointer-events:none}
 .crack-segment{fill:none;stroke:#fff8df!important;stroke-width:var(--crack-width,1.4px)!important;stroke-linecap:round;stroke-linejoin:round;opacity:var(--crack-opacity,.9)!important;vector-effect:non-scaling-stroke;stroke-dasharray:var(--crack-length,80)!important;stroke-dashoffset:0!important;filter:drop-shadow(0 0 1px rgba(255,255,255,.98)) drop-shadow(0 0 5px rgba(255,220,112,.9)) drop-shadow(0 0 11px rgba(255,170,56,.72))!important}
 .crack-segment.new-stage{stroke-dashoffset:var(--crack-length,80)!important;animation:drawProceduralCrack calc(.14s + .035s * var(--crack-width,1.4)) ease-out forwards!important}
@@ -988,7 +1017,7 @@ html, body {
 @keyframes mythicCardPulse{0%{filter:drop-shadow(0 0 0 rgba(255,214,81,0))}22%{filter:drop-shadow(0 0 18px rgba(255,240,170,.9)) drop-shadow(0 0 34px rgba(255,222,90,.82)) drop-shadow(0 0 62px rgba(255,182,42,.64))}100%{filter:drop-shadow(0 0 14px rgba(255,230,150,.45)) drop-shadow(0 0 24px rgba(255,198,66,.32))}}
 
 
-/* === Mythos v6.3.8 — album vertical & fiche carte scrollable === */
+/* === Mythos v6.3.9 — album vertical & fiche carte scrollable === */
 html,body{overflow-x:hidden!important;max-width:100%}
 #albumView,#albumGrid{overflow-x:hidden!important;overscroll-behavior-x:none!important;touch-action:pan-y!important}
 #albumView .filters{overflow:hidden}
@@ -1009,7 +1038,7 @@ body.card-modal-open .card-dialog,body.card-modal-open #cardDialogContent{touch-
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.3.8</span>
+      <span id="versionPill" class="version-pill">v6.3.9</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -1099,7 +1128,7 @@ body.card-modal-open .card-dialog,body.card-modal-open #cardDialogContent{touch-
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.3.8';
+const APP_VERSION = '6.3.9';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -1150,7 +1179,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.3.8`}
+function artworkUrl(card){return `${card.artwork}?v=6.3.9`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -1268,9 +1297,42 @@ function generateCrackFamily(rand,cfg,stage){
 }
 function renderProceduralCracks(svg,pattern,stage){
   if(!svg)return;
+  if(!svg.dataset.ready){
+    svg.setAttribute('viewBox','0 0 230 310');
+    svg.innerHTML=`<defs>
+      <filter id="crackShadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur"/>
+        <feOffset dx="0.55" dy="0.8" result="off"/>
+        <feColorMatrix in="off" type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.04 0 0 0 0 0.03 0 0 0 .9 0" result="shadow"/>
+        <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="crackDepthFilter" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation=".18" result="soft"/>
+        <feMerge><feMergeNode in="soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="crackDustFilter" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" />
+      </filter>
+    </defs>`;
+    svg.dataset.ready='1';
+  }
+  const defs=svg.querySelector('defs');
   const visible=[];
   for(let s=1;s<=stage;s++)for(const seg of pattern[s]||[])visible.push(seg);
-  svg.innerHTML=visible.map((seg,i)=>`<path class="crack-segment${seg.stage===stage?' new-stage':''}" d="${seg.d}" style="--crack-width:${seg.width};--crack-opacity:${seg.opacity};--crack-length:${seg.length};animation-delay:${(i%18)*.012}s"></path>`).join('');
+  const groups=visible.map((seg,i)=>{
+    const cls=seg.stage===stage?' new-stage':'';
+    const common=`d="${seg.d}" style="--crack-width:${seg.width};--crack-opacity:${seg.opacity};--crack-length:${seg.length};animation-delay:${(i%22)*.011}s"`;
+    return `<g class="crack-cluster crack-level-${seg.stage}">
+      <path class="crack-dust${cls}" ${common}></path>
+      <path class="crack-shadow${cls}" ${common}></path>
+      <path class="crack-core${cls}" ${common}></path>
+      <path class="crack-inner${cls}" ${common}></path>
+      <path class="crack-highlight${cls}" ${common}></path>
+    </g>`;
+  }).join('');
+  svg.innerHTML='';
+  if(defs)svg.appendChild(defs.cloneNode(true));
+  svg.insertAdjacentHTML('beforeend',groups);
 }
 
 function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="reveal-flare" aria-hidden="true"></span><span class="reveal-rays" aria-hidden="true"></span><span class="reveal-stars" aria-hidden="true"></span><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
@@ -1392,7 +1454,7 @@ migrateData();reloadState();populateFilters();applySettings();bindEvents();rende
 </script>
 
 <script>
-/* Mythos v6.3.8 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
+/* Mythos v6.3.9 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
 ['gesturestart','gesturechange','gestureend'].forEach(type => {
   document.addEventListener(type, event => event.preventDefault(), { passive: false });
 });

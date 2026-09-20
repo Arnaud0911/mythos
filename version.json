@@ -1,5 +1,5 @@
 {
-  "version": "6.3.8",
-  "released": "2026-09-18",
-  "notes": "Album verrouillé au défilement vertical, fiche de carte corrigée pour défiler sans entraîner l’album en arrière-plan, nouveau cadrage de Zeus avec tête entière, et nouveaux artworks pour Ouranos, Iris et le Cheval de Troie."
+  "version": "6.3.9",
+  "released": "2026-09-20",
+  "notes": "Fissures procédurales du booster rendues plus réalistes: texture de craquelure, noyau sombre, bords ébréchés lumineux et aspect de vraie boîte qui se fissure."
 }

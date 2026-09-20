@@ -1,0 +1,18 @@
+MYTHOS v6.2.0 — MISE À JOUR GITHUB
+
+1. Ouvre ton dépôt GitHub, onglet Code.
+2. Clique sur Add file > Upload files.
+3. Envoie les quatre fichiers de ce dossier :
+   - index.html
+   - manifest.webmanifest
+   - sw.js
+   - version.json
+4. Clique sur Commit changes.
+5. Ne supprime pas les dossiers artworks/ et icons/.
+6. Attends la coche verte dans Actions.
+7. Ouvre une fois https://TON-PSEUDO.github.io/mythos/?v=6.2.0 dans Safari, puis ferme et relance l’app.
+
+Les collections, favoris, historiques et codes cadeaux sont conservés.
+
+
+Version 6.3.9: fissures du booster plus réalistes et texturées.
