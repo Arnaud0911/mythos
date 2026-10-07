@@ -1,5 +1,5 @@
 {
-  "version": "6.3.9",
+  "version": "6.4.0",
   "released": "2026-09-20",
-  "notes": "Fissures procédurales du booster rendues plus réalistes: texture de craquelure, noyau sombre, bords ébréchés lumineux et aspect de vraie boîte qui se fissure."
+  "notes": "Fissures du booster visuellement plus brillantes et lumineuses, avec couches dorées/chaudes plus proches du rendu initial, tout en gardant la progression par appuis."
 }
