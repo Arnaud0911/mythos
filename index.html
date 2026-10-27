@@ -599,7 +599,7 @@
 }
 
 
-/* === Mythos v6.4.0 — fissures haute visibilité === */
+/* === Mythos v6.4.1 — fissures haute visibilité === */
 .booster-crack-box{
   width:min(76vw,246px);
   filter:drop-shadow(0 30px 42px rgba(0,0,0,.68));
@@ -682,7 +682,7 @@
 
 
 
-/* === Mythos v6.4.0 — fissures progressives toujours visibles === */
+/* === Mythos v6.4.1 — fissures progressives toujours visibles === */
 .booster-crack-box{
   width:min(78vw,252px)!important;
   filter:drop-shadow(0 30px 46px rgba(0,0,0,.76))!important;
@@ -794,7 +794,7 @@
 
 
 
-/* === Mythos v6.4.0 — boîte craquelée : fissures fines et nombreuses === */
+/* === Mythos v6.4.1 — boîte craquelée : fissures fines et nombreuses === */
 .booster-crack-box{
   width:min(77vw,248px)!important;
   filter:drop-shadow(0 30px 45px rgba(0,0,0,.72))!important;
@@ -932,11 +932,24 @@
 
 
 
-/* === Mythos v6.4.0 — verrouillage du zoom de l’application === */
+/* === Mythos v6.4.1 — verrouillage du zoom de l’application === */
 html, body {
   touch-action: pan-x pan-y;
   -webkit-text-size-adjust: 100%;
 }
+
+
+/* === Mythos v6.4.1 — fissures cumulatives irréversibles === */
+.pack-cracks .crack-segment.crack-persistent{
+  opacity:1!important;
+  stroke-dashoffset:0!important;
+  animation:none!important;
+}
+.pack-cracks .crack-segment.crack-new{
+  opacity:1!important;
+  animation:drawPersistentCrack .28s cubic-bezier(.12,.88,.22,1) forwards!important;
+}
+@keyframes drawPersistentCrack{from{stroke-dashoffset:190;opacity:.25}to{stroke-dashoffset:0;opacity:1}}
 
 </style>
 </head>
@@ -946,7 +959,7 @@ html, body {
     <header class="topbar">
       <div class="brand-mark" aria-hidden="true">Ω</div>
       <div><p class="eyebrow">ALBUM MYTHOLOGIQUE</p><h1>MYTHOS</h1></div>
-      <span id="versionPill" class="version-pill">v6.4.0</span>
+      <span id="versionPill" class="version-pill">v6.4.1</span>
     </header>
     <div id="updateBanner" class="update-banner hidden" role="status">
       <p><strong>Nouvelle version disponible.</strong> Ta collection sera conservée.</p>
@@ -1036,7 +1049,7 @@ html, body {
 (() => {
 'use strict';
 const CARDS = window.MYTHOS_CARDS || [];
-const APP_VERSION = '6.4.0';
+const APP_VERSION = '6.4.1';
 const DATA_VERSION = 3;
 const STORAGE = {
   collection:'mythos.collection.v2', lastBoosterDate:'mythos.lastBoosterDate.v2', openingHistory:'mythos.openingHistory.v2',
@@ -1087,7 +1100,7 @@ function zurichDateKey(date=new Date()){const p=getZurichParts(date);return `${p
 function secondsUntilMidnight(){const p=getZurichParts();return Math.max(0,86400-(p.hour*3600+p.minute*60+p.second))}
 function formatCountdown(s){return `${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor((s%3600)/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`}
 function boosterAvailable(){return localStorage.getItem(STORAGE.lastBoosterDate)!==zurichDateKey()}
-function artworkUrl(card){return `${card.artwork}?v=6.4.0`}
+function artworkUrl(card){return `${card.artwork}?v=6.4.1`}
 function preloadArtwork(card){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>res(card);img.onerror=()=>rej(new Error(card.name));img.src=artworkUrl(card)})}
 function rarityStyle(r){return `--frame:${RARITIES[r].color};--glow:${RARITIES[r].color}80`}
 function pickRarity(allowed=null){const entries=Object.entries(RARITIES).filter(([k])=>!allowed||allowed.includes(k));const total=entries.reduce((s,[,v])=>s+v.chance,0);let roll=secureRandom()*total;for(const [k,v] of entries){roll-=v.chance;if(roll<0)return k}return entries.at(-1)[0]}
@@ -1192,47 +1205,48 @@ function renderBoosterPack(source,guarantee){
   const crackSvg=box.querySelector('.pack-cracks');
   if(crackSvg && !crackSvg.dataset.brightened){
     crackSvg.querySelectorAll('.crack-segment').forEach(path=>{
-      const widthMap={
-        'crack-a':2.4,'crack-b':1.8,'crack-c':2.9,'crack-d':2,'crack-e':3.5,'crack-f':2.2,
-        'crack-s1':2.1,'crack-s2':1.8,'crack-s3':2.6,'crack-s4':2.1,'crack-s5':2.8
-      };
+      const widthMap={'crack-a':2.4,'crack-b':1.8,'crack-c':2.9,'crack-d':2,'crack-e':3.5,'crack-f':2.2,'crack-s1':2.1,'crack-s3':2.6,'crack-s5':2.8};
       const cls=[...path.classList].find(c=>widthMap[c]);
-      if(cls) path.style.setProperty('--base-crack-width', widthMap[cls]+'px');
-      const d=path.getAttribute('d');
+      if(cls) path.style.setProperty('--base-crack-width',widthMap[cls]+'px');
       const classes=path.getAttribute('class');
-      const hot=path.cloneNode(false); hot.setAttribute('class',classes+' layer-hot');
-      const mid=path.cloneNode(false); mid.setAttribute('class',classes+' layer-mid');
-      const dark=path.cloneNode(false); dark.setAttribute('class',classes+' layer-dark');
+      const dark=path.cloneNode(false);dark.setAttribute('class',classes+' layer-dark');
+      const hot=path.cloneNode(false);hot.setAttribute('class',classes+' layer-hot');
       path.setAttribute('class',classes+' layer-mid');
-      path.before(dark); path.after(hot);
+      path.before(dark);path.after(hot);
     });
     crackSvg.dataset.brightened='1';
   }
   const seal=els.boosterStage.querySelector('.pack-seal-button');
   let hits=0;
-  const messages=[
-    '',
-    'La boîte se craquelle… continue d’appuyer sur le sceau.',
-    'Le sceau résiste encore…',
-    'Les fissures se propagent dans toute la boîte… continue.',
-    'La boîte est sur le point de céder…',
-    'Le sceau se brise… la boîte s’ouvre !'
-  ];
+  const revealCrackGroup=(selector)=>{
+    const paths=[...box.querySelectorAll(selector)];
+    paths.forEach(path=>{
+      if(path.classList.contains('crack-persistent'))return;
+      path.classList.add('crack-persistent','crack-new');
+      setTimeout(()=>path.classList.remove('crack-new'),330);
+    });
+  };
+  const visualStages={1:1,2:3,3:5,4:5};
   seal.addEventListener('click',()=>{
-    if(boosterLocked||hits>=5)return;
+    if(boosterLocked||hits>=4)return;
     boosterLocked=true;
     hits++;
-    box.className=`booster-crack-box crack-stage-${hits} impact-${hits}`;
-    seal.setAttribute('aria-label',hits<5?'La boîte se fissure. Appuyer encore sur le sceau.':'Le sceau cède et la boîte s’ouvre.');
-    els.boosterInstruction.textContent=messages[hits];
-    playPackCrackEffect(hits);
-    vibrate({1:22,2:[25,18,30],3:[32,18,42],4:[38,16,55],5:[48,18,72,20,95]}[hits]);
-    const releaseDelay=settings.reduceMotion?20:360;
-    setTimeout(()=>box.classList.remove(`impact-${hits}`),releaseDelay);
-    if(hits<5){setTimeout(()=>{boosterLocked=false},releaseDelay);return}
+    if(hits===1)revealCrackGroup('.crack-s1');
+    if(hits===2)revealCrackGroup('.crack-s3');
+    if(hits===3)revealCrackGroup('.crack-s5');
+    const visualStage=visualStages[hits];
+    box.className=`booster-crack-box crack-stage-${visualStage} impact-${hits}`;
+    seal.setAttribute('aria-label',hits<4?'La boîte se fissure. Appuyer encore sur le sceau.':'La boîte s’ouvre.');
+    els.boosterInstruction.textContent='';
+    playPackCrackEffect(Math.min(5,hits+1));
+    vibrate({1:22,2:[30,18,38],3:[42,18,60],4:[55,18,80,20,105]}[hits]);
+    const releaseDelay=settings.reduceMotion?20:380;
+    const impactClass=`impact-${hits}`;
+    setTimeout(()=>box.classList.remove(impactClass),releaseDelay);
+    if(hits<4){setTimeout(()=>{boosterLocked=false},releaseDelay);return}
     seal.disabled=true;
-    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:680);
-    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1750);
+    setTimeout(()=>{box.classList.add('opening');playPackOpenEffect()},settings.reduceMotion?30:520);
+    setTimeout(()=>{boosterIndex=0;boosterLocked=false;showBoosterCard()},settings.reduceMotion?90:1500);
   });
 }
 function showBoosterCard(){const card=currentBooster[boosterIndex];if(!card)return;const n=boosterIndex+1;els.boosterInstruction.textContent=n<5?`Carte ${n} sur 5 — touche-la pour continuer.`:'Dernière carte — touche-la pour terminer.';els.boosterStage.innerHTML=`<button class="booster-single-card rarity-framed entering" data-rarity="${card.rarity}" type="button" style="${rarityStyle(card.rarity)}"><span class="rarity-aura"></span><span class="rarity-ornament rarity-ornament-top" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-left" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-side rarity-ornament-right" aria-hidden="true"></span><span class="rarity-ornament rarity-ornament-bottom" aria-hidden="true"></span><span class="reveal-counter">${n} / 5</span><span class="ribbon ${card.isNew?'':'duplicate'}">${card.isNew?'NOUVELLE':'DOUBLON'}</span><img src="${artworkUrl(card)}" alt="${escapeHtml(card.name)}"><span class="reveal-copy"><small>${card.rarityLabel} · ${card.kind}</small><strong>${escapeHtml(card.name)}</strong><span>Toucher pour continuer →</span></span></button>`;playRarityEffect(card.rarity);const btn=els.boosterStage.querySelector('button');btn.addEventListener('click',()=>advanceBooster(btn),{once:true})}
@@ -1349,7 +1363,7 @@ migrateData();reloadState();populateFilters();applySettings();bindEvents();rende
 </script>
 
 <script>
-/* Mythos v6.4.0 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
+/* Mythos v6.4.1 — empêche le pinch-to-zoom iOS/Safari sans bloquer le scroll. */
 ['gesturestart','gesturechange','gestureend'].forEach(type => {
   document.addEventListener(type, event => event.preventDefault(), { passive: false });
 });

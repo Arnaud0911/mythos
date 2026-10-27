@@ -1,5 +1,5 @@
 {
-  "version": "6.4.0",
-  "released": "2026-09-20",
-  "notes": "Fissures du booster visuellement plus brillantes et lumineuses, avec couches dorées/chaudes plus proches du rendu initial, tout en gardant la progression par appuis."
+  "version": "6.4.1",
+  "released": "2026-10-27",
+  "notes": "Ouverture du booster en 4 appuis : petite fissure, bonne fissure, grosse fissure, puis ouverture. Toute fissure révélée reste définitivement visible et ne peut plus régresser."
 }
